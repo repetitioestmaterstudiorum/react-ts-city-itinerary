@@ -6,7 +6,7 @@ import CreateAccount from "./CreateAccount";
 import Browse from "./Browse";
 import Footer from "./layout/Footer";
 
-const Routes: React.FC<isLandingCheck> = ({ isLanding }) => {
+const Routes: React.FC<RoutesProps> = ({ isLanding }) => {
     return (
         <React.Fragment>
             <Route exact path="/" component={Landing} />
