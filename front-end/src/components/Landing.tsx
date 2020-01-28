@@ -12,18 +12,20 @@ const Landing: React.FC = () => {
             cities
           </p>
           <h2>Start browsing</h2>
-          <img src={CircleRight} style={{ maxWidth: "40px" }}></img>
+          <Link to="/browse">
+            <img src={CircleRight} style={{ maxWidth: "40px" }}></img>
+          </Link>
         </div>
       </section>
       <nav className="pt-4">
         <ul className="nav justify-content-center">
           <li className="nav-item">
-            <Link className="nav-link" to="/LogIn">
+            <Link className="nav-link" to="/log-in">
               Log in
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/CreateAccount">
+            <Link className="nav-link" to="/create-account">
               Create Account
             </Link>
           </li>
