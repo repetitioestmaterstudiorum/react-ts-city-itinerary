@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import HomeIcon from "../../img/homeIcon.png";
 
 const Footer: React.FC = () => (

@@ -1,10 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CircleRight from "../img/circleRight.png";
 
 const Landing: React.FC = () => {
   return (
-    <Router>
+    <React.Fragment>
       <section className="conatiner pt-5">
         <div className="text-center">
           <p>
@@ -31,7 +31,7 @@ const Landing: React.FC = () => {
           </li>
         </ul>
       </nav>
-    </Router>
+    </React.Fragment>
   );
 };
 
