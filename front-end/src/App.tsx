@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "./components/layout/Header";
+import Landing from "./components/Landing";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Header />
-    </div>
+    <React.Fragment>
+      <Landing />
+    </React.Fragment>
   );
 };
 

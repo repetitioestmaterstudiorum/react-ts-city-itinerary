@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./components/layout/Header";
+import Header from "./layout/Header";
 
 const Landing: React.FC = () => {
   return (
