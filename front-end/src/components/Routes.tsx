@@ -7,15 +7,16 @@ import Browse from "./Browse";
 import Footer from "./layout/Footer";
 
 const Routes: React.FC<RoutesProps> = ({ isLanding }) => {
-    return (
-        <React.Fragment>
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/create-account" component={CreateAccount} />
-            <Route exact path="/log-in" component={LogIn} />
-            <Route exact path="/browse" component={Browse} />
-            {isLanding && <Footer />}{" "}
-        </React.Fragment>
-    );
+  console.log(isLanding);
+  return (
+    <React.Fragment>
+      <Route exact path="/" component={Landing} />
+      <Route exact path="/create-account" component={CreateAccount} />
+      <Route exact path="/log-in" component={LogIn} />
+      <Route exact path="/browse" component={Browse} />
+      {isLanding && <Footer />}
+    </React.Fragment>
+  );
 };
 
 export default Routes;

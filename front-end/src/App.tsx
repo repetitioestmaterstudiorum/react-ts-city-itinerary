@@ -3,19 +3,18 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Routes from "./components/Routes";
 
-const isLanding = window.location.pathname !== "/";
-
 const App: React.FC = () => {
-    // useEffect(() => {
-    //     var isLanding = window.location.pathname !== "/";
-    //     console.log(isLanding);
-    // }, []);
-    return (
-        <Router>
-            <Header />
-            <Routes isLanding={isLanding} />
-        </Router>
-    );
+  let isLanding = false;
+  useEffect(() => {
+    isLanding = window.location.pathname !== "/";
+    console.log(isLanding);
+  }, []);
+  return (
+    <Router>
+      <Header />
+      <Routes isLanding={isLanding} />
+    </Router>
+  );
 };
 
 export default App;
