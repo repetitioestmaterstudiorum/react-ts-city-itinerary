@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, withRouter, RouteComponentProps } from "react-router-dom";
 import Landing from "./Landing";
 import LogIn from "./LogIn";
@@ -6,12 +6,9 @@ import CreateAccount from "./CreateAccount";
 import Browse from "./Browse";
 import Footer from "./layout/Footer";
 const Routes: React.FC<RouteComponentProps> = props => {
-  console.log("props", props.location.pathname);
-  const location = props.location.pathname;
-  const [isLanding, setIsLanding] = React.useState();
+  const [isLanding, setIsLanding] = useState(); // like setState, 1st argument: the state, 2nd arugument: the function that will change the state to something (what is in the parameter)
   useEffect(() => {
-    let test = location !== "/";
-    setIsLanding(test);
+    setIsLanding(props.location.pathname !== "/"); // setting isLanding to true or false
   });
   return (
     <React.Fragment>
@@ -19,12 +16,9 @@ const Routes: React.FC<RouteComponentProps> = props => {
       <Route exact path="/create-account" component={CreateAccount} />
       <Route exact path="/log-in" component={LogIn} />
       <Route exact path="/browse" component={Browse} />
-      {/* <Route exact path="/" render={() => isLanding && <Footer />} /> */}
-      {/* {isLanding && <Route exact path="/" component={Footer} />} */}
       {isLanding && <Footer />}
-      {console.log(isLanding)}
     </React.Fragment>
   );
 };
 
-export default withRouter(Routes);
+export default withRouter(Routes); // without "withRouter", the component rendering Routes.tsx would need to pass props to Routes.tsx. withRoutes
