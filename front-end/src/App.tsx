@@ -1,18 +1,26 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Routes from "./components/Routes";
 
+// const isLanding = window.location.pathname !== "/";
+
 const App: React.FC = () => {
-  let isLanding = false;
-  useEffect(() => {
-    isLanding = window.location.pathname !== "/";
-    console.log(isLanding);
-  }, []);
+  //   const [isLanding, setIsLanding] = React.useState();
+  //   useEffect(() => {
+  //     if (window.location.pathname !== "/") {
+  //       setIsLanding(true);
+  //     } else {
+  //       setIsLanding(false);
+  //     }
+  //     // var isLanding = window.location.pathname !== "/";
+  //     // console.log(isLanding);
+  //   }, []);
+
   return (
     <Router>
       <Header />
-      <Routes isLanding={isLanding} />
+      <Routes />
     </Router>
   );
 };
