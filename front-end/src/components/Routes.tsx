@@ -8,12 +8,10 @@ import Footer from "./layout/Footer";
 const Routes: React.FC<RouteComponentProps> = props => {
   console.log("props", props.location.pathname);
   const location = props.location.pathname;
-  // let isLanding = false;
   const [isLanding, setIsLanding] = React.useState();
   useEffect(() => {
     let test = location !== "/";
     setIsLanding(test);
-    // console.log(isLanding);
   });
   return (
     <React.Fragment>
