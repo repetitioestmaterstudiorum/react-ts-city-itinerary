@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "concurrently \"nodemon server.js\" \"cd ../front-end && npm start\""
   },
   "keywords": [
     "node.js",
@@ -14,6 +14,9 @@
   "author": "https://github.com/sunyamare",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.1.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.8.11"
   },
