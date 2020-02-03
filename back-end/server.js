@@ -23,7 +23,8 @@ app.use("/cities", require("./routes/cities"));
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useUnifiedTopology: true
   })
   .then(() => console.log("Connection to Mongo DB established"))
   .catch(err => console.log(err));
