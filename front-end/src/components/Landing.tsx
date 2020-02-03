@@ -11,8 +11,8 @@ const Landing: React.FC = () => {
             Find your perfect trip, designed by insiders who know and love their
             cities
           </p>
-          <h2>Start browsing</h2>
-          <Link to="/browse">
+          <h2>Browse Cities</h2>
+          <Link to="/cities">
             <img
               src={CircleRight}
               style={{ maxWidth: "40px" }}
