@@ -5,7 +5,7 @@ interface IProps {
   date?: string;
 }
 
-const SiteNotice: React.FC<IProps> = (props: IProps) => {
+const SiteNotice: React.FC<IProps> = props => {
   return (
     <React.Fragment>
       <h2>Site Notice</h2>

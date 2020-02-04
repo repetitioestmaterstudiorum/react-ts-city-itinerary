@@ -5,6 +5,7 @@ import LogIn from "./LogIn";
 import CreateAccount from "./CreateAccount";
 import Cities from "./Cities";
 import Footer from "./layout/Footer";
+
 const Routes: React.FC<RouteComponentProps> = props => {
   const [isLanding, setIsLanding] = useState(); // like setState, 1st argument: the state, 2nd arugument: the function that will change the state to something (what is in the parameter)
   useEffect(() => {
