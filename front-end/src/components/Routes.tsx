@@ -4,6 +4,7 @@ import Landing from "./Landing";
 import LogIn from "./LogIn";
 import CreateAccount from "./CreateAccount";
 import Cities from "./Cities";
+import CityDetail from "./CityDetail";
 import Footer from "./layout/Footer";
 
 const Routes: React.FC<RouteComponentProps> = props => {
@@ -18,6 +19,7 @@ const Routes: React.FC<RouteComponentProps> = props => {
       <Route exact path="/create-account" component={CreateAccount} />
       <Route exact path="/log-in" component={LogIn} />
       <Route exact path="/cities" component={Cities} />
+      <Route path="/cities/:_id" component={CityDetail} />
       {isLanding && <Footer />}
     </React.Fragment>
   );
