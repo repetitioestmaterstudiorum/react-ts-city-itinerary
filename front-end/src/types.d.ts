@@ -4,9 +4,9 @@
 // if a declaration is needed only for one component, do it there
 
 interface City {
-  name?: string;
-  id?: string;
-  contry?: string;
+  name: string;
+  _id: string;
+  contry: string;
 }
 
 type Cities = Array<City>;
