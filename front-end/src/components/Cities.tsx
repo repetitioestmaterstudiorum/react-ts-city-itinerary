@@ -5,7 +5,7 @@ import City from "./City";
 const port = process.env.PORT || 5000;
 
 const Cities: React.FC = () => {
-  const [cities, setCities] = useState<Cities>([]);
+  const [cities, setCities] = useState<Cities>([]); // the empty [] declares an empty array at first
 
   const fetchCities = async () => {
     let res = await axios.get(`http://localhost:${port}/cities/all`);
