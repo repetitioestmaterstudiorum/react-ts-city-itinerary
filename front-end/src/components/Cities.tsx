@@ -1,23 +1,32 @@
-import React from "react";
-//import axios from "axios";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import City from "./City";
 
+const port = process.env.PORT || 5000;
+
 const Cities: React.FC = () => {
-  let fetchedCities = [
-    { city: "city 1" },
-    { city: "city 1" },
-    { city: "city 1" }
-  ];
-  const fetchCities = () => {};
+  const [cities, setCities] = useState<Cities>([]);
+
+  const fetchCities = async () => {
+    let res = await axios.get(`http://localhost:${port}/cities/all`);
+    let data = res.data;
+    setCities(data);
+    console.log("fetching cities");
+  };
+
+  useEffect(() => {
+    console.log("useEffect");
+    fetchCities();
+  }, []); // empty [] means running it only once
+
   return (
     <React.Fragment>
+      {console.log("***** return ***** cities: ", cities)}
       <section className="conatiner pt-5">
         <div className="text-center">
           <h2>Cities</h2>
-
-          {fetchedCities.map((city, index) => (
-            <City key={index} oneCity={city} />
-          ))}
+          {console.log("cities !== undefined", cities !== undefined)}
+          {cities && cities.map((city, _id) => <City key={_id} city={city} />)}
         </div>
       </section>
     </React.Fragment>
@@ -25,23 +34,3 @@ const Cities: React.FC = () => {
 };
 
 export default Cities;
-
-// import React from "react";
-// //import axios from "axios";
-// import City from "./City";
-
-// let fetchedCities = ["city 1", "city2", "city 3"];
-// const fetchCities = () => {};
-
-// const Cities: React.FC = () => {
-//   return (
-//     <section className="conatiner pt-5">
-//       <div className="text-center">
-//         <h2>Cities</h2>
-//         <City cities={fetchedCities} />
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Cities;

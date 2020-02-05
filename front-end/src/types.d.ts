@@ -1,16 +1,12 @@
-// type declaration file (no export needed because if "d.ts" instead of ".ts") - https://www.youtube.com/watch?v=ODvirqIC09A
+// type declaration file (no export needed because of "d.ts" instead of ".ts") - https://www.youtube.com/watch?v=ODvirqIC09A
+// types: for one variable
+// interface: for objects
+// if a declaration is needed only for one component, do it there
 
-// type RoutesProps = {
-//   isLanding: boolean;
-// };
-
-interface CitiesProps {
-  // Cities: any;
-  // City: any;
-  // cities: any;
-  oneCity: CityI;
+interface City {
+  name?: string;
+  id?: string;
+  contry?: string;
 }
 
-interface CityI {
-  city: string;
-}
+type Cities = Array<City>;
