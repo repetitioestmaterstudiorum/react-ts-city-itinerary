@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, withRouter, RouteComponentProps } from "react-router-dom";
 import Landing from "./Landing";
+import Header from "./layout/Header";
 import LogIn from "./LogIn";
 import CreateAccount from "./CreateAccount";
 import Cities from "./Cities";
@@ -15,6 +16,7 @@ const Routes: React.FC<RouteComponentProps> = props => {
   }, [props.location.pathname]);
   return (
     <React.Fragment>
+      <Header />
       <Route exact path="/" component={Landing} />
       <Route exact path="/create-account" component={CreateAccount} />
       <Route exact path="/log-in" component={LogIn} />

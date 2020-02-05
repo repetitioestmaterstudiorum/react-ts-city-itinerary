@@ -1,0 +1,13 @@
+svg {
+  width: 2em;
+  height: 2em;
+}
+
+header {
+  height: 75px;
+}
+
+.modalStyle .modal-body {
+  justify-content: space-evenly;
+  display: flex;
+}
