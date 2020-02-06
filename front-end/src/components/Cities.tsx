@@ -19,7 +19,7 @@ const Cities: React.FC = () => {
 
   return (
     <React.Fragment>
-      <section className="conatiner pt-5">
+      <section className="conatiner pt-4">
         <div className="text-center">
           <h2>Cities</h2>
           {cities && cities.map((city, _id) => <City key={_id} city={city} />)}

@@ -10,9 +10,9 @@ const SiteNotice: React.FC<IProps> = props => {
     <section className="container pt-4">
       <h2>Site Notice</h2>
       <h3>Site Owner</h3>
-      <p>github.com/sunyamare</p>
+      <a href="https://github.com/sunyamare">github.com/sunyamare</a>
       <h3>Contact</h3>
-      <p>sunyamare.ch/contact</p>
+      <a href="https://sunyamare.ch/contact">sunyamare.ch/contact</a>
       <h3>Data Privacy, Cookies, Disclaimer</h3>
       <p>
         We reserve all rights, we don't take any responsibilities for contents,

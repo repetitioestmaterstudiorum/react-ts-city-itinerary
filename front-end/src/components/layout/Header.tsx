@@ -34,7 +34,7 @@ const Header: React.FC = () => {
               style={{ maxWidth: "150px" }}></img>
           </Link>
         </div>
-        <div className="pr-1">
+        <div className="pr-2">
           <FaUserCircle onClick={() => setShowModal(true)} />
         </div>
       </div>
