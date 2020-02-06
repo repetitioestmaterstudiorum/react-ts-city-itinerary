@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import City from "./City";
+import { Form, Navbar, FormControl } from "react-bootstrap";
 
 const port = process.env.PORT || 5000;
 
@@ -11,21 +12,48 @@ const Cities: React.FC = () => {
     let res = await axios.get(`http://localhost:${port}/cities/all`);
     let data = res.data;
     setCities(data);
+    setFilteredCities(data);
   };
 
   useEffect(() => {
     fetchCities();
   }, []); // empty [] means running it only once
 
+  const [filteredCities, setFilteredCities] = useState<Cities>([]);
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilteredCities(cities);
+    const inputField = e.target.value;
+    setFilteredCities(
+      cities.filter(city =>
+        city.name.toLowerCase().includes(inputField.toLowerCase())
+      )
+    );
+  };
+
+  const handleOnSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <React.Fragment>
-      <section className="conatiner pt-4">
-        <div className="text-center">
-          <h2>Cities</h2>
-          {cities && cities.map((city, _id) => <City key={_id} city={city} />)}
-        </div>
-      </section>
-    </React.Fragment>
+    <section className="conatiner pt-1">
+      <Navbar className="bg-light justify-content-center">
+        <Form inline>
+          <FormControl
+            type="text"
+            placeholder="Search Cities"
+            className="mr-sm-2"
+            onChange={handleOnChange}
+            onSubmit={handleOnSubmit}
+          />
+        </Form>
+      </Navbar>
+      <div className="text-center pt-3">
+        <h2>Cities</h2>
+        {cities &&
+          filteredCities.map((city, _id) => <City key={_id} city={city} />)}
+      </div>
+    </section>
   );
 };
 

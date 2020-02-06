@@ -25,7 +25,7 @@ const Header: React.FC = () => {
           </Dropdown>
         </div>
 
-        <div className="logo">
+        <div className="logo mr-4">
           <Link to="/">
             <img
               src={Logo}
@@ -47,7 +47,7 @@ const Header: React.FC = () => {
         animation={false}
         aria-labelledby="example-modal-sizes-title-sm">
         <Modal.Header>
-          <h2>Come on in!</h2>
+          <h3>Come on in!</h3>
         </Modal.Header>
         <Modal.Body>
           <Link to="/log-in">
