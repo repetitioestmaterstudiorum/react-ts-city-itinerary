@@ -1,16 +1,14 @@
 import React from "react";
-import HomeIcon from "../../img/homeIcon.png";
 import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 const Footer: React.FC = () => (
-  <footer className="container-fluid mt-3">
-    <Link to="/">
-      <img
-        src={HomeIcon}
-        className="mx-auto d-block"
-        alt="Back to Home"
-        style={{ maxWidth: "20px" }}></img>
-    </Link>
+  <footer className="container-fluid mt-4">
+    <div className="d-flex justify-content-center">
+      <Link to="/">
+        <FaHome />
+      </Link>
+    </div>
   </footer>
 );
 

@@ -3,3 +3,12 @@ body {
   margin: 0 auto;
   font-family: Arial, sans-serif;
 }
+
+a,
+.btn-link {
+  color: #f55f55;
+}
+
+.btn-link:hover {
+  color: #c65148;
+}

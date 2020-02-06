@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CircleRight from "../img/circleRight.png";
+import { FaArrowCircleRight } from "react-icons/fa";
 
 const Landing: React.FC = () => {
   return (
@@ -13,10 +13,7 @@ const Landing: React.FC = () => {
           </p>
           <h2>Browse Cities</h2>
           <Link to="/cities">
-            <img
-              src={CircleRight}
-              style={{ maxWidth: "40px" }}
-              alt="Start browsing"></img>
+            <FaArrowCircleRight />
           </Link>
         </div>
       </section>

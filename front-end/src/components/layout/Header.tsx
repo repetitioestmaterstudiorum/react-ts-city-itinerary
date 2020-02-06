@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../img/logo.png";
 import { FaUserCircle, FaBars } from "react-icons/fa";
 import "./Header.css";
-import { Modal, Button, Dropdown, DropdownButton } from "react-bootstrap";
+import { Modal, Button, Dropdown } from "react-bootstrap";
 
 const Header: React.FC = () => {
   const [showModal, setShowModal] = useState<any>(false); // remove any and define a type
@@ -18,7 +18,7 @@ const Header: React.FC = () => {
               <FaBars />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="/cities">Cities</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
             </Dropdown.Menu>
