@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../img/logo.png";
 import { FaUserCircle, FaBars } from "react-icons/fa";
 import "./Header.css";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Dropdown, DropdownButton } from "react-bootstrap";
 
 const Header: React.FC = () => {
   const [showModal, setShowModal] = useState<any>(false); // remove any and define a type
@@ -12,9 +12,19 @@ const Header: React.FC = () => {
   return (
     <header className="container-fluid">
       <div className="navbar fixed-top navbar-dark bg-white">
-        <div className="pl-1">
-          <FaBars />
+        <div>
+          <Dropdown>
+            <Dropdown.Toggle variant="link" id="dropdown-basic">
+              <FaBars />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
+
         <div className="logo">
           <Link to="/">
             <img
@@ -36,6 +46,9 @@ const Header: React.FC = () => {
         onHide={() => setShowModal(false)}
         animation={false}
         aria-labelledby="example-modal-sizes-title-sm">
+        <Modal.Header>
+          <h2>Come on in!</h2>
+        </Modal.Header>
         <Modal.Body>
           <Link to="/log-in">
             <Button
