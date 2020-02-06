@@ -9,7 +9,7 @@ const Footer: React.FC<RouteComponentProps> = props => {
   useEffect(() => {
     setIsLanding(props.location.pathname !== "/"); // setting isLanding to true or false
   }, [props.location.pathname]);
-  console.log(isLanding);
+
   return (
     <footer className="container-fluid mt-4">
       {isLanding && (
