@@ -1,4 +1,4 @@
-import React, { useEffect, useState, ChangeEvent } from "react";
+import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 import City from "./City";
 import { Form, Row, Col, FormControl } from "react-bootstrap";
@@ -31,7 +31,7 @@ const Cities: React.FC = () => {
     );
   };
 
-  const handleOnSubmit = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
@@ -41,18 +41,18 @@ const Cities: React.FC = () => {
         style={{
           width: "60%",
           margin: "auto"
-        }}>
+        }}
+        onSubmit={handleOnSubmit}>
         <Form.Group as={Row} controlId="formPlaintextEmail">
-          <Form.Label column sm="3">
+          <Form.Label column md="3">
             <span style={{ textDecoration: "underline" }}>Search Cities:</span>
           </Form.Label>
-          <Col sm="9">
+          <Col md="9">
             <FormControl
               type="text"
               placeholder="type ..."
               className="mr-sm-2"
               onChange={handleOnChange}
-              onSubmit={handleOnSubmit}
             />
           </Col>
         </Form.Group>
