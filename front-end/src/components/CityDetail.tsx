@@ -6,9 +6,9 @@ import { RouteComponentProps } from "react-router-dom";
 const CityDetail: React.FC<RouteComponentProps<City>> = props => {
   // notice the type of type thingy here (<smth<smth>>)
   return (
-    <div>
-      <p>props.match.params._id:</p>
-      <p>{props.match.params._id}</p>
+    <div className="container">
+      <p>props.match.params.name:</p>
+      <p>{props.match.params.name}</p>
     </div>
   );
 };

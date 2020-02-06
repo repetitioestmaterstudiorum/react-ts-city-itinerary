@@ -18,7 +18,7 @@ const Routes: React.FC = () => {
       <Route exact path="/create-account" component={CreateAccount} />
       <Route exact path="/log-in" component={LogIn} />
       <Route exact path="/cities" component={Cities} />
-      <Route path="/cities/:_id" component={CityDetail} />
+      <Route path="/cities/:name" component={CityDetail} />
       <Footer />
     </React.Fragment>
   );
