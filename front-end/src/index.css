@@ -8,7 +8,16 @@ a,
 .btn-link {
   color: #f55f55;
 }
-
+a:hover,
 .btn-link:hover {
   color: #c65148;
+}
+
+.btn-primary {
+  background-color: #f55f55;
+  border-color: #f55f55;
+}
+.btn-primary:hover {
+  background-color: #c65148;
+  border-color: #c65148;
 }

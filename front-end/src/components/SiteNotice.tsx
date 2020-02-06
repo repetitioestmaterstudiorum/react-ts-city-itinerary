@@ -7,7 +7,7 @@ interface IProps {
 
 const SiteNotice: React.FC<IProps> = props => {
   return (
-    <React.Fragment>
+    <section className="container pt-4">
       <h2>Site Notice</h2>
       <h3>Site Owner</h3>
       <p>github.com/sunyamare</p>
@@ -15,16 +15,14 @@ const SiteNotice: React.FC<IProps> = props => {
       <p>sunyamare.ch/contact</p>
       <h3>Data Privacy, Cookies, Disclaimer</h3>
       <p>
-        We reserve all rights, we don't take any responsibilities for contents
-        and their correctness and how this might affect anyone, we use cookies,
-        we use your data however we want in the confines of the laws applicable
-        to us.
+        We reserve all rights, we don't take any responsibilities for contents,
+        we use all kinds of cookies, and we use your data!
       </p>
       <p>You have been warned. Please don't cry.</p>
       <p>
         <strong>Last changed: {props.date}</strong>
       </p>
-    </React.Fragment>
+    </section>
   );
 };
 

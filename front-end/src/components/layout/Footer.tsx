@@ -9,6 +9,15 @@ const Footer: React.FC = () => (
         <FaHome />
       </Link>
     </div>
+    <nav className="pt-3">
+      <ul className="nav justify-content-center">
+        <li className="nav-item">
+          <Link className="nav-link" to="/site-notice">
+            Site Notice
+          </Link>
+        </li>
+      </ul>
+    </nav>
   </footer>
 );
 
