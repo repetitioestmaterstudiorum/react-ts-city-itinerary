@@ -10,8 +10,8 @@ const Header: React.FC = () => {
   const handleClose = () => setShowModal(false);
 
   return (
-    <header className="container-fluid">
-      <div className="navbar fixed-top navbar-dark bg-white">
+    <header className="sticky-top container">
+      <div className="navbar d-flex justify-content-space-between navbar-dark bg-white">
         <div>
           <Dropdown>
             <Dropdown.Toggle variant="link" id="dropdown-basic">

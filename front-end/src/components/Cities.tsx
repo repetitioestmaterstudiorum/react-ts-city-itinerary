@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ChangeEvent } from "react";
 import axios from "axios";
 import City from "./City";
-import { Form, Navbar, FormControl } from "react-bootstrap";
+import { Form, Row, Col, FormControl } from "react-bootstrap";
 
 const port = process.env.PORT || 5000;
 
@@ -21,7 +21,7 @@ const Cities: React.FC = () => {
 
   const [filteredCities, setFilteredCities] = useState<Cities>([]);
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilteredCities(cities);
     const inputField = e.target.value;
     setFilteredCities(
@@ -31,23 +31,32 @@ const Cities: React.FC = () => {
     );
   };
 
-  const handleOnSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
   };
 
   return (
     <section className="conatiner pt-1">
-      <Navbar className="bg-light justify-content-center">
-        <Form inline>
-          <FormControl
-            type="text"
-            placeholder="Search Cities"
-            className="mr-sm-2"
-            onChange={handleOnChange}
-            onSubmit={handleOnSubmit}
-          />
-        </Form>
-      </Navbar>
+      <Form
+        style={{
+          width: "60%",
+          margin: "auto"
+        }}>
+        <Form.Group as={Row} controlId="formPlaintextEmail">
+          <Form.Label column sm="3">
+            <span style={{ textDecoration: "underline" }}>Search Cities:</span>
+          </Form.Label>
+          <Col sm="9">
+            <FormControl
+              type="text"
+              placeholder="type ..."
+              className="mr-sm-2"
+              onChange={handleOnChange}
+              onSubmit={handleOnSubmit}
+            />
+          </Col>
+        </Form.Group>
+      </Form>
       <div className="text-center pt-3">
         <h2>Cities</h2>
         {cities &&
