@@ -7,19 +7,19 @@ const port = process.env.PORT || 5000;
 
 const Cities: React.FC = () => {
   const [cities, setCities] = useState<Cities>([]); // the empty [] declares an empty array at first
+  const [filteredCities, setFilteredCities] = useState<Cities>([]);
 
   const fetchCities = async () => {
     let res = await axios.get(`http://localhost:${port}/cities/all`);
     let data = res.data;
     setCities(data);
     setFilteredCities(data);
+    console.log("data", data);
   };
 
   useEffect(() => {
     fetchCities();
   }, []); // empty [] means running it only once
-
-  const [filteredCities, setFilteredCities] = useState<Cities>([]);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilteredCities(cities);

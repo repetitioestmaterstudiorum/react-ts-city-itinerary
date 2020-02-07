@@ -6,7 +6,7 @@
 interface City {
   name: string;
   _id: string;
-  contry: string;
+  country: string;
 }
 
 type Cities = Array<City>;
