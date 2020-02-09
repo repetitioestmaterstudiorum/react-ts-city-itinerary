@@ -1,4 +1,11 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
+import React, {
+  useEffect,
+  useState,
+  ChangeEvent,
+  FormEvent,
+  useContext
+} from "react";
+import { CityContext } from "../context/CityContext";
 import axios from "axios";
 import City from "./City";
 import { Form, Row, Col, FormControl } from "react-bootstrap";
@@ -35,6 +42,8 @@ const Cities: React.FC = () => {
     e.preventDefault();
   };
 
+  const contextTest = useContext(CityContext);
+
   return (
     <section className="conatiner pt-1">
       <Form
@@ -60,8 +69,10 @@ const Cities: React.FC = () => {
       </Form>
       <div className="text-center pt-3">
         <h2>Cities</h2>
+        {/* {cities &&
+          filteredCities.map((city, _id) => <City key={_id} city={city} />)} */}
         {cities &&
-          filteredCities.map((city, _id) => <City key={_id} city={city} />)}
+          contextTest.map((city, _id) => <City key={_id} city={city} />)}
       </div>
     </section>
   );
