@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../img/logo.png";
 import { FaUserCircle, FaBars } from "react-icons/fa";
-import "./Header.css";
 import { Modal, Button, Dropdown } from "react-bootstrap";
+import "./Header.css";
+import Logo from "../../img/logo.png";
 
 const Header: React.FC = () => {
   const [showModal, setShowModal] = useState<any>(false); // remove any and define a type
@@ -12,9 +12,9 @@ const Header: React.FC = () => {
   return (
     <header className="sticky-top container">
       <div className="navbar d-flex justify-content-space-between navbar-dark bg-white">
-        <div>
+        <div className="menu">
           <Dropdown>
-            <Dropdown.Toggle variant="link" id="dropdown-basic">
+            <Dropdown.Toggle variant="dark" id="dropdown-basic">
               <FaBars />
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -25,17 +25,20 @@ const Header: React.FC = () => {
           </Dropdown>
         </div>
 
-        <div className="logo mr-4">
+        <div className="logo mr-3">
           <Link to="/">
             <img
               src={Logo}
               className="mx-auto d-block"
               alt="MYtinerary Logo"
-              style={{ maxWidth: "150px" }}></img>
+              style={{ maxWidth: "150px" }}
+            ></img>
           </Link>
         </div>
-        <div className="pr-2">
-          <FaUserCircle onClick={() => setShowModal(true)} />
+        <div className="profile pr-2">
+          <a href="#">
+            <FaUserCircle onClick={() => setShowModal(true)} />
+          </a>
         </div>
       </div>
 
@@ -45,7 +48,8 @@ const Header: React.FC = () => {
         dialogClassName="modalStyle"
         onHide={() => setShowModal(false)}
         animation={false}
-        aria-labelledby="example-modal-sizes-title-sm">
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
         <Modal.Header>
           <h3>Come on in!</h3>
         </Modal.Header>
@@ -54,7 +58,8 @@ const Header: React.FC = () => {
             <Button
               variant="primary"
               onClick={handleClose}
-              style={{ marginRight: ".25rem" }}>
+              style={{ marginRight: ".25rem" }}
+            >
               Log in
             </Button>
           </Link>
