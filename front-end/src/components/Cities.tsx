@@ -42,7 +42,8 @@ const Cities: React.FC = () => {
           width: "60%",
           margin: "auto"
         }}
-        onSubmit={handleOnSubmit}>
+        onSubmit={handleOnSubmit}
+      >
         <Form.Group as={Row} controlId="formPlaintextEmail">
           <Form.Label column md="3">
             <span style={{ textDecoration: "underline" }}>Search Cities:</span>
