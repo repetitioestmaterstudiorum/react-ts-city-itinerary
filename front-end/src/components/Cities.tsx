@@ -35,7 +35,8 @@ const Cities: React.FC = () => {
   };
 
   return (
-    <section className="conatiner pt-3">
+    <section className="conatiner text-center pt-3">
+      <h1>Cities</h1>
       <Form
         style={{
           width: "60%",
@@ -57,8 +58,7 @@ const Cities: React.FC = () => {
           </Col>
         </Form.Group>
       </Form>
-      <div className="text-center pt-1">
-        <h2>Cities</h2>
+      <div className="pt-1">
         {cities &&
           filteredCities.map(city => <City key={city._id} city={city} />)}
       </div>

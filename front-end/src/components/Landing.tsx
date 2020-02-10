@@ -6,12 +6,13 @@ const Landing: React.FC = () => {
   return (
     <section className="conatiner pt-4">
       <div className="text-center">
+        <h1>City Itinerary</h1>
         <p>
           Find your perfect trip, designed by insiders who know and love their
           cities
         </p>
-        <h2>Browse Cities</h2>
         <Link to="/cities">
+          <h2>Browse Cities</h2>
           <FaArrowCircleRight />
         </Link>
       </div>

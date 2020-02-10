@@ -4,7 +4,7 @@ const LogIn: React.FC = () => {
   return (
     <section className="conatiner pt-5">
       <div className="text-center">
-        <h2>Log In</h2>
+        <h1>Log In</h1>
       </div>
     </section>
   );

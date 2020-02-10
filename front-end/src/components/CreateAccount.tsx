@@ -4,7 +4,7 @@ const CreateAccount: React.FC = () => {
   return (
     <section className="conatiner pt-5">
       <div className="text-center">
-        <h2>Create Account</h2>
+        <h1>Create Account</h1>
       </div>
     </section>
   );
