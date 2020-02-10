@@ -30,3 +30,7 @@ header {
 .dropdown-toggle::after {
   display: none;
 }
+
+a.dropdown-item:hover {
+  background-color: #ff9a0347;
+}

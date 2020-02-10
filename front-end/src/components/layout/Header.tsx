@@ -19,8 +19,7 @@ const Header: React.FC = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item href="/cities">Cities</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              <Dropdown.Item href="/test">Test</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>
