@@ -20,7 +20,10 @@ const Footer: React.FC<RouteComponentProps> = props => {
         </div>
       )}
       <nav className="pt-3">
-        <ul className="nav justify-content-center fixed-bottom">
+        <ul
+          className="nav justify-content-center fixed-bottom"
+          style={{ backgroundColor: "#efefef" }}
+        >
           <li className="nav-item">
             <Link className="nav-link" to="/site-notice">
               Site Notice
