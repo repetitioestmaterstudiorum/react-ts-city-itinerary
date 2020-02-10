@@ -25,7 +25,7 @@ const Header: React.FC = () => {
           </Dropdown>
         </div>
 
-        <div className="logo mr-3">
+        <div className="logo mr-1">
           <Link to="/">
             <img
               src={Logo}
@@ -35,10 +35,8 @@ const Header: React.FC = () => {
             ></img>
           </Link>
         </div>
-        <div className="profile pr-2">
-          <a href="#">
-            <FaUserCircle onClick={() => setShowModal(true)} />
-          </a>
+        <div className="profile">
+          <FaUserCircle onClick={() => setShowModal(true)} />
         </div>
       </div>
 

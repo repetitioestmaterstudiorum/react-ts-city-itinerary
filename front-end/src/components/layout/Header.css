@@ -3,8 +3,9 @@
   height: 2.5em;
   color: #343a40;
 }
-.profile a:hover svg {
+.profile svg:hover {
   color: #1d2023;
+  cursor: pointer;
 }
 
 .menu svg {
