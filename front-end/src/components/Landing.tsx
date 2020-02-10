@@ -11,9 +11,10 @@ const Landing: React.FC = () => {
           Find your perfect trip, designed by insiders who know and love their
           cities
         </p>
-        <Link to="/cities">
-          <h2>Browse Cities</h2>
-          <FaArrowCircleRight />
+        <Link to="/cities" style={{ textDecoration: "none" }}>
+          <p>
+            <FaArrowCircleRight /> Browse Cities
+          </p>
         </Link>
       </div>
     </section>
