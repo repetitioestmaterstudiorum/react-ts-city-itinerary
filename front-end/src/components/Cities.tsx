@@ -1,21 +1,13 @@
-import React, {
-  useEffect,
-  useState,
-  ChangeEvent,
-  FormEvent,
-  useContext
-} from "react";
-import { CityContext } from "../context/CityContext";
+import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 import City from "./City";
 import { Form, Row, Col, FormControl } from "react-bootstrap";
-
-const port = process.env.PORT || 5000;
 
 const Cities: React.FC = () => {
   const [cities, setCities] = useState<Cities>([]); // the empty [] declares an empty array at first
   const [filteredCities, setFilteredCities] = useState<Cities>([]);
 
+  const port = process.env.PORT || 5000;
   const fetchCities = async () => {
     let res = await axios.get(`http://localhost:${port}/cities/all`);
     let data = res.data;
@@ -42,10 +34,8 @@ const Cities: React.FC = () => {
     e.preventDefault();
   };
 
-  const contextTest = useContext(CityContext);
-
   return (
-    <section className="conatiner pt-1">
+    <section className="conatiner pt-3">
       <Form
         style={{
           width: "60%",
@@ -67,12 +57,10 @@ const Cities: React.FC = () => {
           </Col>
         </Form.Group>
       </Form>
-      <div className="text-center pt-3">
+      <div className="text-center pt-1">
         <h2>Cities</h2>
-        {/* {cities &&
-          filteredCities.map((city, _id) => <City key={_id} city={city} />)} */}
         {cities &&
-          contextTest.map((city, _id) => <City key={_id} city={city} />)}
+          filteredCities.map(city => <City key={city._id} city={city} />)}
       </div>
     </section>
   );
