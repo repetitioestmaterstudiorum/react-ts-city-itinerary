@@ -7,13 +7,13 @@ interface IProps {
 
 const SiteNotice: React.FC<IProps> = props => {
   return (
-    <section className="container pt-4">
-      <h2>Site Notice</h2>
-      <h3>Site Owner</h3>
+    <section className="container pt-4 text-center">
+      <h1>Site Notice</h1>
+      <h2>Site Owner</h2>
       <a href="https://github.com/sunyamare">github.com/sunyamare</a>
-      <h3>Contact</h3>
+      <h2>Contact</h2>
       <a href="https://sunyamare.ch/contact">sunyamare.ch/contact</a>
-      <h3>Data Privacy, Cookies, Disclaimer</h3>
+      <h2>Data Privacy, Cookies, Disclaimer</h2>
       <p>
         We reserve all rights, we don't take any responsibilities for contents,
         we use all kinds of cookies, and we use your data!
