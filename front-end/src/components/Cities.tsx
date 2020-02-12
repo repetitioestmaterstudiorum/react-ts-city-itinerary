@@ -1,30 +1,28 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
-import axios from "axios";
+import React, {
+  useEffect,
+  useState,
+  ChangeEvent,
+  FormEvent,
+  useContext
+} from "react";
 import City from "./City";
+import AddCity from "./AddCity";
+import { CityContext } from "../context/CityContext";
 import { Form, Row, Col, FormControl } from "react-bootstrap";
 
 const Cities: React.FC = () => {
-  const [cities, setCities] = useState<Cities>([]); // the empty [] declares an empty array at first
+  // const [cities, setCities] = useState<Cities>([]); // the empty [] declares an empty array at first
+  const [cities, setCities] = useContext(CityContext);
   const [filteredCities, setFilteredCities] = useState<Cities>([]);
 
-  const port = process.env.PORT || 5000;
-  const fetchCities = async () => {
-    let res = await axios.get(`http://localhost:${port}/cities/all`);
-    let data = res.data;
-    setCities(data);
-    setFilteredCities(data);
-    console.log("data", data);
-  };
-
   useEffect(() => {
-    fetchCities();
-  }, []); // empty [] means running it only once
+    setFilteredCities(cities);
+  }, [cities]);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFilteredCities(cities);
     const inputField = e.target.value;
     setFilteredCities(
-      cities.filter(city =>
+      cities.filter((city: City) =>
         city.name.toLowerCase().includes(inputField.toLowerCase())
       )
     );
@@ -59,9 +57,10 @@ const Cities: React.FC = () => {
         </Form.Group>
       </Form>
       <div className="pt-1">
-        {cities &&
+        {filteredCities &&
           filteredCities.map(city => <City key={city._id} city={city} />)}
       </div>
+      <AddCity />
     </section>
   );
 };

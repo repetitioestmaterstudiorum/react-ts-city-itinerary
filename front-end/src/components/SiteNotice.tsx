@@ -1,11 +1,7 @@
 // import * as React from "react";
 import React from "react";
 
-interface IProps {
-  date?: string;
-}
-
-const SiteNotice: React.FC<IProps> = props => {
+const SiteNotice: React.FC = props => {
   return (
     <section className="container pt-4 text-center">
       <h1>Site Notice</h1>
@@ -20,14 +16,10 @@ const SiteNotice: React.FC<IProps> = props => {
       </p>
       <p>You have been warned. Please don't cry.</p>
       <p>
-        <strong>Last changed: {props.date}</strong>
+        <strong>Last changed: 28.01.2020</strong>
       </p>
     </section>
   );
-};
-
-SiteNotice.defaultProps = {
-  date: "28.01.2020" // for test purposes just a string and not the more complex Date
 };
 
 export default SiteNotice;

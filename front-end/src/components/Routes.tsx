@@ -9,9 +9,6 @@ import Cities from "./Cities";
 import CityDetail from "./CityDetail";
 import Footer from "./layout/Footer";
 
-// temp
-import Test from "./Test";
-
 const Routes: React.FC = () => {
   return (
     <React.Fragment>
@@ -22,10 +19,6 @@ const Routes: React.FC = () => {
       <Route exact path="/log-in" component={LogIn} />
       <Route exact path="/cities" component={Cities} />
       <Route path="/cities/:name" component={CityDetail} />
-
-      {/* temp */}
-      <Route exact path="/test" component={Test} />
-
       <Footer />
     </React.Fragment>
   );
