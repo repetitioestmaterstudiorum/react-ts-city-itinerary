@@ -37,3 +37,7 @@ h3 {
 p {
   margin-top: 0.6rem;
 }
+
+.card-header {
+  cursor: pointer;
+}
