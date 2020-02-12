@@ -42,19 +42,21 @@ const Cities: React.FC = () => {
         }}
         onSubmit={handleOnSubmit}
       >
-        <Form.Group as={Row} controlId="formPlaintextEmail">
-          <Form.Label column md="3">
-            <span style={{ textDecoration: "underline" }}>Search Cities:</span>
-          </Form.Label>
-          <Col md="9">
-            <FormControl
-              type="text"
+        <div className="d-flex justify-content-center">
+          <div className="flex-shrink-0">
+            <label className="col-form-label mr-1" htmlFor="city">
+              Search Cities:
+            </label>
+          </div>
+          <div className="flex-shrink-0">
+            <input
               placeholder="type ..."
-              className="mr-sm-2"
+              className="form-control"
+              type="text"
               onChange={handleOnChange}
             />
-          </Col>
-        </Form.Group>
+          </div>
+        </div>
       </Form>
       <div className="pt-1">
         {filteredCities &&

@@ -13,7 +13,10 @@ const Footer: React.FC<RouteComponentProps> = props => {
   return (
     <footer className="container-fluid mt-4">
       {isLanding && (
-        <div className="d-flex justify-content-center">
+        <div
+          className="d-flex justify-content-center"
+          style={{ marginBottom: "40px" }}
+        >
           <Link to="/">
             <FaHome />
           </Link>

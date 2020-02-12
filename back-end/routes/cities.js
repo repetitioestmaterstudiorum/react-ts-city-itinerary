@@ -17,6 +17,17 @@ router.get("/all", (req, res) => {
     .catch(err => console.log(err));
 });
 
+// get specific city
+router.get("/:name", (req, res) => {
+  const name = req.params.name;
+  cityModel
+    .find({ name })
+    .then(files => {
+      res.send(files);
+    })
+    .catch(err => console.log(err));
+});
+
 // post new city
 router.post("/", (req, res) => {
   const newCity = new cityModel({
