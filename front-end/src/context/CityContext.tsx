@@ -15,7 +15,7 @@ export const CityProvider: React.FC = props => {
 
   useEffect(() => {
     fetchCities();
-  }, []); // empty [] means running it only once
+  }, []);
 
   return (
     <CityContext.Provider value={[cities, setCities]}>

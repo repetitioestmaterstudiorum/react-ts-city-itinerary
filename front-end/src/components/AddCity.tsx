@@ -1,11 +1,11 @@
 import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
 import { CityContext } from "../context/CityContext";
+import axios from "axios";
 
 const AddCity: React.FC = () => {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [cities, setCities] = useContext(CityContext);
-  console.log("cities", cities);
 
   const updateCity = (e: ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
@@ -17,10 +17,15 @@ const AddCity: React.FC = () => {
 
   const addCityCountryPair = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setCities((prevCities: Cities) => [
-      ...prevCities,
-      { name: city, country: country }
-    ]);
+    const port = process.env.PORT || 5000;
+    axios
+      .post(`http://localhost:${port}/cities/`, {
+        name: city,
+        country: country
+      })
+      .then(response =>
+        setCities((prevCities: Cities) => [...prevCities, response.data])
+      );
   };
 
   return (

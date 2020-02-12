@@ -7,7 +7,7 @@ router.get("/test", (req, res, next) => {
   next();
 });
 
-/*get all cities*/
+// get all cities
 router.get("/all", (req, res) => {
   cityModel
     .find({})
@@ -17,6 +17,7 @@ router.get("/all", (req, res) => {
     .catch(err => console.log(err));
 });
 
+// post new city
 router.post("/", (req, res) => {
   const newCity = new cityModel({
     name: req.body.name,
@@ -29,7 +30,7 @@ router.post("/", (req, res) => {
       res.send(city);
     })
     .catch(err => {
-      res.status(500).send("Server error");
+      res.status(500).send("Server error: ", err);
     });
 });
 
