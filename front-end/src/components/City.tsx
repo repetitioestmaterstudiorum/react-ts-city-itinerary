@@ -8,12 +8,14 @@ const City: React.FC<CitiesProps> = ({ city }) => {
   const { name, country, img } = city;
 
   return (
-    <React.Fragment>
-      <p>
-        <strong>{name}</strong>, {country}
-      </p>
-      <img src={img}></img>
-    </React.Fragment>
+    <div>
+      <a href="#">
+        <img src={img} alt={name}></img>
+        <p>
+          <strong>{name}</strong>, {country}
+        </p>
+      </a>
+    </div>
   );
 };
 
