@@ -82,8 +82,7 @@ const AddCity: React.FC = () => {
               <div className="d-flex justify-content-center mt-2">
                 <button
                   className="btn btn-link"
-                  style={{ border: "1px solid #f55f55" }}
-                >
+                  style={{ border: "1px solid #f55f55" }}>
                   Add
                 </button>
               </div>
@@ -97,7 +96,7 @@ const AddCity: React.FC = () => {
 
 const accordionStyle = {
   maxWidth: "400px",
-  margin: "auto"
+  margin: "10px auto 0"
 };
 
 export default AddCity;

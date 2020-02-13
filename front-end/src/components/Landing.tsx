@@ -11,7 +11,7 @@ const Landing: React.FC = () => {
           Find your perfect trip, designed by insiders who know and love their
           cities
         </p>
-        <Link to="/cities" style={{ textDecoration: "none" }}>
+        <Link to="/cities" className="nav-link" style={{ fontSize: "1.8rem" }}>
           <p>
             <FaArrowCircleRight /> Browse Cities
           </p>

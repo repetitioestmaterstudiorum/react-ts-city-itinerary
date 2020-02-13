@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaBalanceScale, FaBackward } from "react-icons/fa";
 
 const Footer: React.FC<RouteComponentProps> = props => {
   // RouteComponentProps defines the prop types
@@ -10,30 +10,28 @@ const Footer: React.FC<RouteComponentProps> = props => {
     setIsLanding(props.location.pathname !== "/"); // setting isLanding to true or false
   }, [props.location.pathname]);
 
+  const handleBack = () => {
+    props.history.goBack();
+  };
+
   return (
     <footer className="container-fluid mt-4">
-      {isLanding && (
-        <div
-          className="d-flex justify-content-center"
-          style={{ marginBottom: "40px" }}
-        >
-          <Link to="/">
+      <div className="d-flex justify-content-center">
+        <Link className="nav-link" to="#" onClick={handleBack}>
+          <FaBackward />
+          {" Back"}
+        </Link>
+        {isLanding && (
+          <Link className="nav-link" to="/">
             <FaHome />
+            {" Home"}
           </Link>
-        </div>
-      )}
-      <nav className="pt-3">
-        <ul
-          className="nav justify-content-center fixed-bottom"
-          style={{ backgroundColor: "#efefef" }}
-        >
-          <li className="nav-item">
-            <Link className="nav-link" to="/site-notice">
-              Site Notice
-            </Link>
-          </li>
-        </ul>
-      </nav>
+        )}
+        <Link className="nav-link" to="/site-notice">
+          <FaBalanceScale />
+          {" Legal"}
+        </Link>
+      </div>
     </footer>
   );
 };

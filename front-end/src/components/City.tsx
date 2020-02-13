@@ -10,14 +10,14 @@ const City: React.FC<CitiesProps> = ({ city }) => {
   const url = `/cities/${name.toLowerCase()}`;
 
   return (
-    <div>
-      <a href={url}>
+    <a href={url}>
+      <div className="m-1 border rounded">
         <img src={img} alt={`${name}, ${country}`}></img>
         <p>
           <strong>{name}</strong>, {country}
         </p>
-      </a>
-    </div>
+      </div>
+    </a>
   );
 };
 

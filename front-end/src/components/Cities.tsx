@@ -24,7 +24,9 @@ const Cities: React.FC = () => {
     const inputField = e.target.value;
     setFilteredCities(
       cities.filter((city: City) =>
-        city.name.toLowerCase().includes(inputField.toLowerCase())
+        (city.name.toLowerCase() + city.country.toLowerCase()).includes(
+          inputField.toLowerCase()
+        )
       )
     );
   };
@@ -50,7 +52,7 @@ const Cities: React.FC = () => {
           </div>
           <div className="flex-shrink-0">
             <input
-              placeholder="type ..."
+              placeholder="country or city ..."
               className="form-control"
               type="text"
               onChange={handleOnChange}
