@@ -2,10 +2,14 @@ const express = require("express");
 const cityModel = require("../model/cityModel");
 const router = express.Router();
 
-router.get("/test", (req, res, next) => {
-  res.send({ msg: "Cities test route." });
-  next();
-});
+// function to turn anything to Title Case (first letter of every word is a capital letter)
+const toTitleCase = phrase => {
+  return phrase
+    .toLowerCase()
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
 
 // get all cities
 router.get("/all", (req, res) => {
@@ -20,8 +24,9 @@ router.get("/all", (req, res) => {
 // get specific city
 router.get("/:name", (req, res) => {
   const name = req.params.name;
+  const titleCaseName = toTitleCase(name); // searching for cities in title case
   cityModel
-    .find({ name })
+    .find({ name: titleCaseName })
     .then(files => {
       res.send(files);
     })
@@ -31,8 +36,8 @@ router.get("/:name", (req, res) => {
 // post new city
 router.post("/", (req, res) => {
   const newCity = new cityModel({
-    name: req.body.name,
-    country: req.body.country,
+    name: toTitleCase(req.body.name), // ensuring cities have title case names
+    country: toTitleCase(req.body.country), // same for countries
     img: req.body.img
   });
   newCity

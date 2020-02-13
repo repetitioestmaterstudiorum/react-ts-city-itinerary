@@ -7,6 +7,7 @@ interface City {
   name: string;
   _id: string;
   country: string;
+  img: string;
 }
 
 type Cities = Array<City>;

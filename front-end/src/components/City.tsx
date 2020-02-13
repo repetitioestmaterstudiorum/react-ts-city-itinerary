@@ -5,10 +5,14 @@ type CitiesProps = {
 };
 
 const City: React.FC<CitiesProps> = ({ city }) => {
-  const { name } = city;
+  const { name, country, img } = city;
+
   return (
     <React.Fragment>
-      <p>{name}</p>
+      <p>
+        <strong>{name}</strong>, {country}
+      </p>
+      <img src={img}></img>
     </React.Fragment>
   );
 };

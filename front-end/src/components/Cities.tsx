@@ -8,12 +8,13 @@ import React, {
 import City from "./City";
 import AddCity from "./AddCity";
 import { CityContext } from "../context/CityContext";
-import { Form, Row, Col, FormControl } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const Cities: React.FC = () => {
   // const [cities, setCities] = useState<Cities>([]); // the empty [] declares an empty array at first
   const [cities, setCities] = useContext(CityContext);
   const [filteredCities, setFilteredCities] = useState<Cities>([]);
+  console.log("cities", cities);
 
   useEffect(() => {
     setFilteredCities(cities);
@@ -60,7 +61,11 @@ const Cities: React.FC = () => {
       </Form>
       <div className="pt-1">
         {filteredCities &&
-          filteredCities.map(city => <City key={city._id} city={city} />)}
+          filteredCities
+            .sort((a: City, b: City) => {
+              return a.name > b.name ? 1 : -1;
+            })
+            .map(city => <City key={city._id} city={city} />)}
       </div>
       <AddCity />
     </section>

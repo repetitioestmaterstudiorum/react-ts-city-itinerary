@@ -22,14 +22,15 @@ const AddCity: React.FC = () => {
 
   const addCityCountryPair = (e: FormEvent<HTMLFormElement>) => {
     if (containsANumber(city) || containsANumber(country)) {
-      alert("City and country must be strings (words)!");
+      alert("City and country must be strings (only letters)!");
     } else if (city && country) {
       e.preventDefault();
       const port = process.env.PORT || 5000;
       axios
         .post(`http://localhost:${port}/cities/`, {
           name: city,
-          country: country
+          country: country,
+          img: "https://via.placeholder.com/300x150.png?text=Image+coming+soon"
         })
         .then(response =>
           setCities((prevCities: Cities) => [...prevCities, response.data])
@@ -45,7 +46,7 @@ const AddCity: React.FC = () => {
     <Accordion style={accordionStyle}>
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0">
-          Your city is missing? Click here and add it!
+          Your city is missing? Click here to add it!
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
@@ -58,7 +59,6 @@ const AddCity: React.FC = () => {
                   <input
                     className="form-control"
                     id="city"
-                    name="city"
                     type="text"
                     value={city}
                     onChange={updateCity}
@@ -73,7 +73,6 @@ const AddCity: React.FC = () => {
                   <input
                     className="form-control"
                     id="country"
-                    name="country"
                     type="text"
                     value={country}
                     onChange={updateCountry}
