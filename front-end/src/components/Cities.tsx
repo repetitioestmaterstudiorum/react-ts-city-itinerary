@@ -11,7 +11,6 @@ import { CityContext } from "../context/CityContext";
 import { Form } from "react-bootstrap";
 
 const Cities: React.FC = () => {
-  // const [cities, setCities] = useState<Cities>([]); // the empty [] declares an empty array at first
   const [cities, setCities] = useContext(CityContext);
   const [filteredCities, setFilteredCities] = useState<Cities>([]);
   console.log("cities", cities);
@@ -43,7 +42,8 @@ const Cities: React.FC = () => {
           width: "60%",
           margin: "auto"
         }}
-        onSubmit={handleOnSubmit}>
+        onSubmit={handleOnSubmit}
+      >
         <div className="d-flex justify-content-center">
           <div className="flex-shrink-0">
             <label className="col-form-label mr-1" htmlFor="city">
@@ -52,7 +52,7 @@ const Cities: React.FC = () => {
           </div>
           <div className="flex-shrink-0">
             <input
-              placeholder="country or city ..."
+              placeholder=".. by country or city .."
               className="form-control"
               type="text"
               onChange={handleOnChange}

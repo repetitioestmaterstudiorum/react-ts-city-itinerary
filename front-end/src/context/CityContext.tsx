@@ -1,7 +1,8 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, Dispatch } from "react";
 import axios from "axios";
 
-export const CityContext = createContext({} as any);
+// export const CityContext = createContext({} as any);
+export const CityContext = createContext([{}] as any);
 
 export const CityProvider: React.FC = props => {
   const [cities, setCities] = useState<Cities>();

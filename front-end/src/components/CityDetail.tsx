@@ -15,7 +15,6 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
     axios
       .get(`http://localhost:${port}/cities/${props.match.params.name}`)
       .then(res => {
-        console.log("res", res.data[0]);
         data = res.data[0];
         console.log('data["name"]', data["name"]);
       });
@@ -28,8 +27,8 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
   return (
     <div className="container">
       <p>props.match.params.name:</p>
-      {/* <p>{props.match.params.name}</p> */}
-      <p>{data && data["name"]}</p>
+      <p>hello, {data["name"]}</p>
+      {console.log("data", data)}
     </div>
   );
 };
