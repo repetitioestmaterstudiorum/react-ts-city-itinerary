@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import axios from "axios";
 
-// this component does magic on any route after /cities, for example http://localhost:3000/cities/32098
-
 const CityDetail: React.FC<RouteComponentProps<City>> = props => {
   // notice the type of type thingy here (<smth<smth>>)
-
-  let data: any = {};
+  const [city, setCity] = useState<City>();
 
   const port = process.env.PORT || 5000;
 
@@ -15,8 +12,7 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
     axios
       .get(`http://localhost:${port}/cities/${props.match.params.name}`)
       .then(res => {
-        data = res.data[0];
-        console.log('data["name"]', data["name"]);
+        setCity(res.data[0]);
       });
   };
 
@@ -26,9 +22,21 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
 
   return (
     <div className="container">
-      <p>props.match.params.name:</p>
-      <p>hello, {data["name"]}</p>
-      {console.log("data", data)}
+      {city && (
+        <div className="mt-2 text-center">
+          <div>
+            <img src={city.img} alt={`${city.name}, ${city.country}`}></img>
+            <p>
+              <strong>{city.name}</strong>, {city.country}
+            </p>
+          </div>
+          <div>
+            <p style={{ textDecoration: "underline" }}>
+              Available MYtineraries:
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
