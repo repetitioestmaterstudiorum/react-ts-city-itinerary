@@ -27,8 +27,8 @@ router.get("/:name", (req, res) => {
   const titleCaseName = toTitleCase(name); // searching for cities in title case
   cityModel
     .find({ name: titleCaseName })
-    .then(files => {
-      res.send(files);
+    .then(city => {
+      res.send(city);
     })
     .catch(err => console.log(err));
 });
