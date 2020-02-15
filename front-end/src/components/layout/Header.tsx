@@ -9,10 +9,7 @@ const Header: React.FC = () => {
   const handleClose = () => setShowModal(false);
 
   return (
-    <header
-      className="sticky-top"
-      style={{ width: "100%", backgroundColor: "#f55f55" }}
-    >
+    <header className="sticky-top">
       <div className="container">
         <div className="navbar d-flex justify-content-space-between navbar-dark">
           <div className="menu">
