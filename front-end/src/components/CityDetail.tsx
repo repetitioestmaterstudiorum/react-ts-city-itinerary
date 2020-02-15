@@ -25,15 +25,14 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
       {city && (
         <div className="mt-2 text-center">
           <div>
+            <h1>
+              <span style={{ textDecoration: "underline" }}>{city.name}</span>,{" "}
+              {city.country}
+            </h1>
             <img src={city.img} alt={`${city.name}, ${city.country}`}></img>
-            <p>
-              <strong>{city.name}</strong>, {city.country}
-            </p>
           </div>
           <div>
-            <p style={{ textDecoration: "underline" }}>
-              Available MYtineraries:
-            </p>
+            <h2>Available MYtineraries:</h2>
           </div>
         </div>
       )}

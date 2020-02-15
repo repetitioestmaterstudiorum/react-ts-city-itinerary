@@ -15,7 +15,8 @@ const Footer: React.FC<RouteComponentProps> = props => {
   };
 
   return (
-    <footer className="container-fluid mt-4">
+    <footer className="container-fluid mt-3">
+      <hr />
       <div className="d-flex justify-content-center">
         <Link className="nav-link" to="#" onClick={handleBack}>
           <FaBackward />
