@@ -35,7 +35,7 @@ const Cities: React.FC = () => {
   };
 
   return (
-    <section className="conatiner text-center pt-3">
+    <section className="container text-center pt-3">
       <h1>Cities</h1>
       <Form
         style={{

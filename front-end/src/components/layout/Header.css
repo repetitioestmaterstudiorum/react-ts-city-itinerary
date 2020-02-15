@@ -2,6 +2,8 @@
   width: 2.5em;
   height: 2.5em;
   color: #343a40;
+  background-color: #fff;
+  border-radius: 50%;
 }
 .profile svg:hover {
   color: #1d2023;
@@ -18,8 +20,15 @@ svg {
   height: 1.8em;
 }
 
-header {
-  height: 75px;
+.title {
+  color: white;
+  font-size: 40px;
+  text-decoration: none;
+  text-shadow: 2px 2px 0 black;
+  letter-spacing: 0.0175em;
+}
+.logo > a {
+  text-decoration: none;
 }
 
 .modalStyle .modal-body {
