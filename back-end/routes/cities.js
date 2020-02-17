@@ -15,8 +15,8 @@ const toTitleCase = phrase => {
 router.get("/all", (req, res) => {
   cityModel
     .find({})
-    .then(files => {
-      res.send(files);
+    .then(cities => {
+      res.send(cities);
     })
     .catch(err => console.log(err));
 });
