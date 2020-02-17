@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle, FaBars } from "react-icons/fa";
-import { Container, Modal, Button, Dropdown } from "react-bootstrap";
+import { Modal, Button, Dropdown } from "react-bootstrap";
 import "./Header.css";
 
 const Header: React.FC = () => {
@@ -18,8 +18,18 @@ const Header: React.FC = () => {
                 <FaBars />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item href="/cities">Cities</Dropdown.Item>
-                <Dropdown.Item href="/test">Test</Dropdown.Item>
+                <NavLink
+                  to="/cities"
+                  className="dropdown-item"
+                  activeClassName="active">
+                  Cities
+                </NavLink>{" "}
+                <NavLink
+                  to="/test"
+                  className="dropdown-item"
+                  activeClassName="active">
+                  Test
+                </NavLink>
               </Dropdown.Menu>
             </Dropdown>
           </div>

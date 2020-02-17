@@ -53,3 +53,13 @@ p {
 .card-header {
   cursor: pointer;
 }
+
+.dropdown-item {
+  font-size: 1.2rem;
+}
+.dropdown-item.active {
+  background-color: #f55f55;
+}
+.dropdown-item.active:hover {
+  background-color: #f55f55;
+}
