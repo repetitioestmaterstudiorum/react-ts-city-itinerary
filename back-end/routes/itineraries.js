@@ -11,43 +11,33 @@ const toTitleCase = phrase => {
     .join(" ");
 };
 
-// // get all cities
-// router.get("/all", (req, res) => {
-//     cityModel
-//         .find({})
-//         .then(files => {
-//             res.send(files);
-//         })
-//         .catch(err => console.log(err));
-// });
+// get all itineraries from a specific city
+router.get("/:city", (req, res) => {
+  const city = req.params.city;
+  const titleCaseCity = toTitleCase(city); // searching for cities in title case
+  cityModel
+    .find({ city: titleCaseCity })
+    .then(itinerary => {
+      res.send(itinerary);
+    })
+    .catch(err => console.log(err));
+});
 
-// // get specific city
-// router.get("/:name", (req, res) => {
-//     const name = req.params.name;
-//     const titleCaseName = toTitleCase(name); // searching for cities in title case
-//     cityModel
-//         .find({ name: titleCaseName })
-//         .then(city => {
-//             res.send(city);
-//         })
-//         .catch(err => console.log(err));
-// });
-
-// // post new city
-// router.post("/", (req, res) => {
-//     const newCity = new cityModel({
-//         name: toTitleCase(req.body.name), // ensuring cities have title case names
-//         country: toTitleCase(req.body.country), // same for countries
-//         img: req.body.img
-//     });
-//     newCity
-//         .save()
-//         .then(city => {
-//             res.send(city);
-//         })
-//         .catch(err => {
-//             res.status(500).send("Server error: ", err);
-//         });
-// });
+// post new itinerary
+router.post("/", (req, res) => {
+  const newItinerary = new itineraryModel({
+    name: toTitleCase(req.body.name), // ensuring itineraries have title case names
+    city: toTitleCase(req.body.city), // same for cities
+    profilePicture: req.body.profilePicture
+  });
+  newItinerary
+    .save()
+    .then(itinerary => {
+      res.send(itinerary);
+    })
+    .catch(err => {
+      res.status(500).send("Server error: ", err);
+    });
+});
 
 module.exports = router;
