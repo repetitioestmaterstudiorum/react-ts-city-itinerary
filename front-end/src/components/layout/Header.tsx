@@ -5,31 +5,49 @@ import { Modal, Button, Dropdown } from "react-bootstrap";
 import "./Header.css";
 
 const Header: React.FC = () => {
-  const [showModal, setShowModal] = useState<any>(false); // remove any and define a type
+  const [showModal, setShowModal] = useState<boolean>(false); // remove any and define a type
   const handleClose = () => setShowModal(false);
+
+  const [show, setShow] = useState<boolean>(false);
+
+  const hideMenu = () => {
+    console.log("bye");
+    setShow(false);
+  };
+
+  const showMenu = () => {
+    console.log("helloo");
+    setShow(true);
+  };
 
   return (
     <header className="sticky-top">
       <div className="container">
         <div className="navbar d-flex justify-content-space-between navbar-dark">
           <div className="menu">
-            <Dropdown>
-              <Dropdown.Toggle variant="dark" id="dropdown-basic">
+            <Dropdown show={show}>
+              <Dropdown.Toggle
+                variant="dark"
+                id="dropdown-basic"
+                onClick={showMenu}>
                 <FaBars />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <NavLink
+                  to="/"
+                  exact
+                  onClick={hideMenu}
+                  className="dropdown-item"
+                  activeClassName="active">
+                  Home
+                </NavLink>
+                <NavLink
                   to="/cities"
+                  onClick={hideMenu}
                   className="dropdown-item"
                   activeClassName="active">
                   Cities
                 </NavLink>{" "}
-                <NavLink
-                  to="/test"
-                  className="dropdown-item"
-                  activeClassName="active">
-                  Test
-                </NavLink>
               </Dropdown.Menu>
             </Dropdown>
           </div>
