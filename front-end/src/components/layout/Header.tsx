@@ -29,7 +29,8 @@ const Header: React.FC = () => {
               <Dropdown.Toggle
                 variant="dark"
                 id="dropdown-basic"
-                onClick={showMenu}>
+                onClick={show ? hideMenu : showMenu}
+              >
                 <FaBars />
               </Dropdown.Toggle>
               <Dropdown.Menu>
@@ -38,14 +39,16 @@ const Header: React.FC = () => {
                   exact
                   onClick={hideMenu}
                   className="dropdown-item"
-                  activeClassName="active">
+                  activeClassName="active"
+                >
                   Home
                 </NavLink>
                 <NavLink
                   to="/cities"
                   onClick={hideMenu}
                   className="dropdown-item"
-                  activeClassName="active">
+                  activeClassName="active"
+                >
                   Cities
                 </NavLink>{" "}
               </Dropdown.Menu>
@@ -68,7 +71,8 @@ const Header: React.FC = () => {
           dialogClassName="modalStyle"
           onHide={() => setShowModal(false)}
           animation={false}
-          aria-labelledby="example-modal-sizes-title-sm">
+          aria-labelledby="example-modal-sizes-title-sm"
+        >
           <Modal.Header>
             <h3>Come on in!</h3>
           </Modal.Header>
@@ -77,7 +81,8 @@ const Header: React.FC = () => {
               <Button
                 variant="primary"
                 onClick={handleClose}
-                style={{ marginRight: ".25rem" }}>
+                style={{ marginRight: ".25rem" }}
+              >
                 Log in
               </Button>
             </Link>
