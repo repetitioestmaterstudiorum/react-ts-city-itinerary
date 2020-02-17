@@ -42,12 +42,11 @@ const Cities: React.FC = () => {
           width: "60%",
           margin: "auto"
         }}
-        onSubmit={handleOnSubmit}
-      >
+        onSubmit={handleOnSubmit}>
         <div className="d-flex justify-content-center">
           <div className="flex-shrink-0">
             <label className="col-form-label mr-1" htmlFor="city">
-              Search Cities:
+              <span className="fancySpan">Search Cities:</span>
             </label>
           </div>
           <div className="flex-shrink-0">

@@ -46,7 +46,9 @@ const AddCity: React.FC = () => {
     <Accordion style={accordionStyle}>
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0">
-          <span>Your city is missing? Click here to add it!</span>
+          <span className="fancySpan">
+            Your city is missing? Click here to add it!
+          </span>
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
@@ -82,8 +84,7 @@ const AddCity: React.FC = () => {
               <div className="d-flex justify-content-center mt-2">
                 <button
                   className="btn btn-link"
-                  style={{ border: "1px solid #f55f55" }}
-                >
+                  style={{ border: "1px solid #f55f55" }}>
                   Add
                 </button>
               </div>

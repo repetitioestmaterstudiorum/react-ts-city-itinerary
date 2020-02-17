@@ -32,6 +32,7 @@ svg {
   text-shadow: 2px 2px 0 black;
   letter-spacing: 0.0175em;
 }
+
 .logo > a {
   text-decoration: none;
 }
@@ -47,4 +48,11 @@ svg {
 
 a.dropdown-item:hover {
   background-color: #ff9a0347;
+}
+
+@media (max-width: 575.98px) {
+  header > div {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
 }

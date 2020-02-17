@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUserCircle, FaBars } from "react-icons/fa";
-import { Modal, Button, Dropdown } from "react-bootstrap";
+import { Container, Modal, Button, Dropdown } from "react-bootstrap";
 import "./Header.css";
 
 const Header: React.FC = () => {
@@ -40,8 +40,7 @@ const Header: React.FC = () => {
           dialogClassName="modalStyle"
           onHide={() => setShowModal(false)}
           animation={false}
-          aria-labelledby="example-modal-sizes-title-sm"
-        >
+          aria-labelledby="example-modal-sizes-title-sm">
           <Modal.Header>
             <h3>Come on in!</h3>
           </Modal.Header>
@@ -50,8 +49,7 @@ const Header: React.FC = () => {
               <Button
                 variant="primary"
                 onClick={handleClose}
-                style={{ marginRight: ".25rem" }}
-              >
+                style={{ marginRight: ".25rem" }}>
                 Log in
               </Button>
             </Link>

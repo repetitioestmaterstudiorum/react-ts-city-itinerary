@@ -28,7 +28,8 @@ a:hover,
 
 h1,
 h2,
-h3 {
+h3,
+span.fancySpan {
   text-shadow: 1px 0 0 #c6514878;
   letter-spacing: 0.0175em;
   color: #000000e6;
