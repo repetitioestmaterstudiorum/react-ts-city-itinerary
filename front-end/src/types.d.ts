@@ -11,3 +11,17 @@ interface City {
 }
 
 type Cities = Array<City>;
+
+interface Itinerary {
+  name: string;
+  _id: string;
+  city: string;
+  profilePicture: string;
+}
+
+type Itineraries = Array<Itinerary>;
+
+// anies to solve:
+// CityContext
+// ItineraryContext
+// AddItinerary Props

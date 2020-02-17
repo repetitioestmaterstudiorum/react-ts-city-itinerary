@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import axios from "axios";
+import AddItinerary from "./AddItinerary";
 
 const CityDetail: React.FC<RouteComponentProps<City>> = props => {
   // notice the type of type thingy here (<smth<smth>>)
@@ -34,6 +35,7 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
           <div>
             <h2>Available MYtineraries:</h2>
           </div>
+          <AddItinerary city={city.name} />
         </div>
       )}
     </div>

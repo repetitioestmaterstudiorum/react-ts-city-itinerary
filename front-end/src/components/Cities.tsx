@@ -9,6 +9,7 @@ import City from "./City";
 import AddCity from "./AddCity";
 import { CityContext } from "../context/CityContext";
 import { Form } from "react-bootstrap";
+import { ItineraryProvider } from "../context/ItineraryContext";
 
 const Cities: React.FC = () => {
   const [cities, setCities] = useContext(CityContext);
@@ -42,7 +43,8 @@ const Cities: React.FC = () => {
           width: "60%",
           margin: "auto"
         }}
-        onSubmit={handleOnSubmit}>
+        onSubmit={handleOnSubmit}
+      >
         <div className="d-flex justify-content-center">
           <div className="flex-shrink-0">
             <label className="col-form-label mr-1" htmlFor="city">
@@ -61,12 +63,14 @@ const Cities: React.FC = () => {
       </Form>
       <div className="mt-2">
         <div className="d-flex flex-wrap justify-content-center">
-          {filteredCities &&
-            filteredCities
-              .sort((a: City, b: City) => {
-                return a.name > b.name ? 1 : -1;
-              })
-              .map(city => <City key={city._id} city={city} />)}
+          <ItineraryProvider>
+            {filteredCities &&
+              filteredCities
+                .sort((a: City, b: City) => {
+                  return a.name > b.name ? 1 : -1;
+                })
+                .map(city => <City key={city._id} city={city} />)}
+          </ItineraryProvider>
         </div>
       </div>
       <AddCity />
