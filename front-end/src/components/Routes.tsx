@@ -8,6 +8,7 @@ import CreateAccount from "./CreateAccount";
 import Cities from "./Cities";
 import CityDetail from "./CityDetail";
 import Footer from "./layout/Footer";
+import { ItineraryProvider } from "../context/ItineraryContext";
 
 const Routes: React.FC = () => {
   return (
@@ -18,7 +19,9 @@ const Routes: React.FC = () => {
       <Route exact path="/create-account" component={CreateAccount} />
       <Route exact path="/log-in" component={LogIn} />
       <Route exact path="/cities" component={Cities} />
-      <Route path="/cities/:name" component={CityDetail} />
+      <ItineraryProvider>
+        <Route path="/cities/:name" component={CityDetail} />
+      </ItineraryProvider>
       <Footer />
     </React.Fragment>
   );

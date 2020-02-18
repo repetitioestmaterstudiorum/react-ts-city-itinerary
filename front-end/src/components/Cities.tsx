@@ -9,9 +9,9 @@ import City from "./City";
 import AddCity from "./AddCity";
 import { CityContext } from "../context/CityContext";
 import { Form } from "react-bootstrap";
-import { ItineraryProvider } from "../context/ItineraryContext";
 
 const Cities: React.FC = () => {
+  // eslint-disable-next-line
   const [cities, setCities] = useContext(CityContext);
   const [filteredCities, setFilteredCities] = useState<Cities>([]);
   console.log("cities", cities);
@@ -63,14 +63,12 @@ const Cities: React.FC = () => {
       </Form>
       <div className="mt-2">
         <div className="d-flex flex-wrap justify-content-center">
-          <ItineraryProvider>
-            {filteredCities &&
-              filteredCities
-                .sort((a: City, b: City) => {
-                  return a.name > b.name ? 1 : -1;
-                })
-                .map(city => <City key={city._id} city={city} />)}
-          </ItineraryProvider>
+          {filteredCities &&
+            filteredCities
+              .sort((a: City, b: City) => {
+                return a.name > b.name ? 1 : -1;
+              })
+              .map(city => <City key={city._id} city={city} />)}
         </div>
       </div>
       <AddCity />

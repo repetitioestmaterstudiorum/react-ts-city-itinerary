@@ -1,5 +1,5 @@
 const express = require("express");
-const cityModel = require("../model/itineraryModel");
+const itineraryModel = require("../model/itineraryModel");
 const router = express.Router();
 
 // function to turn anything to Title Case (first letter of every word is a capital letter)
@@ -11,11 +11,21 @@ const toTitleCase = phrase => {
     .join(" ");
 };
 
+// get all itineraries
+router.get("/all", (req, res) => {
+  itineraryModel
+    .find({})
+    .then(itineraries => {
+      res.send(itineraries);
+    })
+    .catch(err => console.log(err));
+});
+
 // get all itineraries from a specific city
-router.get("/:city", (req, res) => {
-  const city = req.params.city;
+router.get("/:name", (req, res) => {
+  const city = req.params.name;
   const titleCaseCity = toTitleCase(city); // searching for cities in title case
-  cityModel
+  itineraryModel
     .find({ city: titleCaseCity })
     .then(itinerary => {
       res.send(itinerary);

@@ -6,6 +6,7 @@ import { Accordion, Card } from "react-bootstrap";
 const AddCity: React.FC = () => {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
+  // eslint-disable-next-line
   const [cities, setCities] = useContext(CityContext);
 
   const updateCity = (e: ChangeEvent<HTMLInputElement>) => {
@@ -84,7 +85,8 @@ const AddCity: React.FC = () => {
               <div className="d-flex justify-content-center mt-2">
                 <button
                   className="btn btn-link"
-                  style={{ border: "1px solid #f55f55" }}>
+                  style={{ border: "1px solid #f55f55" }}
+                >
                   Add
                 </button>
               </div>

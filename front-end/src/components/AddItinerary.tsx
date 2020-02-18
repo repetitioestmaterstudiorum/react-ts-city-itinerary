@@ -5,6 +5,7 @@ import { Accordion, Card } from "react-bootstrap";
 
 const AddItinerary: React.FC<any> = props => {
   const [name, setName] = useState("");
+  // eslint-disable-next-line
   const [itineraries, setItineraries] = useContext(ItineraryContext);
 
   const updateName = (e: ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +13,6 @@ const AddItinerary: React.FC<any> = props => {
   };
 
   const city = props.city;
-  console.log("city", city);
 
   const containsANumber = (string: string) => {
     return /\d/.test(string);
@@ -22,14 +22,13 @@ const AddItinerary: React.FC<any> = props => {
     if (containsANumber(name)) {
       alert("The name must be a string (only letters)!");
     } else if (name) {
-      console.log("name", name);
       e.preventDefault();
       const port = process.env.PORT || 5000;
       axios
         .post(`http://localhost:${port}/itineraries/`, {
           name: name,
           city: city,
-          img: "https://via.placeholder.com/100x100.png?text=:)"
+          profilePicture: "https://via.placeholder.com/100x100.png?text=:)"
         })
         .then(response =>
           setItineraries((prevItineraries: Itineraries) => [
