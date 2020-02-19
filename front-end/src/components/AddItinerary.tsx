@@ -2,8 +2,13 @@ import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
 import { ItineraryContext } from "../context/ItineraryContext";
 import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
+import City from "./City";
 
-const AddItinerary: React.FC<any> = props => {
+type CityProps = {
+  city: City;
+};
+
+const AddItinerary: React.FC<CityProps> = props => {
   const [name, setName] = useState("");
   // eslint-disable-next-line
   const [itineraries, setItineraries] = useContext(ItineraryContext);
@@ -12,7 +17,7 @@ const AddItinerary: React.FC<any> = props => {
     setName(e.target.value);
   };
 
-  const city = props.city;
+  const city = props.city.name;
 
   const containsANumber = (string: string) => {
     return /\d/.test(string);

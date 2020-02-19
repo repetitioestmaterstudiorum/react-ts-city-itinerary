@@ -1,62 +1,56 @@
 import React, { useEffect, useState, useContext } from "react";
 import { RouteComponentProps } from "react-router-dom";
-import axios from "axios";
 import AddItinerary from "./AddItinerary";
 import { ItineraryContext } from "../context/ItineraryContext";
+import { CityContext } from "../context/CityContext";
+import Itinerary from "./Itinerary";
 
 const CityDetail: React.FC<RouteComponentProps<City>> = props => {
-  // notice the type of type thingy here (<smth<smth>>)
   const [city, setCity] = useState<City>();
+  const [cityItineraries, setCityItineraries] = useState<Itineraries>();
   // eslint-disable-next-line
   const [itineraries, setItineraries] = useContext(ItineraryContext);
-  const [cityItineraries, setCityItineraries] = useState<Itineraries>();
-
-  const port = process.env.PORT || 5000;
-
-  const fetchCity = () => {
-    axios
-      .get(`http://localhost:${port}/cities/${props.match.params.name}`)
-      .then(res => {
-        setCity(res.data[0]);
-      });
-  };
-
-  const fetchCityItineraries = () => {
-    axios
-      .get(`http://localhost:${port}/itineraries/${props.match.params.name}`)
-      .then(res => {
-        setCityItineraries(res.data);
-      });
-  };
+  // eslint-disable-next-line
+  const [cities, setCities] = useContext(CityContext);
+  // const [cityItineraries, setCityItineraries] = useState<Itineraries>();
 
   useEffect(() => {
-    fetchCity();
-  }, []);
+    cities &&
+      setCity(
+        cities.filter(
+          (city: City) => city.name.toLowerCase() === props.match.params.name
+        )[0]
+      );
+  }, [cities]);
 
   useEffect(() => {
-    fetchCityItineraries();
+    itineraries &&
+      setCityItineraries(
+        itineraries.filter(
+          (itinerary: Itinerary) =>
+            itinerary.city.toLowerCase() === props.match.params.name
+        )
+      );
   }, [itineraries]);
 
   return (
     <div className="container">
-      {city && (
-        <div className="mt-2 text-center">
+      <div className="mt-2 text-center">
+        {city && (
           <div>
             <h1>
-              <span style={{ textDecoration: "underline" }}>{city.name}</span>,{" "}
+              <span style={{ textDecoration: "underline" }}>{city.name}</span>{" "}
               {city.country}
             </h1>
             <img src={city.img} alt={`${city.name}, ${city.country}`}></img>
           </div>
-          <div>
-            <h2>Available MYtineraries:</h2>
-          </div>
-          <AddItinerary city={city.name} />
-          {console.log("city", city)}
-          {console.log("cityItineraries", cityItineraries)}
-          {console.log("itineraries", itineraries)}
+        )}
+        <div>
+          <h2>Available MYtineraries:</h2>
+          {cityItineraries && <Itinerary itineraries={cityItineraries} />}
         </div>
-      )}
+        {city && <AddItinerary city={city} />}
+      </div>
     </div>
   );
 };
