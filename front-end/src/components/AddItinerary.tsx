@@ -2,7 +2,6 @@ import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
 import { ItineraryContext } from "../context/ItineraryContext";
 import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
-import City from "./City";
 
 type CityProps = {
   city: City;

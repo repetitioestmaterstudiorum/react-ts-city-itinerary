@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-// export const CityContext = createContext({} as any);
 export const CityContext = createContext([{}] as any);
 
 export const CityProvider: React.FC = props => {

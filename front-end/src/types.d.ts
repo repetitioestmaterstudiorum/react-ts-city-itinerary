@@ -21,7 +21,6 @@ interface Itinerary {
 
 type Itineraries = Array<Itinerary>;
 
-// anies to solve:
+// "any" to solve:
 // CityContext
 // ItineraryContext
-// AddItinerary Props

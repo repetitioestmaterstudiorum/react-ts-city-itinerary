@@ -4,8 +4,6 @@ import axios from "axios";
 export const ItineraryContext = createContext([{}] as any);
 
 export const ItineraryProvider: React.FC = props => {
-  const port = process.env.PORT || 5000;
-
   const [itineraries, setItineraries] = useState<Itineraries>();
 
   useEffect(() => {
