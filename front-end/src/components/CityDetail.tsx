@@ -3,7 +3,7 @@ import { RouteComponentProps } from "react-router-dom";
 import AddItinerary from "./AddItinerary";
 import { ItineraryContext } from "../context/ItineraryContext";
 import { CityContext } from "../context/CityContext";
-import Itinerary from "./Itinerary";
+import Itineraries from "./Itineraries";
 
 const CityDetail: React.FC<RouteComponentProps<City>> = props => {
   const [city, setCity] = useState<City>();
@@ -21,6 +21,7 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
           (city: City) => city.name.toLowerCase() === props.match.params.name
         )[0]
       );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cities]);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
             itinerary.city.toLowerCase() === props.match.params.name
         )
       );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itineraries]);
 
   return (
@@ -39,7 +41,8 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
         {city && (
           <div>
             <h1>
-              <span style={{ textDecoration: "underline" }}>{city.name}</span>{" "}
+              <span style={{ textDecoration: "underline" }}>{city.name}</span>
+              {", "}
               {city.country}
             </h1>
             <img src={city.img} alt={`${city.name}, ${city.country}`}></img>
@@ -47,7 +50,7 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
         )}
         <div>
           <h2>Available MYtineraries:</h2>
-          {cityItineraries && <Itinerary itineraries={cityItineraries} />}
+          {cityItineraries && <Itineraries itineraries={cityItineraries} />}
         </div>
         {city && <AddItinerary city={city} />}
       </div>

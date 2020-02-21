@@ -10,9 +10,21 @@ const itinerarySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  profileName: {
+    type: String,
+    required: true
+  },
   profilePicture: {
     type: String,
     required: true
+  },
+  likes: {
+    type: Number,
+    required: true
+  },
+  hashtags: {
+    type: Array,
+    required: false
   }
 });
 

@@ -5,31 +5,25 @@ import { Modal, Button, Dropdown } from "react-bootstrap";
 import "./Header.css";
 
 const Header: React.FC = () => {
-  const [showModal, setShowModal] = useState<boolean>(false); // remove any and define a type
-  const handleClose = () => setShowModal(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
-  const [show, setShow] = useState<boolean>(false);
+  const handleHideModal = () => setShowModal(false);
+  const handleShowModal = () => (setShowModal(true), setShowMenu(false));
 
-  const hideMenu = () => {
-    console.log("bye");
-    setShow(false);
-  };
-
-  const showMenu = () => {
-    console.log("helloo");
-    setShow(true);
-  };
+  const handleHideMenu = () => setShowMenu(false);
+  const handleShowMenu = () => setShowMenu(true);
 
   return (
     <header className="sticky-top">
       <div className="container">
         <div className="navbar d-flex justify-content-space-between navbar-dark">
           <div className="menu">
-            <Dropdown show={show}>
+            <Dropdown show={showMenu}>
               <Dropdown.Toggle
                 variant="dark"
                 id="dropdown-basic"
-                onClick={show ? hideMenu : showMenu}
+                onClick={showMenu ? handleHideMenu : handleShowMenu}
               >
                 <FaBars />
               </Dropdown.Toggle>
@@ -37,7 +31,7 @@ const Header: React.FC = () => {
                 <NavLink
                   to="/"
                   exact
-                  onClick={hideMenu}
+                  onClick={handleHideMenu}
                   className="dropdown-item"
                   activeClassName="active"
                 >
@@ -45,7 +39,7 @@ const Header: React.FC = () => {
                 </NavLink>
                 <NavLink
                   to="/cities"
-                  onClick={hideMenu}
+                  onClick={handleHideMenu}
                   className="dropdown-item"
                   activeClassName="active"
                 >
@@ -61,7 +55,7 @@ const Header: React.FC = () => {
             </Link>
           </div>
           <div className="profile">
-            <FaUserCircle onClick={() => setShowModal(true)} />
+            <FaUserCircle onClick={handleShowModal} />
           </div>
         </div>
 
@@ -69,7 +63,7 @@ const Header: React.FC = () => {
           size="sm"
           show={showModal}
           dialogClassName="modalStyle"
-          onHide={() => setShowModal(false)}
+          onHide={handleHideModal}
           animation={false}
           aria-labelledby="example-modal-sizes-title-sm"
         >
@@ -80,20 +74,20 @@ const Header: React.FC = () => {
             <Link to="/log-in">
               <Button
                 variant="primary"
-                onClick={handleClose}
+                onClick={handleHideModal}
                 style={{ marginRight: ".25rem" }}
               >
                 Log in
               </Button>
             </Link>
             <Link to="/create-account">
-              <Button variant="primary" onClick={handleClose}>
+              <Button variant="primary" onClick={handleHideModal}>
                 Create Account
               </Button>
             </Link>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="secondary" onClick={handleHideModal}>
               Close
             </Button>
           </Modal.Footer>

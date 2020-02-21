@@ -38,7 +38,10 @@ router.post("/", (req, res) => {
   const newItinerary = new itineraryModel({
     name: toTitleCase(req.body.name), // ensuring itineraries have title case names
     city: toTitleCase(req.body.city), // same for cities
-    profilePicture: req.body.profilePicture
+    profileName: req.body.profileName,
+    profilePicture: req.body.profilePicture,
+    likes: req.body.likes,
+    hashtags: req.body.hashtags
   });
   newItinerary
     .save()
