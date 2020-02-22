@@ -59,8 +59,8 @@ const AddItinerary: React.FC<CityProps> = props => {
     ) {
       alert("Hashtags can not contain a number!");
     }
-    const hashtagArray: Array<String> = [];
-    const addToArrayIfNotEmpty = (value: String) => {
+    const hashtagArray: string[] = [];
+    const addToArrayIfNotEmpty = (value: string) => {
       if (value.length > 0) {
         hashtagArray.push(value);
       }

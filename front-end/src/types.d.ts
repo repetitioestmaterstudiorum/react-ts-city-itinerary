@@ -16,7 +16,10 @@ interface Itinerary {
   name: string;
   _id: string;
   city: string;
+  profileName: string;
   profilePicture: string;
+  likes: number;
+  hashtags: string[];
 }
 
 type Itineraries = Array<Itinerary>;

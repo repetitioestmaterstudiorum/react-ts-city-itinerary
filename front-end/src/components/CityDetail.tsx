@@ -36,24 +36,22 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
   }, [itineraries]);
 
   return (
-    <div className="container">
-      <div className="mt-2 text-center">
-        {city && (
-          <div>
-            <h1>
-              <span style={{ textDecoration: "underline" }}>{city.name}</span>
-              {", "}
-              {city.country}
-            </h1>
-            <img src={city.img} alt={`${city.name}, ${city.country}`}></img>
-          </div>
-        )}
+    <div className="container mt-2 text-center">
+      {city && (
         <div>
-          <h2>Available MYtineraries:</h2>
-          {cityItineraries && <Itineraries itineraries={cityItineraries} />}
+          <h1>
+            <span style={{ textDecoration: "underline" }}>{city.name}</span>
+            {", "}
+            {city.country}
+          </h1>
+          <img src={city.img} alt={`${city.name}, ${city.country}`}></img>
         </div>
-        {city && <AddItinerary city={city} />}
+      )}
+      <div style={{ maxWidth: "400px", margin: "auto" }}>
+        <h2 className="mb-3">Available MYtineraries:</h2>
+        {cityItineraries && <Itineraries itineraries={cityItineraries} />}
       </div>
+      {city && <AddItinerary city={city} />}
     </div>
   );
 };
