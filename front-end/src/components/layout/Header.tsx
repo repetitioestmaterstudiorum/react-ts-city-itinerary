@@ -9,6 +9,7 @@ const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   const handleHideModal = () => setShowModal(false);
+  // eslint-disable-next-line
   const handleShowModal = () => (setShowModal(true), setShowMenu(false));
 
   const handleHideMenu = () => setShowMenu(false);

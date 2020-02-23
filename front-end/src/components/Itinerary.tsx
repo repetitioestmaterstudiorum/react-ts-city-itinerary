@@ -128,17 +128,17 @@ const Itinerary: React.FC<ItineraryProps> = props => {
               eventKey="0"
               style={{
                 textAlign: "center",
-                marginBottom: "-36px",
-                fontSize: "0.85rem",
+                marginBottom: "-37px",
                 width: "100%",
                 border: "none",
                 backgroundColor: "transparent",
-                height: "36px"
+                height: "37px"
               }}
             >
               <p
                 style={{
-                  margin: "auto"
+                  margin: "auto",
+                  fontFamily: "cursive"
                 }}
                 onClick={() =>
                   showAccordion
