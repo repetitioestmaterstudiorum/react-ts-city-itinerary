@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Accordion, Card } from "react-bootstrap";
 
 type ItinerariesProps = {
   itineraries: Itineraries;
@@ -6,6 +7,8 @@ type ItinerariesProps = {
 
 const Itineraries: React.FC<ItinerariesProps> = props => {
   console.log("props.itineraries", props.itineraries);
+
+  const [showAccordion, setShowAccordion] = useState(true);
 
   const generateColor = () => {
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
@@ -24,7 +27,7 @@ const Itineraries: React.FC<ItinerariesProps> = props => {
           className="row"
           style={{
             border: "6px solid #fff",
-            borderBottom: "30px solid #fff",
+            borderBottom: "34px solid #fff",
             boxShadow: "2px 2px 7px #777",
             margin: "0 0 13px 0",
             backgroundColor: `#${generateColor()}10`
@@ -72,19 +75,101 @@ const Itineraries: React.FC<ItinerariesProps> = props => {
               {itinerary.hashtags[2] && " #" + itinerary.hashtags[2]}
             </span>
           </div>
-          <p
-            className="fancySpan"
-            style={{
-              textAlign: "center",
-              margin: "auto",
-              marginBottom: "-25px",
-              fontSize: "0.85rem",
-              width: "100%"
-            }}
-            onClick={handleItineraryExpand}
-          >
-            Click here to Expand
-          </p>
+          <Accordion style={{ width: "100%" }}>
+            <Card
+              style={{
+                overflow: "initial",
+                border: "none",
+                borderRadius: "none",
+                backgroundColor: "#f9f9f9"
+              }}
+            >
+              <Accordion.Collapse eventKey="0">
+                <Card.Body style={{ padding: ".6rem" }}>
+                  <form /*onSubmit={addItinerary}*/>
+                    <div className="d-flex justify-content-between">
+                      <div>
+                        <label className="col-form-label mr-1" htmlFor="name">
+                          Name*:
+                        </label>
+                      </div>
+                      <div className="flex-shrink-0">
+                        <input
+                          className="form-control"
+                          id="name"
+                          type="text"
+                          // value={name}
+                          // onChange={updateName}
+                        />
+                      </div>
+                    </div>
+                    <div className="d-flex justify-content-between mt-1">
+                      <div>
+                        <label
+                          className="col-form-label mr-1"
+                          htmlFor="hashtagOne"
+                        >
+                          1. Hashtag*:
+                        </label>
+                      </div>
+                      <div className="flex-shrink-0">
+                        <input
+                          className="form-control"
+                          id="hashtagOne"
+                          type="text"
+                          // value={}
+                          // onChange={}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="d-flex justify-content-center mt-3">
+                      <button
+                        className="btn btn-link"
+                        style={{ border: "1px solid #f55f55" }}
+                      >
+                        Add itinerary!
+                      </button>
+                    </div>
+                  </form>
+                </Card.Body>
+              </Accordion.Collapse>
+              <Accordion.Toggle
+                eventKey="0"
+                style={{
+                  textAlign: "center",
+                  marginBottom: "-36px",
+                  fontSize: "0.85rem",
+                  width: "100%",
+                  border: "none",
+                  backgroundColor: "transparent",
+                  height: "36px"
+                }}
+              >
+                <p
+                  style={{
+                    margin: "auto"
+                  }}
+                  onClick={() =>
+                    showAccordion
+                      ? setShowAccordion(false)
+                      : setShowAccordion(true)
+                  }
+                >
+                  <span
+                    className={showAccordion ? "collapse show" : "collapse"}
+                  >
+                    Click here to see activities!
+                  </span>
+                  <span
+                    className={showAccordion ? "collapse" : "collapse show"}
+                  >
+                    Hide activities!
+                  </span>
+                </p>
+              </Accordion.Toggle>
+            </Card>
+          </Accordion>
         </div>
       ))}
     </React.Fragment>

@@ -39,6 +39,7 @@ const Header: React.FC = () => {
                 </NavLink>
                 <NavLink
                   to="/cities"
+                  exact
                   onClick={handleHideMenu}
                   className="dropdown-item"
                   activeClassName="active"
