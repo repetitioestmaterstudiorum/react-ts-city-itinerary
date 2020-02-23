@@ -3,13 +3,9 @@ import { ItineraryContext } from "../context/ItineraryContext";
 import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
 
-type CityProps = {
-  city: City;
-};
-
 const AddItinerary: React.FC<CityProps> = props => {
   const [name, setName] = useState("");
-  const city = props.city.name;
+  const cityName = props.city.name;
   const profileName = "John Doe";
   const profilePicture = "https://via.placeholder.com/100x100.png?text=:)";
   const likes = 0;
@@ -76,7 +72,7 @@ const AddItinerary: React.FC<CityProps> = props => {
       axios
         .post(`http://localhost:${port}/itineraries/`, {
           name,
-          city,
+          city: cityName,
           profileName,
           profilePicture,
           likes,

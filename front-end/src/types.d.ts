@@ -12,6 +12,10 @@ interface City {
 
 type Cities = Array<City>;
 
+type CityProps = {
+  city: City;
+};
+
 interface Itinerary {
   name: string;
   _id: string;
