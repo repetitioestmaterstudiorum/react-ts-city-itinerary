@@ -14,7 +14,6 @@ const Cities: React.FC = () => {
   // eslint-disable-next-line
   const [cities, setCities] = useContext(CityContext);
   const [filteredCities, setFilteredCities] = useState<Cities>([]);
-  console.log("cities", cities);
 
   useEffect(() => {
     setFilteredCities(cities);
@@ -43,8 +42,7 @@ const Cities: React.FC = () => {
           width: "60%",
           margin: "auto"
         }}
-        onSubmit={handleOnSubmit}
-      >
+        onSubmit={handleOnSubmit}>
         <div className="d-flex justify-content-center">
           <div className="flex-shrink-0">
             <label className="col-form-label mr-1" htmlFor="city">
