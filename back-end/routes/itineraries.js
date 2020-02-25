@@ -41,7 +41,8 @@ router.post("/", (req, res) => {
     profileName: req.body.profileName,
     profilePicture: req.body.profilePicture,
     likes: req.body.likes,
-    hashtags: req.body.hashtags
+    hashtags: req.body.hashtags,
+    activities: req.body.activities
   });
   newItinerary
     .save()

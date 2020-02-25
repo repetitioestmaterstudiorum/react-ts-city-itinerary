@@ -24,7 +24,11 @@ const itinerarySchema = new mongoose.Schema({
   },
   hashtags: {
     type: Array,
-    required: false
+    required: true
+  },
+  activities: {
+    type: Array,
+    required: true
   }
 });
 

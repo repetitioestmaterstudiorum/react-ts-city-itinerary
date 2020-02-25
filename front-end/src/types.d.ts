@@ -10,7 +10,7 @@ interface City {
   img: string;
 }
 
-type Cities = Array<City>;
+type Cities = City[];
 
 type CityProps = {
   city: City;
@@ -24,6 +24,7 @@ interface Itinerary {
   profilePicture: string;
   likes: number;
   hashtags: string[];
+  activities: string[];
 }
 
 type Itineraries = Array<Itinerary>;

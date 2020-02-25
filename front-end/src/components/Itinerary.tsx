@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Accordion, Card } from "react-bootstrap";
+import { FaRegCheckSquare } from "react-icons/fa";
 
 type ItineraryProps = {
   itinerary: Itinerary;
@@ -7,8 +8,6 @@ type ItineraryProps = {
 };
 
 const Itinerary: React.FC<ItineraryProps> = props => {
-  const [showAccordion, setShowAccordion] = useState(true);
-
   return (
     <React.Fragment>
       <div
@@ -54,9 +53,11 @@ const Itinerary: React.FC<ItineraryProps> = props => {
               fontStyle: "italic",
               display: "block"
             }}>
-            #{props.itinerary.hashtags[0]}
-            {props.itinerary.hashtags[1] && " #" + props.itinerary.hashtags[1]}
-            {props.itinerary.hashtags[2] && " #" + props.itinerary.hashtags[2]}
+            {props.itinerary.hashtags.map((hashtag, index) => (
+              <span key={index} style={{ fontStyle: "italic" }}>
+                #{hashtag}{" "}
+              </span>
+            ))}
           </span>
         </div>
         <Accordion style={{ width: "100%" }}>
@@ -65,11 +66,18 @@ const Itinerary: React.FC<ItineraryProps> = props => {
               overflow: "initial",
               border: "none",
               borderRadius: "none",
-              backgroundColor: "#f9f9f9"
+              backgroundColor: "#f9f9f9",
+              padding: "0.3rem 0.5rem 0"
             }}>
             <Accordion.Collapse eventKey="0">
               <Card.Body style={{ padding: ".6rem" }}>
-                <p>hi there</p>
+                {props.itinerary.activities.map(activity => (
+                  <p>
+                    <span className="fancySpan">
+                      <FaRegCheckSquare /> {activity}
+                    </span>
+                  </p>
+                ))}
               </Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle
@@ -86,18 +94,8 @@ const Itinerary: React.FC<ItineraryProps> = props => {
                 style={{
                   margin: "auto",
                   fontFamily: "cursive"
-                }}
-                onClick={() =>
-                  showAccordion
-                    ? setShowAccordion(false)
-                    : setShowAccordion(true)
-                }>
-                <span className={showAccordion ? "collapse show" : "collapse"}>
-                  Click here to see activities!
-                </span>
-                <span className={showAccordion ? "collapse" : "collapse show"}>
-                  Hide activities!
-                </span>
+                }}>
+                Click to toggle Activities
               </p>
             </Accordion.Toggle>
           </Card>
