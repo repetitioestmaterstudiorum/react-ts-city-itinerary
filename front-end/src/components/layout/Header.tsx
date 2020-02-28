@@ -99,7 +99,7 @@ const Header: React.FC = () => {
           aria-labelledby="example-modal-sizes-title-sm"
         >
           <Modal.Header>
-            <h3>Come on in!</h3>
+            <h3>You are currently logged out.</h3>
           </Modal.Header>
           <Modal.Body>
             <Link to="/log-in">
