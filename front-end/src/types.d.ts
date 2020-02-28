@@ -27,8 +27,17 @@ interface Itinerary {
   activities: string[];
 }
 
-type Itineraries = Array<Itinerary>;
+type Itineraries = Itinerary[];
+
+interface User {
+  email: string;
+  password: string;
+  profilePicture: string;
+}
+
+type Users = User[];
 
 // "any" to solve:
 // CityContext
 // ItineraryContext
+// UserContext
