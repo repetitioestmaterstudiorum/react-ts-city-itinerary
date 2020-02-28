@@ -9,9 +9,13 @@ export const UserProvider: React.FC = props => {
   useEffect(() => {
     const port = process.env.PORT || 5000;
     const fetchUsers = async () => {
-      let res = await axios.get(`http://localhost:${port}/users/all`);
-      let data = res.data;
-      setUsers(data);
+      try {
+        let res = await axios.get(`http://localhost:${port}/users/all`);
+        let data = res.data;
+        setUsers(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchUsers();
   }, []);

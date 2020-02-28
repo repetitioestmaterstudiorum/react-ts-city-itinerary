@@ -33,6 +33,7 @@ interface User {
   _id: string;
   email: string;
   password: string;
+  passwordConfirmation: string;
   profilePicture: string;
 }
 
