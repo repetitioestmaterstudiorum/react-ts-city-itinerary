@@ -4,15 +4,14 @@ import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
 
 const AddCity: React.FC = () => {
-  const [city, setCity] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   // eslint-disable-next-line
   const [cities, setCities] = useContext(CityContext);
 
-  const updateCity = (e: ChangeEvent<HTMLInputElement>) => {
-    setCity(e.target.value);
+  const updateName = (e: ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
   };
-
   const updateCountry = (e: ChangeEvent<HTMLInputElement>) => {
     setCountry(e.target.value);
   };
@@ -22,31 +21,39 @@ const AddCity: React.FC = () => {
   };
 
   const addCityCountryPair = (e: FormEvent<HTMLFormElement>) => {
-    if (containsANumber(city) || containsANumber(country)) {
+    e.preventDefault();
+    if (containsANumber(name) || containsANumber(country)) {
       alert("City and country must be strings (only letters)!");
-      e.preventDefault();
-    } else if (city && country) {
-      e.preventDefault();
-      const port = process.env.PORT || 5000;
-      axios
-        .post(`http://localhost:${port}/cities/`, {
-          name: city,
-          country: country,
-          img: "https://via.placeholder.com/300x150.png?text=Image+coming+soon"
-        })
-        .then(response =>
-          setCities((prevCities: Cities) => [...prevCities, response.data])
-        );
-      setCountry("");
-      setCity("");
-    } else {
+    } else if (!name || !country) {
       alert("Enter a city and a country!");
-      e.preventDefault();
+    } else {
+      const port = process.env.PORT || 5000;
+      try {
+        axios
+          .post(`http://localhost:${port}/cities/`, {
+            name,
+            country,
+            img:
+              "https://via.placeholder.com/300x150.png?text=Image+coming+soon"
+          })
+          .then(response =>
+            setCities((prevCities: Cities) => [...prevCities, response.data])
+          );
+      } catch (error) {
+        console.error(error);
+      }
+      setCountry("");
+      setName("");
     }
   };
 
   return (
-    <Accordion style={accordionStyle}>
+    <Accordion
+      style={{
+        maxWidth: "400px",
+        margin: "10px auto 0"
+      }}
+    >
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0">
           <span className="fancySpan">
@@ -57,16 +64,16 @@ const AddCity: React.FC = () => {
           <Card.Body>
             <form onSubmit={addCityCountryPair}>
               <div className="d-flex justify-content-center">
-                <label className="col-form-label mr-1" htmlFor="city">
+                <label className="col-form-label mr-1" htmlFor="name">
                   City:
                 </label>
                 <div className="flex-shrink-0">
                   <input
                     className="form-control"
-                    id="city"
+                    id="name"
                     type="text"
-                    value={city}
-                    onChange={updateCity}
+                    value={name}
+                    onChange={updateName}
                   />
                 </div>
               </div>
@@ -98,11 +105,6 @@ const AddCity: React.FC = () => {
       </Card>
     </Accordion>
   );
-};
-
-const accordionStyle = {
-  maxWidth: "400px",
-  margin: "10px auto 0"
 };
 
 export default AddCity;
