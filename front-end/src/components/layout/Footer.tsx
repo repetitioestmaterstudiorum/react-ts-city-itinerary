@@ -15,17 +15,19 @@ const Footer: React.FC<RouteComponentProps> = props => {
   };
 
   return (
-    <footer className="container-fluid mt-3">
+    <footer className="container-fluid mt-2 mb-2">
       <div className="d-flex justify-content-center">
-        <Link className="nav-link" to="#" onClick={handleBack}>
-          <FaBackward />
-          {" Back"}
-        </Link>
         {isLanding && (
-          <Link className="nav-link" to="/">
-            <FaHome />
-            {" Home"}
-          </Link>
+          <React.Fragment>
+            <Link className="nav-link" to="#" onClick={handleBack}>
+              <FaBackward />
+              {" Back"}
+            </Link>
+            <Link className="nav-link" to="/">
+              <FaHome />
+              {" Home"}
+            </Link>
+          </React.Fragment>
         )}
         <Link className="nav-link" to="/site-notice">
           <FaBalanceScale />

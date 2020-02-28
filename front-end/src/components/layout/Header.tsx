@@ -16,7 +16,7 @@ const Header: React.FC = () => {
   const handleShowMenu = () => setShowMenu(true);
 
   return (
-    <header className="sticky-top">
+    <header className="sticky-top mb-1">
       <div className="container">
         <div className="navbar d-flex justify-content-space-between navbar-dark">
           <div className="menu">
@@ -45,8 +45,37 @@ const Header: React.FC = () => {
                   className="dropdown-item"
                   activeClassName="active"
                 >
-                  Cities
-                </NavLink>{" "}
+                  Browse cities
+                </NavLink>
+                <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
+                <NavLink
+                  to="/log-in"
+                  exact
+                  onClick={handleHideMenu}
+                  className="dropdown-item"
+                  activeClassName="active"
+                >
+                  Log in
+                </NavLink>
+                <NavLink
+                  to="/create-account"
+                  exact
+                  onClick={handleHideMenu}
+                  className="dropdown-item"
+                  activeClassName="active"
+                >
+                  Create account
+                </NavLink>
+                <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
+                <NavLink
+                  to="/site-notice"
+                  exact
+                  onClick={handleHideMenu}
+                  className="dropdown-item"
+                  activeClassName="active"
+                >
+                  Site Notice
+                </NavLink>
               </Dropdown.Menu>
             </Dropdown>
           </div>

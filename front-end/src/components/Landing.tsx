@@ -4,7 +4,7 @@ import { FaArrowCircleRight } from "react-icons/fa";
 
 const Landing: React.FC = () => {
   return (
-    <section className="container pt-4">
+    <section className="container pt-3">
       <div className="text-center">
         <h1>City Itinerary</h1>
         <span className="fancySpan" style={{ fontSize: "1.3rem" }}>
