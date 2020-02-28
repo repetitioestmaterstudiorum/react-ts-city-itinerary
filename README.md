@@ -1,6 +1,6 @@
 # React City Itinerary App
 
-A MERN app that uses the Atlas Mongo DB service, Firebase Auth, and Bootstrap to display cities and itineraries with activities for these cities. Users can register and post cities, as well as itineraries and activities, leave comments, like, and more.
+A MERN app that uses the Atlas Mongo DB service, React, TypeScript, Node.js and Bootstrap to display cities and itineraries with activities for these cities. Users can register and post cities, as well as itineraries with activities, and more.
 
 ## Live Version
 
