@@ -10,10 +10,11 @@ import CityDetail from "./CityDetail";
 import Footer from "./layout/Footer";
 import { CityProvider } from "../context/CityContext";
 import { ItineraryProvider } from "../context/ItineraryContext";
+import { UserProvider } from "../context/UserContext";
 
 const Routes: React.FC = () => {
   return (
-    <React.Fragment>
+    <UserProvider>
       <Header />
       <Route exact path="/" component={Landing} />
       <Route exact path="/site-notice" component={SiteNotice} />
@@ -26,7 +27,7 @@ const Routes: React.FC = () => {
         </ItineraryProvider>{" "}
       </CityProvider>
       <Footer />
-    </React.Fragment>
+    </UserProvider>
   );
 };
 

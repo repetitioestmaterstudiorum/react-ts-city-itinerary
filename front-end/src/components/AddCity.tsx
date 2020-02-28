@@ -4,8 +4,8 @@ import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
 
 const AddCity: React.FC = () => {
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
+  const [city, setCity] = useState<string>("");
+  const [country, setCountry] = useState<string>("");
   // eslint-disable-next-line
   const [cities, setCities] = useContext(CityContext);
 

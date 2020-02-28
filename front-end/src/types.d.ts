@@ -30,6 +30,7 @@ interface Itinerary {
 type Itineraries = Itinerary[];
 
 interface User {
+  _id: string;
   email: string;
   password: string;
   profilePicture: string;
