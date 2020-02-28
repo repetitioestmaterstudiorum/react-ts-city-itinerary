@@ -24,6 +24,7 @@ const AddCity: React.FC = () => {
   const addCityCountryPair = (e: FormEvent<HTMLFormElement>) => {
     if (containsANumber(city) || containsANumber(country)) {
       alert("City and country must be strings (only letters)!");
+      e.preventDefault();
     } else if (city && country) {
       e.preventDefault();
       const port = process.env.PORT || 5000;
@@ -40,6 +41,7 @@ const AddCity: React.FC = () => {
       setCity("");
     } else {
       alert("Enter a city and a country!");
+      e.preventDefault();
     }
   };
 
