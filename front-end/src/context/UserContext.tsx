@@ -1,27 +1,34 @@
 import React, { createContext, useState, useEffect } from "react";
-import axios from "axios";
 
 export const UserContext = createContext([{}] as any);
 
 export const UserProvider: React.FC = props => {
-  const [users, setUsers] = useState<Users>();
+  const [user, setUser] = useState<User>();
 
   useEffect(() => {
-    const port = process.env.PORT || 5000;
-    const fetchUsers = async () => {
-      try {
-        let res = await axios.get(`http://localhost:${port}/users/all`);
-        let data = res.data;
-        setUsers(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchUsers();
+    console.log('localStorage.getItem("user")', localStorage.getItem("user"));
+    if (
+      localStorage.getItem("user") === "undefined" ||
+      localStorage.getItem("user") === undefined
+    ) {
+      setUser({
+        _id: "",
+        email: "",
+        password: "",
+        profilePicture: ""
+      });
+    } else {
+      const storageContent: any = localStorage.getItem("user");
+      setUser(JSON.parse(storageContent));
+    }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
   return (
-    <UserContext.Provider value={[users, setUsers]}>
+    <UserContext.Provider value={[user, setUser]}>
       {props.children}
     </UserContext.Provider>
   );

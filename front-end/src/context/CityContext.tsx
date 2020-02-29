@@ -9,9 +9,13 @@ export const CityProvider: React.FC = props => {
   useEffect(() => {
     const port = process.env.PORT || 5000;
     const fetchCities = async () => {
-      let res = await axios.get(`http://localhost:${port}/cities/all`);
-      let data = res.data;
-      setCities(data);
+      try {
+        let res = await axios.get(`http://localhost:${port}/cities/all`);
+        let data = res.data;
+        setCities(data);
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchCities();
   }, []);

@@ -7,16 +7,16 @@ import React, {
 } from "react";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { FaArrowCircleRight } from "react-icons/fa";
 
 const CreateAccount: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
   const [profilePicture, setProfilePicture] = useState<string>("");
-  // eslint-disable-next-line
-  const [users, setUsers] = useContext(UserContext);
-
-  const createUserSuccess = true;
+  const [user, setUser] = useContext(UserContext);
+  const [useless, setUseless] = useState();
 
   // temporary until user image upload is handled
   useEffect(() => {
@@ -39,33 +39,52 @@ const CreateAccount: React.FC = () => {
       alert("Enter an email, password and password confirmation!");
     } else {
       const port = process.env.PORT || 5000;
-      axios
-        .post(`http://localhost:${port}/users/create-account`, {
-          email,
-          password,
-          passwordConfirmation,
-          profilePicture
-        })
-        .then(response => {
-          setUsers((prevUsers: Users) => [...prevUsers, response.data]);
-        })
-        .catch(err => {
+      const createAccount = async () => {
+        try {
+          console.log("hola");
+          let res = await axios.post(
+            `http://localhost:${port}/users/create-account`,
+            {
+              email,
+              password,
+              passwordConfirmation,
+              profilePicture
+            }
+          );
+          setUser(res.data);
+        } catch (err) {
           if (err.response.status === 422) {
             alert(JSON.parse(err.response.request.response)[0].msg);
           } else {
             alert(err.response.request.response);
           }
-        });
+        }
+      };
+      createAccount();
       setEmail("");
       setPassword("");
       setPasswordConfirmation("");
     }
   };
 
+  useEffect(() => {
+    console.log("user", user);
+  }, [user]);
+
+  const testUser = {
+    _id: "38djkfdls39",
+    email: "whatever@yes.com",
+    password: "fdsafdsa",
+    profilePicture: "https://google.com/images/1"
+  };
+  const setTestUser = () => {
+    setUser(testUser);
+  };
+
   return (
     <section className="conatiner mb-3">
       <div className="text-center">
-        {createUserSuccess ? (
+        {user && !user.email ? (
           <React.Fragment>
             <h1>Create Account</h1>
             <form onSubmit={addUser}>
@@ -125,8 +144,23 @@ const CreateAccount: React.FC = () => {
             </form>
           </React.Fragment>
         ) : (
-          <h1>Account created successfully!</h1>
+          <React.Fragment>
+            <h1>Account created successfully!</h1>
+            <Link
+              to="/cities"
+              className="nav-link"
+              style={{ fontSize: "1.8rem" }}
+            >
+              <p>
+                <FaArrowCircleRight /> Browse Cities
+              </p>
+            </Link>
+          </React.Fragment>
         )}
+        <div className="container mt-5 mb-4">
+          <h2>Set test user</h2>
+          <button onClick={setTestUser}>Set user 3</button>
+        </div>
       </div>
     </section>
   );

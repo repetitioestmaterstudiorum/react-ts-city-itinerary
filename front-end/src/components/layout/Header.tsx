@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle, FaBars } from "react-icons/fa";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import "./Header.css";
+import { UserContext } from "../../context/UserContext";
 
 const Header: React.FC = () => {
+  const [user, setUser] = useContext(UserContext);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
@@ -14,6 +16,17 @@ const Header: React.FC = () => {
 
   const handleHideMenu = () => setShowMenu(false);
   const handleShowMenu = () => setShowMenu(true);
+
+  const handleLogout = () => {
+    setUser({
+      _id: "",
+      email: "",
+      password: "",
+      profilePicture: ""
+    });
+    handleHideMenu();
+    handleHideModal();
+  };
 
   return (
     <header className="sticky-top mb-1">
@@ -48,24 +61,38 @@ const Header: React.FC = () => {
                   Browse cities
                 </NavLink>
                 <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
-                <NavLink
-                  to="/log-in"
-                  exact
-                  onClick={handleHideMenu}
-                  className="dropdown-item"
-                  activeClassName="active"
-                >
-                  Log in
-                </NavLink>
-                <NavLink
-                  to="/create-account"
-                  exact
-                  onClick={handleHideMenu}
-                  className="dropdown-item"
-                  activeClassName="active"
-                >
-                  Create account
-                </NavLink>
+                {user && !user.email ? (
+                  <React.Fragment>
+                    <NavLink
+                      to="/log-in"
+                      exact
+                      onClick={handleHideMenu}
+                      className="dropdown-item"
+                      activeClassName="active"
+                    >
+                      Log in
+                    </NavLink>
+                    <NavLink
+                      to="/create-account"
+                      exact
+                      onClick={handleHideMenu}
+                      className="dropdown-item"
+                      activeClassName="active"
+                    >
+                      Create account
+                    </NavLink>
+                  </React.Fragment>
+                ) : (
+                  <NavLink
+                    to="/"
+                    exact
+                    onClick={handleLogout}
+                    className="dropdown-item"
+                    activeClassName=""
+                  >
+                    Logout
+                  </NavLink>
+                )}
                 <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
                 <NavLink
                   to="/site-notice"
@@ -98,25 +125,42 @@ const Header: React.FC = () => {
           animation={false}
           aria-labelledby="example-modal-sizes-title-sm"
         >
-          <Modal.Header>
-            <h3>You are currently logged out.</h3>
-          </Modal.Header>
-          <Modal.Body>
-            <Link to="/log-in">
-              <Button
-                variant="primary"
-                onClick={handleHideModal}
-                style={{ marginRight: ".25rem" }}
-              >
-                Log in
-              </Button>
-            </Link>
-            <Link to="/create-account">
-              <Button variant="primary" onClick={handleHideModal}>
-                Create Account
-              </Button>
-            </Link>
-          </Modal.Body>
+          {user && !user.email ? (
+            <React.Fragment>
+              <Modal.Header>
+                <h3>You are currently logged out.</h3>
+              </Modal.Header>
+              <Modal.Body>
+                <Link to="/log-in">
+                  <Button
+                    variant="primary"
+                    onClick={handleHideModal}
+                    style={{ marginRight: ".25rem" }}
+                  >
+                    Log in
+                  </Button>
+                </Link>
+                <Link to="/create-account">
+                  <Button variant="primary" onClick={handleHideModal}>
+                    Create Account
+                  </Button>
+                </Link>
+              </Modal.Body>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <Modal.Header>
+                <h3>You are currently logged in as {user && user.email}</h3>
+              </Modal.Header>
+              <Modal.Body>
+                <Link to="/">
+                  <Button variant="primary" onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </Link>
+              </Modal.Body>
+            </React.Fragment>
+          )}
           <Modal.Footer>
             <Button variant="secondary" onClick={handleHideModal}>
               Close

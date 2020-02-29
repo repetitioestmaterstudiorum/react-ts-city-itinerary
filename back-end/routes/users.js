@@ -5,14 +5,6 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const { check, validationResult } = require("express-validator");
 
-// get all users
-router.get("/all", (req, res) => {
-  userModel
-    .find({})
-    .then(users => res.send(users))
-    .catch(err => console.error(err));
-});
-
 // post new user
 router.post(
   "/create-account",

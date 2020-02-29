@@ -9,9 +9,13 @@ export const ItineraryProvider: React.FC = props => {
   useEffect(() => {
     const port = process.env.PORT || 5000;
     const fetchItineraries = async () => {
-      let res = await axios.get(`http://localhost:${port}/itineraries/all`);
-      let data = res.data;
-      setItineraries(data);
+      try {
+        let res = await axios.get(`http://localhost:${port}/itineraries/all`);
+        let data = res.data;
+        setItineraries(data);
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchItineraries();
   }, []);
