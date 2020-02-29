@@ -6,7 +6,6 @@ export const UserProvider: React.FC = props => {
   const [user, setUser] = useState<User>();
 
   useEffect(() => {
-    console.log('localStorage.getItem("user")', localStorage.getItem("user"));
     if (
       localStorage.getItem("user") === "undefined" ||
       localStorage.getItem("user") === undefined
@@ -18,8 +17,8 @@ export const UserProvider: React.FC = props => {
         profilePicture: ""
       });
     } else {
-      const storageContent: any = localStorage.getItem("user");
-      setUser(JSON.parse(storageContent));
+      const storageContent = localStorage.getItem("user");
+      storageContent !== null && setUser(JSON.parse(storageContent)); // to avoid null TS error
     }
   }, []);
 

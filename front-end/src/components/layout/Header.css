@@ -3,14 +3,19 @@ header {
   background-color: #f55f55;
 }
 
-.profile svg {
+.profile svg,
+.profile img {
   width: 2.5em;
   height: 2.5em;
   color: #343a40;
   background-color: #fff;
   border-radius: 50%;
 }
-.profile svg:hover {
+.profile img {
+  padding: 1px;
+}
+.profile svg:hover,
+.profile img:hover {
   color: #1d2023;
   cursor: pointer;
 }

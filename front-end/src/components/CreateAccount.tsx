@@ -41,7 +41,6 @@ const CreateAccount: React.FC = () => {
       const port = process.env.PORT || 5000;
       const createAccount = async () => {
         try {
-          console.log("hola");
           let res = await axios.post(
             `http://localhost:${port}/users/create-account`,
             {
@@ -67,15 +66,11 @@ const CreateAccount: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("user", user);
-  }, [user]);
-
   const testUser = {
     _id: "38djkfdls39",
     email: "whatever@yes.com",
     password: "fdsafdsa",
-    profilePicture: "https://google.com/images/1"
+    profilePicture: "https://via.placeholder.com/100x100.png?text=:)"
   };
   const setTestUser = () => {
     setUser(testUser);
@@ -84,7 +79,20 @@ const CreateAccount: React.FC = () => {
   return (
     <section className="conatiner mb-3">
       <div className="text-center">
-        {user && !user.email ? (
+        {user && user.email ? (
+          <React.Fragment>
+            <h1>Account created successfully!</h1>
+            <Link
+              to="/cities"
+              className="nav-link"
+              style={{ fontSize: "1.8rem" }}
+            >
+              <p>
+                <FaArrowCircleRight /> Browse Cities
+              </p>
+            </Link>
+          </React.Fragment>
+        ) : (
           <React.Fragment>
             <h1>Create Account</h1>
             <form onSubmit={addUser}>
@@ -142,19 +150,6 @@ const CreateAccount: React.FC = () => {
                 </button>
               </div>
             </form>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <h1>Account created successfully!</h1>
-            <Link
-              to="/cities"
-              className="nav-link"
-              style={{ fontSize: "1.8rem" }}
-            >
-              <p>
-                <FaArrowCircleRight /> Browse Cities
-              </p>
-            </Link>
           </React.Fragment>
         )}
         <div className="container mt-5 mb-4">
