@@ -56,9 +56,7 @@ const AddCity: React.FC = () => {
     >
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0">
-          <span className="fancySpan">
-            Your city is missing? Click here to add it!
-          </span>
+          <span className="fancySpan">Click here to add a city!</span>
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>

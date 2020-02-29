@@ -19,19 +19,28 @@ const Footer: React.FC<RouteComponentProps> = props => {
       <div className="d-flex justify-content-center">
         {isLanding && (
           <React.Fragment>
-            <Link className="nav-link" to="#" onClick={handleBack}>
+            <Link
+              className="nav-link"
+              style={{ padding: "0.5rem" }}
+              to="#"
+              onClick={handleBack}
+            >
               <FaBackward />
               {" Back"}
             </Link>
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" style={{ padding: "0.5rem" }} to="/">
               <FaHome />
               {" Home"}
             </Link>
           </React.Fragment>
         )}
-        <Link className="nav-link" to="/site-notice">
+        <Link
+          className="nav-link"
+          style={{ padding: "0.5rem" }}
+          to="/site-notice"
+        >
           <FaBalanceScale />
-          {" Legal"}
+          {" Site Notice"}
         </Link>
       </div>
     </footer>
