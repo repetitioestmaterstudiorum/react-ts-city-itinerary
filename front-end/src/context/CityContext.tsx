@@ -10,8 +10,8 @@ export const CityProvider: React.FC = props => {
     const port = process.env.PORT || 5000;
     const fetchCities = async () => {
       try {
-        let res = await axios.get(`http://localhost:${port}/cities/all`);
-        let data = res.data;
+        const res = await axios.get(`http://localhost:${port}/cities/all`);
+        const data = res.data;
         setCities(data);
       } catch (err) {
         console.log(err);

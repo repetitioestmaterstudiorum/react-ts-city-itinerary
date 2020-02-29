@@ -29,18 +29,18 @@ const AddCity: React.FC = () => {
     } else {
       const port = process.env.PORT || 5000;
       try {
-        axios
-          .post(`http://localhost:${port}/cities/`, {
+        const postCity = async () => {
+          const res = await axios.post(`http://localhost:${port}/cities/`, {
             name,
             country,
             img:
               "https://via.placeholder.com/300x150.png?text=Image+coming+soon"
-          })
-          .then(response =>
-            setCities((prevCities: Cities) => [...prevCities, response.data])
-          );
-      } catch (error) {
-        console.error(error);
+          });
+          setCities((prevCities: Cities) => [...prevCities, res.data]);
+        };
+        postCity();
+      } catch (err) {
+        console.log(err);
       }
       setCountry("");
       setName("");

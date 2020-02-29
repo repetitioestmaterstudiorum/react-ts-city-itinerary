@@ -10,8 +10,8 @@ export const ItineraryProvider: React.FC = props => {
     const port = process.env.PORT || 5000;
     const fetchItineraries = async () => {
       try {
-        let res = await axios.get(`http://localhost:${port}/itineraries/all`);
-        let data = res.data;
+        const res = await axios.get(`http://localhost:${port}/itineraries/all`);
+        const data = res.data;
         setItineraries(data);
       } catch (err) {
         console.log(err);

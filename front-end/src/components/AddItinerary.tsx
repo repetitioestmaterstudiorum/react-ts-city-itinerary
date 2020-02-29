@@ -81,22 +81,29 @@ const AddItinerary: React.FC<CityProps> = props => {
       alert("Enter at least one activity!");
     } else {
       const port = process.env.PORT || 5000;
-      axios
-        .post(`http://localhost:${port}/itineraries/`, {
-          name,
-          city: cityName,
-          profileName,
-          profilePicture,
-          likes,
-          hashtags: hashtagArray,
-          activities: activitiesArray
-        })
-        .then(response =>
+      try {
+        const postItinerary = async () => {
+          const res = await axios.post(
+            `http://localhost:${port}/itineraries/`,
+            {
+              name,
+              city: cityName,
+              profileName,
+              profilePicture,
+              likes,
+              hashtags: hashtagArray,
+              activities: activitiesArray
+            }
+          );
           setItineraries((prevItineraries: Itineraries) => [
             ...prevItineraries,
-            response.data
-          ])
-        );
+            res.data
+          ]);
+        };
+        postItinerary();
+      } catch (err) {
+        console.log(err);
+      }
       setName("");
       setHashtagArray([]);
       setActivitiesArray([]);
