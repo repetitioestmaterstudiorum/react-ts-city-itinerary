@@ -1,9 +1,12 @@
 const express = require("express");
-const userModel = require("../model/userModel");
 const router = express.Router();
+const userModel = require("../model/userModel");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const { check, validationResult } = require("express-validator");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
+const jwtKey = process.env.JWT_KEY;
 
 // post new user
 router.post(
@@ -55,5 +58,47 @@ router.post(
     });
   }
 );
+
+// login
+router.post("/login", (req, res) => {
+  //find user by email
+  userModel.findOne({ email: req.body.email }).then(user => {
+    // send effor if user doesn't exist
+    if (!user) {
+      return res.status(400).send("Email not found");
+    }
+    // check if passwords match
+    bcrypt
+      .compare(req.body.password, user.password)
+      .then(matches => {
+        if (matches) {
+          // creating a JWT payload
+          const payload = {
+            email: user.email,
+            password: user.password,
+            profilePicture: user.profilePicture
+          };
+          const options = { expiresIn: 1814400 }; // 21 days = 1814400 seconds
+          // create and sign the JWT token
+          jwt.sign(payload, jwtKey, options, (err, token) => {
+            if (err) {
+              res.json({
+                success: false,
+                token: `There was an error signing the JWT token: ${err}`
+              });
+            } else {
+              res.json({
+                success: true,
+                token: token
+              });
+            }
+          });
+        } else {
+          return res.status(400).send("Password incorrect");
+        }
+      })
+      .catch(err => console.log(err));
+  });
+});
 
 module.exports = router;

@@ -24,7 +24,6 @@ const LogIn: React.FC = () => {
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("handleLogin");
     if (!email || !password) {
       alert("Enter email and password!");
     } else {
