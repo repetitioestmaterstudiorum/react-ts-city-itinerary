@@ -10,7 +10,8 @@ Will be published soon.
 
 1. git clone this repo
 2. npm install inside the folders "front-end" and "back-end"
-3. create a file ".env" in the folder "back-end" and enter your Mongo DB URI (you need to create that if you don't have one)
+3. create a .env file in the folder "back-end" and enter your Mongo DB URI (you need to create that if you don't have one) as "MONGO_URI"
+4. to the same .env file, add a JWT key as "JWT_KEY"
 
 ## Usage / Commands
 
