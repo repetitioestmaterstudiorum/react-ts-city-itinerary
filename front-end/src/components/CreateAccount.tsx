@@ -16,7 +16,6 @@ const CreateAccount: React.FC = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
   const [profilePicture, setProfilePicture] = useState<string>("");
   const [user, setUser] = useContext(UserContext);
-  const [useless, setUseless] = useState();
 
   // temporary until user image upload is handled
   useEffect(() => {

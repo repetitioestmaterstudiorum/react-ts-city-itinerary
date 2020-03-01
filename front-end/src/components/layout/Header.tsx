@@ -114,7 +114,11 @@ const Header: React.FC = () => {
           </div>
           <div className="profile">
             {user && user.email ? (
-              <img src={user.profilePicture} onClick={handleShowModal}></img>
+              <img
+                src={user.profilePicture}
+                alt={user.email}
+                onClick={handleShowModal}
+              ></img>
             ) : (
               <FaUserCircle onClick={handleShowModal} />
             )}
