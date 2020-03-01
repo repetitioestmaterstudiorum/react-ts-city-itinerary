@@ -60,7 +60,7 @@ router.post(
 );
 
 // login
-router.post("/login", (req, res) => {
+router.post("/log-in", (req, res) => {
   //find user by email
   userModel.findOne({ email: req.body.email }).then(user => {
     // send effor if user doesn't exist
