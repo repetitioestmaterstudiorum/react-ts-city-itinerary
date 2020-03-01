@@ -153,7 +153,7 @@ const CreateAccount: React.FC = () => {
         )}
         <div className="container mt-5 mb-4">
           <h2>Set test user</h2>
-          <button onClick={setTestUser}>Set user 3</button>
+          <button onClick={setTestUser}>Set test user</button>
         </div>
       </div>
     </section>
