@@ -25,8 +25,12 @@ const LogIn: React.FC = () => {
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("handleLogin");
-    setEmail("");
-    setPassword("");
+    if (!email || !password) {
+      alert("Enter email and password!");
+    } else {
+      setEmail("");
+      setPassword("");
+    }
   };
 
   const testUser = {
