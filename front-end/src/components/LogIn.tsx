@@ -8,12 +8,13 @@ import React, {
 import { UserContext } from "../context/UserContext";
 // import axios from "axios";
 import Browse from "./Browse";
-import Button from "react-bootstrap/Button";
 
 const LogIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [user, setUser] = useContext(UserContext);
+
+  const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
 
   const updateEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -52,7 +53,7 @@ const LogIn: React.FC = () => {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <h1>Create Account</h1>
+            <h1>Log in</h1>
             <form onSubmit={handleLogin}>
               <div className="d-flex justify-content-center">
                 <label className="col-form-label mr-1" htmlFor="email">
@@ -88,15 +89,34 @@ const LogIn: React.FC = () => {
                   style={{ border: "1px solid #f55f55" }}>
                   Log in
                 </button>
-                <Button href="http://localhost:5000/">FB Login</Button>
               </div>
             </form>
+            <h2 id="google-login" className="pt-3">
+              Google Login
+            </h2>
+            <p>Alternatively, you can log in using Google!</p>
+            <button
+              className="btn btn-link"
+              style={{ border: "1px solid #f55f55" }}>
+              <a
+                href={`${backendUrl}/users/google-auth`}
+                target="_blank"
+                rel="noopener noreferrer">
+                Google Login
+              </a>
+            </button>
+            {/* TEMP */}
+            <div className="container mt-5 mb-5">
+              <h2>Set test user</h2>
+              <button
+                className="btn btn-link"
+                style={{ border: "1px solid #f55f55" }}
+                onClick={setTestUser}>
+                Set test user
+              </button>
+            </div>
           </React.Fragment>
         )}
-        <div className="container mt-5 mb-4">
-          <h2>Set test user</h2>
-          <button onClick={setTestUser}>Set test user</button>
-        </div>
       </div>
     </section>
   );

@@ -135,12 +135,15 @@ const CreateAccount: React.FC = () => {
                 </button>
               </div>
             </form>
+            <h2 className="pt-3">Google Login</h2>
+            <p>
+              Alternatively, you can skip the registration and{" "}
+              <a href="http://localhost:3000/log-in#google-login">
+                use Google to Log in!
+              </a>
+            </p>
           </React.Fragment>
         )}
-        <div className="container mt-5 mb-4">
-          <h2>Set test user</h2>
-          <button onClick={setTestUser}>Set test user</button>
-        </div>
       </div>
     </section>
   );
