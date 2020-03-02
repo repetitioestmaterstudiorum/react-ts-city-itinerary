@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
+const passport = require("passport");
 
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -26,6 +27,12 @@ app.use(
 );
 app.use(cors());
 
+// routes
 app.use("/cities", require("./routes/cities"));
 app.use("/itineraries", require("./routes/itineraries"));
 app.use("/users", require("./routes/users"));
+
+// passport middleware
+app.use(passport.initialize());
+// strategies
+require("./config/passportStrategies");

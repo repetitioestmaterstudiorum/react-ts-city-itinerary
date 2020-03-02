@@ -4,9 +4,9 @@ const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const { check, validationResult } = require("express-validator");
-const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const jwtKey = process.env.JWT_KEY;
+const passport = require("passport");
 
 // post new user
 router.post(
@@ -74,8 +74,8 @@ router.post("/log-in", (req, res) => {
         if (matches) {
           // creating a JWT payload
           const payload = {
+            id: user.id,
             email: user.email,
-            password: user.password,
             profilePicture: user.profilePicture
           };
           const options = { expiresIn: 1814400 }; // 21 days = 1814400 seconds
@@ -100,5 +100,19 @@ router.post("/log-in", (req, res) => {
       .catch(err => console.log(err));
   });
 });
+
+// using passport to check for authorisation
+router.get(
+  "/auth",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    userModel
+      .findOne({ _id: req.user.id })
+      .then(user => {
+        res.send(user);
+      })
+      .catch(err => res.status(404).send("User does not exist!"));
+  }
+);
 
 module.exports = router;

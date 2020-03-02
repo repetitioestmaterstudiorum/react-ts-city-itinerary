@@ -1,4 +1,3 @@
-// import * as React from "react";
 import React from "react";
 
 const SiteNotice: React.FC = props => {
@@ -9,16 +8,14 @@ const SiteNotice: React.FC = props => {
       <a
         href="https://github.com/sunyamare"
         target="_blank"
-        rel="noopener noreferrer"
-      >
+        rel="noopener noreferrer">
         github.com/sunyamare
       </a>
       <h2>Contact</h2>
       <a
         href="https://sunyamare.ch/contact"
         target="_blank"
-        rel="noopener noreferrer"
-      >
+        rel="noopener noreferrer">
         sunyamare.ch/contact
       </a>
       <h2>Data Privacy, Cookies, Disclaimer</h2>

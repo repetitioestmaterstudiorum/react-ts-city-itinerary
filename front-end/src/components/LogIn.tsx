@@ -8,6 +8,7 @@ import React, {
 import { UserContext } from "../context/UserContext";
 // import axios from "axios";
 import Browse from "./Browse";
+import Button from "react-bootstrap/Button";
 
 const LogIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -87,6 +88,7 @@ const LogIn: React.FC = () => {
                   style={{ border: "1px solid #f55f55" }}>
                   Log in
                 </button>
+                <Button href="http://localhost:5000/">FB Login</Button>
               </div>
             </form>
           </React.Fragment>

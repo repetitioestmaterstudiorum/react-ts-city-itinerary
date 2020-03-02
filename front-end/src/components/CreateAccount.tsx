@@ -36,18 +36,15 @@ const CreateAccount: React.FC = () => {
     if (!email || !password || !passwordConfirmation) {
       alert("Enter an email, password and password confirmation!");
     } else {
-      const port = process.env.PORT || 5000;
+      const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
       const createAccount = async () => {
         try {
-          let res = await axios.post(
-            `http://localhost:${port}/users/create-account`,
-            {
-              email,
-              password,
-              passwordConfirmation,
-              profilePicture
-            }
-          );
+          let res = await axios.post(`${backendUrl}/users/create-account`, {
+            email,
+            password,
+            passwordConfirmation,
+            profilePicture
+          });
           setUser(res.data);
         } catch (err) {
           if (err.response.status === 422) {

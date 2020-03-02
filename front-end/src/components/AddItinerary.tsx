@@ -80,21 +80,18 @@ const AddItinerary: React.FC<CityProps> = props => {
     } else if (activitiesArray.length < 1) {
       alert("Enter at least one activity!");
     } else {
-      const port = process.env.PORT || 5000;
+      const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
       try {
         const postItinerary = async () => {
-          const res = await axios.post(
-            `http://localhost:${port}/itineraries/`,
-            {
-              name,
-              city: cityName,
-              profileName,
-              profilePicture,
-              likes,
-              hashtags: hashtagArray,
-              activities: activitiesArray
-            }
-          );
+          const res = await axios.post(`${backendUrl}/itineraries/`, {
+            name,
+            city: cityName,
+            profileName,
+            profilePicture,
+            likes,
+            hashtags: hashtagArray,
+            activities: activitiesArray
+          });
           setItineraries((prevItineraries: Itineraries) => [
             ...prevItineraries,
             res.data
@@ -116,8 +113,7 @@ const AddItinerary: React.FC<CityProps> = props => {
       style={{
         maxWidth: "330px",
         margin: "10px auto 0"
-      }}
-    >
+      }}>
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0">
           <span className="fancySpan">Click here to add an itinerary!</span>
@@ -145,8 +141,7 @@ const AddItinerary: React.FC<CityProps> = props => {
               <div className="row">
                 <label
                   className="col pl-2 pr-2 pt-0 col-form-label"
-                  htmlFor="hashtagField"
-                >
+                  htmlFor="hashtagField">
                   Enter hashtags*:
                 </label>
               </div>
@@ -164,8 +159,7 @@ const AddItinerary: React.FC<CityProps> = props => {
                   <button
                     onClick={addHashtag}
                     className="btn btn-link"
-                    style={{ border: "1px solid #f55f55" }}
-                  >
+                    style={{ border: "1px solid #f55f55" }}>
                     Add hashtag
                   </button>
                 </div>
@@ -188,8 +182,7 @@ const AddItinerary: React.FC<CityProps> = props => {
               <div className="row">
                 <label
                   className="col pl-2 pr-2 pt-0 col-form-label"
-                  htmlFor="activityField"
-                >
+                  htmlFor="activityField">
                   Enter activities*:
                 </label>
               </div>
@@ -207,8 +200,7 @@ const AddItinerary: React.FC<CityProps> = props => {
                   <button
                     onClick={addActivity}
                     className="btn btn-link"
-                    style={{ border: "1px solid #f55f55" }}
-                  >
+                    style={{ border: "1px solid #f55f55" }}>
                     Add activity
                   </button>
                 </div>
@@ -227,8 +219,7 @@ const AddItinerary: React.FC<CityProps> = props => {
                   <button
                     onClick={addItinerary}
                     className="btn btn-link"
-                    style={{ border: "1px solid #f55f55" }}
-                  >
+                    style={{ border: "1px solid #f55f55" }}>
                     Add itinerary!
                   </button>
                 </div>

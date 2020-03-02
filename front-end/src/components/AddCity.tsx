@@ -27,10 +27,10 @@ const AddCity: React.FC = () => {
     } else if (!name || !country) {
       alert("Enter a city and a country!");
     } else {
-      const port = process.env.PORT || 5000;
+      const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
       try {
         const postCity = async () => {
-          const res = await axios.post(`http://localhost:${port}/cities/`, {
+          const res = await axios.post(`${backendUrl}/cities/`, {
             name,
             country,
             img:
@@ -52,8 +52,7 @@ const AddCity: React.FC = () => {
       style={{
         maxWidth: "400px",
         margin: "10px auto 0"
-      }}
-    >
+      }}>
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0">
           <span className="fancySpan">Click here to add a city!</span>
@@ -92,8 +91,7 @@ const AddCity: React.FC = () => {
               <div className="d-flex justify-content-center mt-2">
                 <button
                   className="btn btn-link"
-                  style={{ border: "1px solid #f55f55" }}
-                >
+                  style={{ border: "1px solid #f55f55" }}>
                   Add
                 </button>
               </div>
