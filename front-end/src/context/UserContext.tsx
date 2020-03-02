@@ -20,11 +20,12 @@ export const UserProvider: React.FC = props => {
       const storageContent = localStorage.getItem("user");
       storageContent !== null && setUser(JSON.parse(storageContent)); // to avoid null TS error
     }
+    localStorage.setItem("user", JSON.stringify(user));
   }, []);
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
+  });
 
   return (
     <UserContext.Provider value={[user, setUser]}>
