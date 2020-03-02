@@ -1,14 +1,13 @@
 import React, {
   useState,
-  useEffect,
+  // useEffect,
   ChangeEvent,
   FormEvent,
   useContext
 } from "react";
 import { UserContext } from "../context/UserContext";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { FaArrowCircleRight } from "react-icons/fa";
+// import axios from "axios";
+import Browse from "./Browse";
 
 const LogIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -48,15 +47,7 @@ const LogIn: React.FC = () => {
         {user && user.email ? (
           <React.Fragment>
             <h1>Logged in successfully!</h1>
-            <Link
-              to="/cities"
-              className="nav-link"
-              style={{ fontSize: "1.8rem" }}
-            >
-              <p>
-                <FaArrowCircleRight /> Browse Cities
-              </p>
-            </Link>
+            <Browse />
           </React.Fragment>
         ) : (
           <React.Fragment>
@@ -93,8 +84,7 @@ const LogIn: React.FC = () => {
               <div className="d-flex justify-content-center mt-2">
                 <button
                   className="btn btn-link"
-                  style={{ border: "1px solid #f55f55" }}
-                >
+                  style={{ border: "1px solid #f55f55" }}>
                   Log in
                 </button>
               </div>

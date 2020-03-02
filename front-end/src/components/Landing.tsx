@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { FaArrowCircleRight } from "react-icons/fa";
+import Browse from "./Browse";
 
 const Landing: React.FC = () => {
   return (
@@ -11,11 +10,7 @@ const Landing: React.FC = () => {
           Find your perfect trip, designed by insiders who know and love their
           cities!
         </span>
-        <Link to="/cities" className="nav-link" style={{ fontSize: "1.8rem" }}>
-          <p>
-            <FaArrowCircleRight /> Browse Cities
-          </p>
-        </Link>
+        <Browse />
       </div>
     </section>
   );

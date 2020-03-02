@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const userModel = require("../model/userModel");
+const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const { check, validationResult } = require("express-validator");
@@ -59,11 +59,11 @@ router.post(
   }
 );
 
-// login
+// post login
 router.post("/log-in", (req, res) => {
   //find user by email
   userModel.findOne({ email: req.body.email }).then(user => {
-    // send effor if user doesn't exist
+    // send error if user doesn't exist
     if (!user) {
       return res.status(400).send("Email not found");
     }

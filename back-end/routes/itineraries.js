@@ -1,5 +1,5 @@
 const express = require("express");
-const itineraryModel = require("../model/itineraryModel");
+const itineraryModel = require("../models/itineraryModel");
 const router = express.Router();
 
 // function to turn anything to Title Case (first letter of every word is a capital letter)

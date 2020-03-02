@@ -7,8 +7,7 @@ import React, {
 } from "react";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { FaArrowCircleRight } from "react-icons/fa";
+import Browse from "./Browse";
 
 const CreateAccount: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -81,15 +80,7 @@ const CreateAccount: React.FC = () => {
         {user && user.email ? (
           <React.Fragment>
             <h1>Account created successfully!</h1>
-            <Link
-              to="/cities"
-              className="nav-link"
-              style={{ fontSize: "1.8rem" }}
-            >
-              <p>
-                <FaArrowCircleRight /> Browse Cities
-              </p>
-            </Link>
+            <Browse />
           </React.Fragment>
         ) : (
           <React.Fragment>
@@ -126,8 +117,7 @@ const CreateAccount: React.FC = () => {
               <div className="d-flex justify-content-center mt-2">
                 <label
                   className="col-form-label mr-1"
-                  htmlFor="passwordConfirmation"
-                >
+                  htmlFor="passwordConfirmation">
                   Repeat password:
                 </label>
                 <div className="flex-shrink-0">
@@ -143,8 +133,7 @@ const CreateAccount: React.FC = () => {
               <div className="d-flex justify-content-center mt-2">
                 <button
                   className="btn btn-link"
-                  style={{ border: "1px solid #f55f55" }}
-                >
+                  style={{ border: "1px solid #f55f55" }}>
                   Create Account
                 </button>
               </div>
