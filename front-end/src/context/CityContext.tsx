@@ -7,10 +7,10 @@ export const CityProvider: React.FC = props => {
   const [cities, setCities] = useState<Cities>();
 
   useEffect(() => {
-    const port = process.env.PORT || 5000;
+    const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
     const fetchCities = async () => {
       try {
-        const res = await axios.get(`http://localhost:${port}/cities/all`);
+        const res = await axios.get(`${backendUrl}/cities/all`);
         const data = res.data;
         setCities(data);
       } catch (err) {

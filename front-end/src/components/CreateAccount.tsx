@@ -14,7 +14,7 @@ const CreateAccount: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
   const [profilePicture, setProfilePicture] = useState<string>("");
-  const [user, setUser] = useContext(UserContext);
+  const [user, setUser, setToken] = useContext(UserContext);
 
   // temporary until user image upload is handled
   useEffect(() => {
@@ -39,13 +39,23 @@ const CreateAccount: React.FC = () => {
       const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
       const createAccount = async () => {
         try {
-          let res = await axios.post(`${backendUrl}/users/create-account`, {
+          const resCreateAccount = await axios.post(
+            `${backendUrl}/users/create-account`,
+            {
+              email,
+              password,
+              passwordConfirmation,
+              profilePicture
+            }
+          );
+          setUser(resCreateAccount);
+          let resLogIn = await axios.post(`${backendUrl}/users/log-in`, {
             email,
-            password,
-            passwordConfirmation,
-            profilePicture
+            password
           });
-          setUser(res.data);
+          const token = JSON.stringify(resLogIn.data.token);
+          localStorage.setItem("token", token);
+          setToken(token);
         } catch (err) {
           if (err.response.status === 422) {
             alert(JSON.parse(err.response.request.response)[0].msg);
@@ -59,16 +69,6 @@ const CreateAccount: React.FC = () => {
       setPassword("");
       setPasswordConfirmation("");
     }
-  };
-
-  const testUser = {
-    _id: "38djkfdls39",
-    email: "whatever@yes.com",
-    password: "fdsafdsa",
-    profilePicture: "https://via.placeholder.com/100x100.png?text=:)"
-  };
-  const setTestUser = () => {
-    setUser(testUser);
   };
 
   return (
@@ -135,13 +135,6 @@ const CreateAccount: React.FC = () => {
                 </button>
               </div>
             </form>
-            <h2 className="pt-3">Google Login</h2>
-            <p>
-              Alternatively, you can skip the registration and{" "}
-              <a href="http://localhost:3000/log-in#google-login">
-                use Google to Log in!
-              </a>
-            </p>
           </React.Fragment>
         )}
       </div>

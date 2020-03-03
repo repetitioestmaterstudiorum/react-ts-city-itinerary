@@ -52,7 +52,10 @@ router.post(
         // save the new user
         newUser
           .save()
-          .then(user => res.send(user))
+          .then(user => {
+            user.password = "you wish!";
+            res.send(user);
+          })
           .catch(err => console.error(err));
       });
     });
@@ -75,8 +78,8 @@ router.post("/log-in", (req, res) => {
           // creating a JWT payload
           const payload = {
             id: user.id,
-            email: user.email,
-            profilePicture: user.profilePicture
+            email: user.email
+            //  ,profilePicture: user.profilePicture
           };
           const options = { expiresIn: 1814400 }; // 21 days = 1814400 seconds
           // create and sign the JWT token
@@ -101,7 +104,7 @@ router.post("/log-in", (req, res) => {
   });
 });
 
-// using passport to check for authorisation
+// get route using passport to check for authorisation
 router.get(
   "/auth",
   passport.authenticate("jwt", { session: false }),
@@ -109,6 +112,7 @@ router.get(
     userModel
       .findOne({ _id: req.user.id })
       .then(user => {
+        user.password = "you wish!";
         res.send(user);
       })
       .catch(err => res.status(404).send("User does not exist!"));

@@ -1,18 +1,12 @@
-import React, {
-  useState,
-  // useEffect,
-  ChangeEvent,
-  FormEvent,
-  useContext
-} from "react";
+import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
 import { UserContext } from "../context/UserContext";
-// import axios from "axios";
+import axios from "axios";
 import Browse from "./Browse";
 
 const LogIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [user, setUser] = useContext(UserContext);
+  const [user, setUser, setToken] = useContext(UserContext);
 
   const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
 
@@ -28,6 +22,20 @@ const LogIn: React.FC = () => {
     if (!email || !password) {
       alert("Enter email and password!");
     } else {
+      const logIn = async () => {
+        try {
+          let res = await axios.post(`${backendUrl}/users/log-in`, {
+            email,
+            password
+          });
+          const token = JSON.stringify(res.data.token);
+          localStorage.setItem("token", token);
+          setToken(token);
+        } catch (err) {
+          alert(err.response.request.response);
+        }
+      };
+      logIn();
       setEmail("");
       setPassword("");
     }
@@ -91,20 +99,6 @@ const LogIn: React.FC = () => {
                 </button>
               </div>
             </form>
-            <h2 id="google-login" className="pt-3">
-              Google Login
-            </h2>
-            <p>Alternatively, you can log in using Google!</p>
-            <button
-              className="btn btn-link"
-              style={{ border: "1px solid #f55f55" }}>
-              <a
-                href={`${backendUrl}/users/google-auth`}
-                target="_blank"
-                rel="noopener noreferrer">
-                Google Login
-              </a>
-            </button>
             {/* TEMP */}
             <div className="container mt-5 mb-5">
               <h2>Set test user</h2>

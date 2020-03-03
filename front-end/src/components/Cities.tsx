@@ -11,8 +11,7 @@ import { CityContext } from "../context/CityContext";
 import { Form } from "react-bootstrap";
 
 const Cities: React.FC = () => {
-  // eslint-disable-next-line
-  const [cities, setCities] = useContext(CityContext);
+  const [cities] = useContext(CityContext);
   const [filteredCities, setFilteredCities] = useState<Cities>([]);
 
   useEffect(() => {

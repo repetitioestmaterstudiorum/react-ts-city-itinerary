@@ -6,9 +6,7 @@ import Itineraries from "./Itineraries";
 
 const CityDetail: React.FC<RouteComponentProps<City>> = props => {
   const [currentCity, setCurrentCity] = useState<City>();
-  // eslint-disable-next-line
-  const [cities, setCities] = useContext(CityContext);
-  // const [cityItineraries, setCityItineraries] = useState<Itineraries>();
+  const [cities] = useContext(CityContext);
 
   useEffect(() => {
     cities &&
@@ -33,8 +31,7 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
           </h1>
           <img
             src={currentCity.img}
-            alt={`${currentCity.name}, ${currentCity.country}`}
-          ></img>
+            alt={`${currentCity.name}, ${currentCity.country}`}></img>
         </div>
       )}
       <div style={{ maxWidth: "400px", margin: "auto" }}>
