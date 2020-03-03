@@ -120,7 +120,20 @@ const Header: React.FC = () => {
           onHide={handleHideModal}
           animation={false}
           aria-labelledby="example-modal-sizes-title-sm">
-          {user && !user.email ? (
+          {user && user.email ? (
+            <React.Fragment>
+              <Modal.Header>
+                <h3>You are currently logged in as {user && user.email}</h3>
+              </Modal.Header>
+              <Modal.Body>
+                <Link to="/">
+                  <Button variant="primary" onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </Link>
+              </Modal.Body>
+            </React.Fragment>
+          ) : (
             <React.Fragment>
               <Modal.Header>
                 <h3>You are currently logged out.</h3>
@@ -137,19 +150,6 @@ const Header: React.FC = () => {
                 <Link to="/create-account">
                   <Button variant="primary" onClick={handleHideModal}>
                     Create Account
-                  </Button>
-                </Link>
-              </Modal.Body>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <Modal.Header>
-                <h3>You are currently logged in as {user && user.email}</h3>
-              </Modal.Header>
-              <Modal.Body>
-                <Link to="/">
-                  <Button variant="primary" onClick={handleLogout}>
-                    Logout
                   </Button>
                 </Link>
               </Modal.Body>
