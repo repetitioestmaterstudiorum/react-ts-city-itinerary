@@ -15,4 +15,5 @@ Will be published soon.
 5. set up netlify locally, set up heroku locally
 6. add env vars on heroku (mongo and jwt)
 7. check package.json in /back-end for available commands
-8. deploy, enjoy
+8. replace all references to the heroku url (contexts, log in, create account, add city, add itinerary components)
+9. deploy, enjoy
