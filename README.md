@@ -13,6 +13,8 @@ Will be published soon.
 3. create a .env file in the folder "back-end" and enter your Mongo DB URI (you need to create that if you don't have one) as "MONGO_URI"
 4. to the same .env file, add a JWT key as "JWT_KEY"
 5. for the front-end to find the back-end, create an environmental variable called "BACKEND_URL" with the base url to the back-end
+6. set up netlify locally, set up heroku locally
+7. check package.json in /back-end for available commands
 
 ## Usage / Commands
 

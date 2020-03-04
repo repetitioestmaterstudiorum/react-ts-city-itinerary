@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"node server.js\" \"cd ../front-end && npm start\"",
-    "dev": "concurrently \"nodemon server.js\" \"cd ../front-end && npm start\""
+    "dev": "concurrently \"nodemon server.js\" \"cd ../front-end && npm start\"",
+    "build": "cd ../front-end && npm run build",
+    "fe-test-deploy": "cd ../front-end && netlify deploy",
+    "deploy": "concurrently \"git push heroku master\" \"cd ../front-end && netlify deploy -p\""
   },
   "keywords": [
     "node.js",
