@@ -64,3 +64,15 @@ p {
 .dropdown-item.active:hover {
   background-color: #f55f55;
 }
+
+.blink {
+  animation: blinker 2s linear infinite;
+  font-weight: bold;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0.25;
+    font-weight: normal;
+  }
+}

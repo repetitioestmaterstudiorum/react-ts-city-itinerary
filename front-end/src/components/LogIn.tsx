@@ -41,16 +41,6 @@ const LogIn: React.FC = () => {
     }
   };
 
-  const testUser = {
-    _id: "38djkfdls39",
-    email: "whatever@yes.com",
-    password: "fdsafdsa",
-    profilePicture: "https://via.placeholder.com/100x100.png?text=:)"
-  };
-  const setTestUser = () => {
-    setUser(testUser);
-  };
-
   return (
     <section className="conatiner mb-3">
       <div className="text-center">
@@ -99,16 +89,6 @@ const LogIn: React.FC = () => {
                 </button>
               </div>
             </form>
-            {/* TEMP */}
-            <div className="container mt-5 mb-5">
-              <h2>Set test user</h2>
-              <button
-                className="btn btn-link"
-                style={{ border: "1px solid #f55f55" }}
-                onClick={setTestUser}>
-                Set test user
-              </button>
-            </div>
           </React.Fragment>
         )}
       </div>

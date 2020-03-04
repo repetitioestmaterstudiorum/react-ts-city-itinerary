@@ -19,7 +19,7 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
   }, [cities]);
 
   return (
-    <div className="container mt-2 text-center">
+    <div className="container pt-1 pb-1 text-center">
       {currentCity && (
         <div>
           <h1>
@@ -35,7 +35,7 @@ const CityDetail: React.FC<RouteComponentProps<City>> = props => {
         </div>
       )}
       <div style={{ maxWidth: "400px", margin: "auto" }}>
-        <h2 className="mb-3">Available MYtineraries:</h2>
+        <h2 className="pb-2 pt-3">Available MYtineraries:</h2>
         {currentCity && <Itineraries city={currentCity} />}
       </div>
       {currentCity && <AddItinerary city={currentCity} />}

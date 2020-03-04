@@ -10,8 +10,7 @@ import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
 
 const AddItinerary: React.FC<CityProps> = props => {
-  // eslint-disable-next-line
-  const [itineraries, setItineraries] = useContext(ItineraryContext);
+  const [setItineraries] = useContext(ItineraryContext);
   const [name, setName] = useState<string>("");
   const [hashtagField, setHashtagField] = useState<string>("");
   const [hashtagArray, setHashtagArray] = useState<string[]>([]);
@@ -109,126 +108,132 @@ const AddItinerary: React.FC<CityProps> = props => {
   };
 
   return (
-    <Accordion
-      style={{
-        maxWidth: "330px",
-        margin: "10px auto 0"
-      }}>
-      <Card>
-        <Accordion.Toggle as={Card.Header} eventKey="0">
-          <span className="fancySpan">Click here to add an itinerary!</span>
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey="0">
-          <Card.Body style={{ padding: "5px" }}>
-            <div className="container mt-2 mb-2">
-              <div className="row">
-                <div className="col col-6 pl-2">
-                  <label className="col-form-label mr-1" htmlFor="name">
-                    Itinerary Name*:
+    <React.Fragment>
+      <h3 className="pt-3">Add an itinerary</h3>
+      <Accordion
+        className="pb-2"
+        style={{
+          maxWidth: "330px",
+          margin: "10px auto 0"
+        }}>
+        <Card>
+          <Accordion.Toggle as={Card.Header} eventKey="0">
+            <span className="fancySpan">Click here to add an itinerary!</span>
+          </Accordion.Toggle>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body style={{ padding: "5px" }}>
+              <div className="container mt-2 mb-2">
+                <div className="row">
+                  <div className="col col-6 pl-2">
+                    <label className="col-form-label mr-1" htmlFor="name">
+                      Itinerary Name*:
+                    </label>
+                  </div>
+                  <div className="col col-6 pr-2">
+                    <input
+                      className="form-control"
+                      id="name"
+                      type="text"
+                      value={name}
+                      onChange={updateName}
+                    />
+                  </div>
+                </div>
+                <hr></hr>
+                <div className="row">
+                  <label
+                    className="col pl-2 pr-2 pt-0 col-form-label"
+                    htmlFor="hashtagField">
+                    Enter hashtags*:
                   </label>
                 </div>
-                <div className="col col-6 pr-2">
-                  <input
-                    className="form-control"
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={updateName}
-                  />
-                </div>
-              </div>
-              <hr></hr>
-              <div className="row">
-                <label
-                  className="col pl-2 pr-2 pt-0 col-form-label"
-                  htmlFor="hashtagField">
-                  Enter hashtags*:
-                </label>
-              </div>
-              <div className="row mb-2">
-                <div className="col col-7 pl-2 pr-0">
-                  <input
-                    className="form-control"
-                    id="hashtagField"
-                    type="text"
-                    value={hashtagField}
-                    onChange={updateHashtagField}
-                  />
-                </div>
-                <div className="col col-5 p-0">
-                  <button
-                    onClick={addHashtag}
-                    className="btn btn-link"
-                    style={{ border: "1px solid #f55f55" }}>
-                    Add hashtag
-                  </button>
-                </div>
-              </div>
-              {hashtagArray.length > 0 && (
                 <div className="row mb-2">
-                  <div className="col col-5 pl-2 pr-0">
-                    <span>Added Hashtags:</span>
+                  <div className="col col-7 pl-2 pr-0">
+                    <input
+                      className="form-control"
+                      id="hashtagField"
+                      type="text"
+                      value={hashtagField}
+                      onChange={updateHashtagField}
+                    />
                   </div>
-                  <div className="col col-7 pr-2 pl-0">
-                    {hashtagArray.map((hashtag, index) => (
-                      <span key={index} style={{ fontStyle: "italic" }}>
-                        #{hashtag}{" "}
-                      </span>
-                    ))}
+                  <div className="col col-5 p-0">
+                    <button
+                      onClick={addHashtag}
+                      className="btn btn-link"
+                      style={{ border: "1px solid #f55f55" }}>
+                      Add hashtag
+                    </button>
                   </div>
                 </div>
-              )}
-              <hr></hr>
-              <div className="row">
-                <label
-                  className="col pl-2 pr-2 pt-0 col-form-label"
-                  htmlFor="activityField">
-                  Enter activities*:
-                </label>
-              </div>
-              <div className="row mb-2">
-                <div className="col col-7 pl-2 pr-0">
-                  <input
-                    className="form-control"
-                    id="activityField"
-                    type="text"
-                    value={activityField}
-                    onChange={updateActivityField}
-                  />
+                {hashtagArray.length > 0 && (
+                  <div className="row mb-2">
+                    <div className="col col-5 pl-2 pr-0">
+                      <span>Added Hashtags:</span>
+                    </div>
+                    <div className="col col-7 pr-2 pl-0">
+                      {hashtagArray.map((hashtag, index) => (
+                        <span key={index} style={{ fontStyle: "italic" }}>
+                          #{hashtag}{" "}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <hr></hr>
+                <div className="row">
+                  <label
+                    className="col pl-2 pr-2 pt-0 col-form-label"
+                    htmlFor="activityField">
+                    Enter activities*:
+                  </label>
                 </div>
-                <div className="col col-5 p-0">
-                  <button
-                    onClick={addActivity}
-                    className="btn btn-link"
-                    style={{ border: "1px solid #f55f55" }}>
-                    Add activity
-                  </button>
-                </div>
-              </div>
-              {activitiesString && (
                 <div className="row mb-2">
-                  <div className="col col-5 pl-2 pr-0">
-                    <span>Added Activities:</span>
+                  <div className="col col-7 pl-2 pr-0">
+                    <input
+                      className="form-control"
+                      id="activityField"
+                      type="text"
+                      value={activityField}
+                      onChange={updateActivityField}
+                    />
                   </div>
-                  <div className="col col-7 pr-2 pl-0">{activitiesString}</div>
+                  <div className="col col-5 p-0">
+                    <button
+                      onClick={addActivity}
+                      className="btn btn-link"
+                      style={{ border: "1px solid #f55f55" }}>
+                      Add activity
+                    </button>
+                  </div>
                 </div>
-              )}
-              <hr></hr>
-              <div className="row">
-                <div className="col pl-2 pr-2">
-                  <button
-                    onClick={addItinerary}
-                    className="btn btn-link"
-                    style={{ border: "1px solid #f55f55" }}>
-                    Add itinerary!
-                  </button>
+                {activitiesString && (
+                  <div className="row mb-2">
+                    <div className="col col-5 pl-2 pr-0">
+                      <span>Added Activities:</span>
+                    </div>
+                    <div className="col col-7 pr-2 pl-0">
+                      {activitiesString}
+                    </div>
+                  </div>
+                )}
+                <hr></hr>
+                <div className="row">
+                  <div className="col pl-2 pr-2">
+                    <button
+                      onClick={addItinerary}
+                      className="btn btn-link"
+                      style={{ border: "1px solid #f55f55" }}>
+                      Add itinerary!
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Card.Body>
-        </Accordion.Collapse>
-      </Card>
-    </Accordion>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
+    </React.Fragment>
   );
 };
 
