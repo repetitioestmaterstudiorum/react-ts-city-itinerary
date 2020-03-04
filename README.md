@@ -11,9 +11,8 @@ Will be published soon.
 1. git clone this repo
 2. npm install inside the folders "front-end" and "back-end"
 3. create a .env file in the folder "back-end" and enter your Mongo DB URI (you need to create that if you don't have one) as "MONGO_URI"
-4. to the same .env file, add a JWT key as "JWT_KEY"
-5. for the front-end to find the back-end, create an environmental variable called "BACKEND_URL" with the base url to the back-end
-6. set up netlify locally, set up heroku locally
-7. add env vars on heroku and netlify (on heroku mongo and jwt, on netlify the backend url for heroku)
-8. check package.json in /back-end for available commands
-
+4. in the same .env file, add a JWT key as "JWT_KEY"
+5. set up netlify locally, set up heroku locally
+6. add env vars on heroku (mongo and jwt)
+7. check package.json in /back-end for available commands
+8. deploy, enjoy
