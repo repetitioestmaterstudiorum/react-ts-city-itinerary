@@ -11,11 +11,11 @@ export const CityProvider: React.FC = props => {
   useEffect(() => {
     const backendUrl =
       process.env.NODE_ENV === "development"
-        ? "http://localhost:5000"
-        : "https://blooming-beyond-66134.herokuapp.com";
+        ? "http://localhost:5000/"
+        : "https://blooming-beyond-66134.herokuapp.com/";
     const fetchCities = async () => {
       try {
-        const res = await axios.get(`${backendUrl}/cities/all`);
+        const res = await axios.get(`${backendUrl}cities/all`);
         const data = res.data;
         setCities(data);
       } catch (err) {

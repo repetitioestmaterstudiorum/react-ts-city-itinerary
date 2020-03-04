@@ -38,8 +38,8 @@ const CreateAccount: React.FC = () => {
     } else {
       const backendUrl =
         process.env.NODE_ENV === "development"
-          ? "http://localhost:5000"
-          : "https://blooming-beyond-66134.herokuapp.com";
+          ? "http://localhost:5000/"
+          : "https://blooming-beyond-66134.herokuapp.com/";
       const createAccount = async () => {
         try {
           const resCreateAccount = await axios.post(
@@ -52,7 +52,7 @@ const CreateAccount: React.FC = () => {
             }
           );
           setUser(resCreateAccount);
-          let resLogIn = await axios.post(`${backendUrl}/users/log-in`, {
+          let resLogIn = await axios.post(`${backendUrl}users/log-in`, {
             email,
             password
           });

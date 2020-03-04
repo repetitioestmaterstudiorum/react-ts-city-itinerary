@@ -9,8 +9,8 @@ const LogIn: React.FC = () => {
   const [user, setUser, setToken] = useContext(UserContext);
   const backendUrl =
     process.env.NODE_ENV === "development"
-      ? "http://localhost:5000"
-      : "https://blooming-beyond-66134.herokuapp.com";
+      ? "http://localhost:5000/"
+      : "https://blooming-beyond-66134.herokuapp.com/";
 
   const updateEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -26,7 +26,7 @@ const LogIn: React.FC = () => {
     } else {
       const logIn = async () => {
         try {
-          let res = await axios.post(`${backendUrl}/users/log-in`, {
+          let res = await axios.post(`${backendUrl}users/log-in`, {
             email,
             password
           });

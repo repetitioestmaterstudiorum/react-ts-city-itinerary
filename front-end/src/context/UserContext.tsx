@@ -8,15 +8,15 @@ export const UserProvider: React.FC = props => {
   const [token, setToken] = useState();
   const backendUrl =
     process.env.NODE_ENV === "development"
-      ? "http://localhost:5000"
-      : "https://blooming-beyond-66134.herokuapp.com";
+      ? "http://localhost:5000/"
+      : "https://blooming-beyond-66134.herokuapp.com/";
 
   console.log("process.env.NODE_ENV", process.env.NODE_ENV);
   console.log("backendUrl", backendUrl);
 
   const fetchUser = async (token: object) => {
     try {
-      const res = await axios.get(`${backendUrl}/users/auth`, {
+      const res = await axios.get(`${backendUrl}users/auth`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

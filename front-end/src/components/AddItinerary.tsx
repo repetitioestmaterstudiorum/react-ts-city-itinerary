@@ -85,11 +85,11 @@ const AddItinerary: React.FC<CityProps> = props => {
     } else {
       const backendUrl =
         process.env.NODE_ENV === "development"
-          ? "http://localhost:5000"
-          : "https://blooming-beyond-66134.herokuapp.com";
+          ? "http://localhost:5000/"
+          : "https://blooming-beyond-66134.herokuapp.com/";
       try {
         const postItinerary = async () => {
-          const res = await axios.post(`${backendUrl}/itineraries/`, {
+          const res = await axios.post(`${backendUrl}itineraries/`, {
             name,
             city: cityName,
             profileName,
