@@ -14,7 +14,7 @@ Will be published soon.
 4. to the same .env file, add a JWT key as "JWT_KEY"
 5. for the front-end to find the back-end, create an environmental variable called "BACKEND_URL" with the base url to the back-end
 6. set up netlify locally, set up heroku locally
-7. use "heroku config:set MONGO_URI=..." and another command for JWT_KEY
+7. add env vars on heroku and netlify (on heroku mongo and jwt, on netlify the backend url for heroku)
 8. check package.json in /back-end for available commands
 
 ## Usage / Commands
