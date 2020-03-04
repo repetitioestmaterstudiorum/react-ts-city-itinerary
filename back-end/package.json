@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "12.16.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"node server.js\" \"cd ../front-end && npm start\"",
+    "start": "node server.js",
     "dev": "concurrently \"nodemon server.js\" \"cd ../front-end && npm start\"",
     "build": "cd ../front-end && npm run build",
     "fe-test-deploy": "cd ../front-end && netlify deploy",
-    "deploy": "concurrently \"git push heroku master\" \"cd ../front-end && netlify deploy -p\""
+    "deploy": "concurrently \"cd ../ && git subtree push --prefix back-end heroku master\" \"cd ../front-end && netlify deploy -p\""
   },
   "keywords": [
     "node.js",
