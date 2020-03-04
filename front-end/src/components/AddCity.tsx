@@ -30,7 +30,10 @@ const AddCity: React.FC = () => {
     } else if (!name || !country) {
       alert("Enter a city and a country!");
     } else {
-      const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
+      const backendUrl =
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:5000"
+          : "https://blooming-beyond-66134.herokuapp.com/";
       try {
         const postCity = async () => {
           const res = await axios.post(`${backendUrl}/cities/`, {

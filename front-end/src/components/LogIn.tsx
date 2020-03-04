@@ -7,8 +7,10 @@ const LogIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [user, setUser, setToken] = useContext(UserContext);
-
-  const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
+  const backendUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:5000"
+      : "https://blooming-beyond-66134.herokuapp.com/";
 
   const updateEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);

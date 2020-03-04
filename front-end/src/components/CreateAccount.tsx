@@ -36,7 +36,10 @@ const CreateAccount: React.FC = () => {
     if (!email || !password || !passwordConfirmation) {
       alert("Enter an email, password and password confirmation!");
     } else {
-      const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
+      const backendUrl =
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:5000"
+          : "https://blooming-beyond-66134.herokuapp.com/";
       const createAccount = async () => {
         try {
           const resCreateAccount = await axios.post(

@@ -6,8 +6,13 @@ export const CityContext = createContext([{}] as any);
 export const CityProvider: React.FC = props => {
   const [cities, setCities] = useState<Cities>();
 
+  console.log(process.env.REACT_BACKEND_URL);
+
   useEffect(() => {
-    const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
+    const backendUrl =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:5000"
+        : "https://blooming-beyond-66134.herokuapp.com/";
     const fetchCities = async () => {
       try {
         const res = await axios.get(`${backendUrl}/cities/all`);

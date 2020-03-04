@@ -7,7 +7,10 @@ export const ItineraryProvider: React.FC = props => {
   const [itineraries, setItineraries] = useState<Itineraries>();
 
   useEffect(() => {
-    const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
+    const backendUrl =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:5000"
+        : "https://blooming-beyond-66134.herokuapp.com/";
     const fetchItineraries = async () => {
       try {
         const res = await axios.get(`${backendUrl}/itineraries/all`);

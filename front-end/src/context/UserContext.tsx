@@ -4,10 +4,13 @@ import axios from "axios";
 export const UserContext = createContext([{}] as any);
 
 export const UserProvider: React.FC = props => {
-  // const [token, setToken] = useState();
   const [user, setUser] = useState();
   const [token, setToken] = useState();
-  const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
+  const backendUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:5000"
+      : "https://blooming-beyond-66134.herokuapp.com/";
+
   const fetchUser = async (token: object) => {
     try {
       const res = await axios.get(`${backendUrl}/users/auth`, {
