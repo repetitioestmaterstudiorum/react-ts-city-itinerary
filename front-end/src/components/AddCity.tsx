@@ -52,7 +52,6 @@ const AddCity: React.FC = () => {
       setName("");
     }
   };
-  console.log("user", user);
 
   return (
     <React.Fragment>

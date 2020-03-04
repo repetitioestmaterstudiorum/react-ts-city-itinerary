@@ -6,8 +6,6 @@ export const CityContext = createContext([{}] as any);
 export const CityProvider: React.FC = props => {
   const [cities, setCities] = useState<Cities>();
 
-  console.log(process.env.REACT_BACKEND_URL);
-
   useEffect(() => {
     const backendUrl =
       process.env.NODE_ENV === "development"
