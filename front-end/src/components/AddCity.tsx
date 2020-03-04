@@ -33,7 +33,7 @@ const AddCity: React.FC = () => {
       const backendUrl =
         process.env.NODE_ENV === "development"
           ? "http://localhost:5000"
-          : "https://blooming-beyond-66134.herokuapp.com/";
+          : "https://blooming-beyond-66134.herokuapp.com";
       try {
         const postCity = async () => {
           const res = await axios.post(`${backendUrl}/cities/`, {
