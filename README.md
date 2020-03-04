@@ -17,7 +17,3 @@ Will be published soon.
 7. add env vars on heroku and netlify (on heroku mongo and jwt, on netlify the backend url for heroku)
 8. check package.json in /back-end for available commands
 
-## Usage / Commands
-
-- npm run dev - starts the local environment (with nodeman - autorefresh)
-- npm start - starts the app (without nodeman)
