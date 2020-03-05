@@ -4,7 +4,7 @@ A MERN app that uses the Atlas Mongo DB service, React, TypeScript, Node.js and 
 
 ## Live Version (front-end on Netlify, back-end on Heroku)
 
-https://friendly-leakey-05373b.netlify.com/
+https://city-itinerary.netlify.com/
 
 ### Installation / Usage
 
