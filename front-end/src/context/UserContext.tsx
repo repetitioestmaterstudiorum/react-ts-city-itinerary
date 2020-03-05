@@ -31,7 +31,7 @@ export const UserProvider: React.FC = props => {
       // fetch user and set state
       const token = JSON.parse(storageContent);
       fetchUser(token);
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   return (

@@ -6,6 +6,7 @@ import Browse from "./Browse";
 const LogIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  // eslint-disable-next-line
   const [user, setUser, setToken] = useContext(UserContext);
   const backendUrl =
     process.env.NODE_ENV === "development"
@@ -86,7 +87,9 @@ const LogIn: React.FC = () => {
               <div className="d-flex justify-content-center mt-2">
                 <button
                   className="btn btn-link"
-                  style={{ border: "1px solid #f55f55" }}>
+                  style={{
+                    border: "1px solid #f55f55"
+                  }}>
                   Log in
                 </button>
               </div>
