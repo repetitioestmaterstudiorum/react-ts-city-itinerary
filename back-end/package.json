@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "concurrently \"node server.js\" \"cd ../front-end && npm start\"",
     "dev": "concurrently \"nodemon server.js\" \"cd ../front-end && npm start\"",
     "fe-test-deploy": "cd ../front-end && npm run build && netlify deploy",
     "deploy": "concurrently \"cd ../ && git subtree push --prefix back-end heroku master\" \"cd ../front-end && netlify deploy -p\""
