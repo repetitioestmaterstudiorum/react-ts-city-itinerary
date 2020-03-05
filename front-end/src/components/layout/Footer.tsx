@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { FaHome, FaBalanceScale, FaBackward } from "react-icons/fa";
+import { FaHome, FaBalanceScale } from "react-icons/fa";
 
 const Footer: React.FC<RouteComponentProps> = props => {
   // RouteComponentProps defines the prop types
@@ -10,24 +10,11 @@ const Footer: React.FC<RouteComponentProps> = props => {
     setIsLanding(props.location.pathname !== "/"); // setting isLanding to true or false
   }, [props.location.pathname]);
 
-  const handleBack = () => {
-    props.history.goBack();
-  };
-
   return (
     <footer className="container-fluid mt-2 mb-2">
       <div className="d-flex justify-content-center">
         {isLanding && (
           <React.Fragment>
-            <Link
-              className="nav-link"
-              style={{ padding: "0.5rem" }}
-              to="#"
-              onClick={handleBack}
-            >
-              <FaBackward />
-              {" Back"}
-            </Link>
             <Link className="nav-link" style={{ padding: "0.5rem" }} to="/">
               <FaHome />
               {" Home"}
@@ -37,8 +24,7 @@ const Footer: React.FC<RouteComponentProps> = props => {
         <Link
           className="nav-link"
           style={{ padding: "0.5rem" }}
-          to="/site-notice"
-        >
+          to="/site-notice">
           <FaBalanceScale />
           {" Site Notice"}
         </Link>

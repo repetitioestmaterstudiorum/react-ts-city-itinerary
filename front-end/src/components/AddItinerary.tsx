@@ -128,7 +128,7 @@ const AddItinerary: React.FC<CityProps> = props => {
             <span className="fancySpan">Click here to add an itinerary!</span>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
-            <Card.Body style={{ padding: "5px" }}>
+            <Card.Body style={{ padding: "10px" }}>
               {user && user.email ? (
                 <div className="container mt-2 mb-2">
                   <div className="row">

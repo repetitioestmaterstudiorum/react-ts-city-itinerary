@@ -43,5 +43,3 @@ type Users = User[];
 // CityContext
 // ItineraryContext
 // UserContext
-
-// use https://www.npmjs.com/package/react-router-last-location to go back in history
