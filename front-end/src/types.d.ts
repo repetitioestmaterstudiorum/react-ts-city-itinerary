@@ -39,6 +39,8 @@ interface User {
 
 type Users = User[];
 
+declare module "react-add-to-homescreen";
+
 // "any" to solve:
 // CityContext
 // ItineraryContext
