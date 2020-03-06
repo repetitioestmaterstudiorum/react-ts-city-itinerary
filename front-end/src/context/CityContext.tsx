@@ -1,6 +1,14 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
+// interface Test {
+//   anything?: "" | undefined;
+// }
+
+// type Testies = Test[] | undefined;
+
+// export const CityContext = createContext([{}] as Cities | Testies | undefined);
+
 export const CityContext = createContext([{}] as any);
 
 export const CityProvider: React.FC = props => {

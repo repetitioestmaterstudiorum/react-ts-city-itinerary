@@ -43,7 +43,7 @@ const CreateAccount: React.FC = () => {
       const createAccount = async () => {
         try {
           const resCreateAccount = await axios.post(
-            `${backendUrl}/users/create-account`,
+            `${backendUrl}users/create-account`,
             {
               email,
               password,
@@ -56,9 +56,8 @@ const CreateAccount: React.FC = () => {
             email,
             password
           });
-          const token = JSON.stringify(resLogIn.data.token);
-          localStorage.setItem("token", token);
-          setToken(token);
+          localStorage.setItem("token", resLogIn.data.token);
+          setToken(resLogIn.data.token);
         } catch (err) {
           if (err.response.status === 422) {
             alert(JSON.parse(err.response.request.response)[0].msg);

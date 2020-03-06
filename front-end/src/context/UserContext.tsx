@@ -24,14 +24,19 @@ export const UserProvider: React.FC = props => {
   };
 
   useEffect(() => {
-    // check if token exists in local storage
     const storageContent = localStorage.getItem("token");
-    // if it exists, set it as token state
     if (storageContent !== "undefined" && storageContent !== null) {
-      // fetch user and set state
-      const token = JSON.parse(storageContent);
-      fetchUser(token);
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
+      if (token !== storageContent) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        setToken(storageContent);
+      }
+    }
+  });
+
+  useEffect(() => {
+    // fetch user and set state
+    token && fetchUser(token);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   return (

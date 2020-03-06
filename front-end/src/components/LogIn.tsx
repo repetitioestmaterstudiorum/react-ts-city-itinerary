@@ -7,7 +7,7 @@ const LogIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   // eslint-disable-next-line
-  const [user, setUser, setToken] = useContext(UserContext);
+  const [user, setToken] = useContext(UserContext);
   const backendUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"
@@ -31,9 +31,8 @@ const LogIn: React.FC = () => {
             email,
             password
           });
-          const token = JSON.stringify(res.data.token);
-          localStorage.setItem("token", token);
-          setToken(token);
+          localStorage.setItem("token", res.data.token);
+          setToken(res.data.token);
         } catch (err) {
           alert(err.response.request.response);
         }
