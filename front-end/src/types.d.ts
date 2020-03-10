@@ -12,10 +12,6 @@ interface City {
 
 type Cities = City[];
 
-type CityProps = {
-  city: City;
-};
-
 interface Itinerary {
   name: string;
   _id: string;

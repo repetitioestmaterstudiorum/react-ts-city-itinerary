@@ -9,7 +9,6 @@ import Cities from "./Cities";
 import CityDetail from "./CityDetail";
 import Footer from "./layout/Footer";
 import { CityProvider } from "../context/CityContext";
-import { ItineraryProvider } from "../context/ItineraryContext";
 import { CurrentUserProvider } from "../context/CurrentUserContext";
 
 const Routes: React.FC = () => {
@@ -22,9 +21,7 @@ const Routes: React.FC = () => {
       <Route exact path="/log-in" component={LogIn} />
       <CityProvider>
         <Route exact path="/cities" component={Cities} />
-        <ItineraryProvider>
-          <Route path="/cities/:name" component={CityDetail} />
-        </ItineraryProvider>
+        <Route path="/cities/:name" component={CityDetail} />
       </CityProvider>
       <Footer />
     </CurrentUserProvider>

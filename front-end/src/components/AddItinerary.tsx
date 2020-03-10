@@ -7,15 +7,17 @@ import React, {
   MouseEvent,
   useEffect
 } from "react";
-import { ItineraryContext } from "../context/ItineraryContext";
 import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
+type CityProps = {
+  cityName: string;
+};
+
 const AddItinerary: FC<CityProps> = props => {
-  const [setItineraries] = useContext(ItineraryContext);
   const [name, setName] = useState<string>("");
   const [hashtagField, setHashtagField] = useState<string>("");
   const [hashtagArray, setHashtagArray] = useState<string[]>([]);
@@ -23,7 +25,7 @@ const AddItinerary: FC<CityProps> = props => {
   const [activitiesArray, setActivitiesArray] = useState<string[]>([]);
   const [activitiesString, setActivitiesString] = useState<string>("");
   const [currentUser] = useContext(CurrentUserContext);
-  const cityName = props.city.name;
+  const cityName = props.cityName;
   // to do later:
   const likes = 0;
   const profileName = "John Doe";
@@ -100,10 +102,6 @@ const AddItinerary: FC<CityProps> = props => {
             hashtags: hashtagArray,
             activities: activitiesArray
           });
-          setItineraries((prevItineraries: Itineraries) => [
-            ...prevItineraries,
-            res.data
-          ]);
         };
         postItinerary();
       } catch (err) {
