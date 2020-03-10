@@ -79,7 +79,6 @@ router.post("/log-in", (req, res) => {
           const payload = {
             id: user.id,
             email: user.email
-            //  ,profilePicture: user.profilePicture
           };
           const options = { expiresIn: 1814400 }; // 21 days = 1814400 seconds
           // create and sign the JWT token

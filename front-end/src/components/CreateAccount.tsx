@@ -5,7 +5,7 @@ import React, {
   FormEvent,
   useContext
 } from "react";
-import { UserContext } from "../context/UserContext";
+import { CurrentUserContext } from "../context/CurrentUserContext";
 import axios from "axios";
 import Browse from "./Browse";
 
@@ -14,7 +14,10 @@ const CreateAccount: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
   const [profilePicture, setProfilePicture] = useState<string>("");
-  const [user, setUser, setToken] = useContext(UserContext);
+  const [currentUser, setCurrentUser, setToken] = useContext(
+    CurrentUserContext
+  );
+  const likedItineraries: string[] = [];
 
   // temporary until user image upload is handled
   useEffect(() => {
@@ -48,10 +51,11 @@ const CreateAccount: React.FC = () => {
               email,
               password,
               passwordConfirmation,
-              profilePicture
+              profilePicture,
+              likedItineraries
             }
           );
-          setUser(resCreateAccount);
+          setCurrentUser(resCreateAccount);
           let resLogIn = await axios.post(`${backendUrl}users/log-in`, {
             email,
             password
@@ -76,7 +80,7 @@ const CreateAccount: React.FC = () => {
   return (
     <section className="conatiner mb-3">
       <div className="text-center">
-        {user && user.email ? (
+        {currentUser && currentUser.email ? (
           <React.Fragment>
             <h1>Account created successfully!</h1>
             <Browse />

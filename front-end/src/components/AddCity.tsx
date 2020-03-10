@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
 import { CityContext } from "../context/CityContext";
-import { UserContext } from "../context/UserContext";
+import { CurrentUserContext } from "../context/CurrentUserContext";
 import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ const AddCity: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [setCities] = useContext(CityContext);
-  const [user] = useContext(UserContext);
+  const [currentUser] = useContext(CurrentUserContext);
 
   const updateName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -68,7 +68,7 @@ const AddCity: React.FC = () => {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-              {user && user.email ? (
+              {currentUser && currentUser.email ? (
                 <form onSubmit={addCityCountryPair}>
                   <div className="d-flex justify-content-center">
                     <label className="col-form-label mr-1" htmlFor="name">
@@ -121,7 +121,7 @@ const AddCity: React.FC = () => {
             </Card.Body>
           </Accordion.Collapse>
         </Card>
-      </Accordion>{" "}
+      </Accordion>
     </React.Fragment>
   );
 };

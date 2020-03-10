@@ -10,11 +10,11 @@ import CityDetail from "./CityDetail";
 import Footer from "./layout/Footer";
 import { CityProvider } from "../context/CityContext";
 import { ItineraryProvider } from "../context/ItineraryContext";
-import { UserProvider } from "../context/UserContext";
+import { CurrentUserProvider } from "../context/CurrentUserContext";
 
 const Routes: React.FC = () => {
   return (
-    <UserProvider>
+    <CurrentUserProvider>
       <Header />
       <Route exact path="/" component={Landing} />
       <Route exact path="/site-notice" component={SiteNotice} />
@@ -24,10 +24,10 @@ const Routes: React.FC = () => {
         <Route exact path="/cities" component={Cities} />
         <ItineraryProvider>
           <Route path="/cities/:name" component={CityDetail} />
-        </ItineraryProvider>{" "}
+        </ItineraryProvider>
       </CityProvider>
       <Footer />
-    </UserProvider>
+    </CurrentUserProvider>
   );
 };
 

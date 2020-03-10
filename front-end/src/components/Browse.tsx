@@ -1,16 +1,16 @@
-import React from "react";
+import React, { FC, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowCircleRight } from "react-icons/fa";
 
-const Browse: React.FC = () => {
+const Browse: FC = () => {
   return (
-    <React.Fragment>
+    <Fragment>
       <Link to="/cities" className="nav-link" style={{ fontSize: "1.8rem" }}>
         <p>
           <FaArrowCircleRight /> Browse Cities
         </p>
       </Link>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

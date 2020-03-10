@@ -3,10 +3,10 @@ import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle, FaBars } from "react-icons/fa";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import "./Header.css";
-import { UserContext } from "../../context/UserContext";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 
 const Header: React.FC = () => {
-  const [user, setToken] = useContext(UserContext);
+  const [currentUser, setToken] = useContext(CurrentUserContext);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
@@ -54,7 +54,7 @@ const Header: React.FC = () => {
                   Browse cities
                 </NavLink>
                 <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
-                {user && user.email ? (
+                {currentUser && currentUser.email ? (
                   <NavLink
                     to="/"
                     exact
@@ -102,10 +102,10 @@ const Header: React.FC = () => {
             </Link>
           </div>
           <div className="profile">
-            {user && user.email ? (
+            {currentUser && currentUser.email ? (
               <img
-                src={user.profilePicture}
-                alt={user.email}
+                src={currentUser.profilePicture}
+                alt={currentUser.email}
                 onClick={handleShowModal}></img>
             ) : (
               <FaUserCircle onClick={handleShowModal} />
@@ -120,10 +120,13 @@ const Header: React.FC = () => {
           onHide={handleHideModal}
           animation={false}
           aria-labelledby="example-modal-sizes-title-sm">
-          {user && user.email ? (
+          {currentUser && currentUser.email ? (
             <React.Fragment>
               <Modal.Header>
-                <h3>You are currently logged in as {user && user.email}</h3>
+                <h3>
+                  You are currently logged in as{" "}
+                  {currentUser && currentUser.email}
+                </h3>
               </Modal.Header>
               <Modal.Body>
                 <Link to="/">

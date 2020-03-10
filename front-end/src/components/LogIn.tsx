@@ -1,13 +1,20 @@
-import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import React, {
+  FC,
+  Fragment,
+  useState,
+  ChangeEvent,
+  FormEvent,
+  useContext
+} from "react";
+import { CurrentUserContext } from "../context/CurrentUserContext";
 import axios from "axios";
 import Browse from "./Browse";
 
-const LogIn: React.FC = () => {
+const LogIn: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   // eslint-disable-next-line
-  const [user, setToken] = useContext(UserContext);
+  const [currentUser, setToken] = useContext(CurrentUserContext);
   const backendUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"
@@ -21,7 +28,7 @@ const LogIn: React.FC = () => {
   };
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e && e.preventDefault();
     if (!email || !password) {
       alert("Enter email and password!");
     } else {
@@ -43,16 +50,21 @@ const LogIn: React.FC = () => {
     }
   };
 
+  const handleTestLogin = () => {
+    setEmail("whatever@gmail.com");
+    setPassword("fdsafdsa1");
+  };
+
   return (
     <section className="conatiner mb-3">
       <div className="text-center">
-        {user && user.email ? (
-          <React.Fragment>
+        {currentUser && currentUser.email ? (
+          <Fragment>
             <h1>Logged in successfully!</h1>
             <Browse />
-          </React.Fragment>
+          </Fragment>
         ) : (
-          <React.Fragment>
+          <Fragment>
             <h1>Log in</h1>
             <form onSubmit={handleLogin}>
               <div className="d-flex justify-content-center">
@@ -93,7 +105,20 @@ const LogIn: React.FC = () => {
                 </button>
               </div>
             </form>
-          </React.Fragment>
+            {process.env.NODE_ENV === "development" && (
+              <Fragment>
+                <h2 className="pt-3">Dev Test Login</h2>
+                <button
+                  className="btn btn-link"
+                  style={{
+                    border: "1px solid #f55f55"
+                  }}
+                  onClick={handleTestLogin}>
+                  Fill the form
+                </button>
+              </Fragment>
+            )}
+          </Fragment>
         )}
       </div>
     </section>

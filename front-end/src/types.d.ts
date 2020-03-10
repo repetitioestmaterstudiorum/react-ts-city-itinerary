@@ -35,6 +35,7 @@ interface User {
   password: string;
   passwordConfirmation?: string;
   profilePicture: string;
+  likedItineraries?: string[];
 }
 
 type Users = User[];

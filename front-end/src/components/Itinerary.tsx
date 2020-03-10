@@ -1,15 +1,40 @@
-import React from "react";
+import React, { FC, Fragment, useContext } from "react";
 import { Accordion, Card } from "react-bootstrap";
-import { FaRegCheckSquare } from "react-icons/fa";
+import { FaRegCheckSquare, FaThumbsUp } from "react-icons/fa";
+import { CurrentUserContext } from "../context/CurrentUserContext";
+import axios from "axios";
 
 type ItineraryProps = {
   itinerary: Itinerary;
   randomColor: string;
 };
 
-const Itinerary: React.FC<ItineraryProps> = props => {
+const Itinerary: FC<ItineraryProps> = props => {
+  const [currentUser] = useContext(CurrentUserContext);
+  currentUser &&
+    console.log("currentUser.likedItineraries", currentUser.likedItineraries);
+  console.log("props.itinerary._id", props.itinerary._id);
+
+  const handleLikeClick = () => {
+    console.log("clickedyclick");
+    const backendUrl =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:5000/"
+        : "https://blooming-beyond-66134.herokuapp.com/";
+    try {
+      const addLike = async () => {
+        const res = await axios.put(`${backendUrl}users/like`, {
+          userID: currentUser._id
+        });
+      };
+      addLike();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <React.Fragment>
+    <Fragment>
       <div
         className="row"
         style={{
@@ -44,9 +69,7 @@ const Itinerary: React.FC<ItineraryProps> = props => {
             style={{
               color: "#151515",
               display: "block"
-            }}>
-            {props.itinerary.likes} Likes
-          </span>
+            }}></span>
           <span
             style={{
               color: "#151515",
@@ -78,6 +101,19 @@ const Itinerary: React.FC<ItineraryProps> = props => {
                     </span>
                   </p>
                 ))}
+                <hr></hr>
+                <button
+                  className="btn btn-link align-middle mr-2"
+                  onClick={handleLikeClick}>
+                  <FaThumbsUp style={{ fontSize: "0.8rem" }} className="pr-2" />
+                  <span>Like</span>
+                </button>
+                <span className="align-middle pr-3">
+                  {props.itinerary.likes} Likes
+                </span>
+                <hr></hr>
+                <span>Last Comments:</span>
+                <span className="d-block">coming soon..</span>
               </Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle
@@ -102,7 +138,7 @@ const Itinerary: React.FC<ItineraryProps> = props => {
           </Card>
         </Accordion>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

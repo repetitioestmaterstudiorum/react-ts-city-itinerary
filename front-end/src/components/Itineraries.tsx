@@ -1,15 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { FC, Fragment, useEffect, useState, useContext } from "react";
 import { ItineraryContext } from "../context/ItineraryContext";
 import Itinerary from "./Itinerary";
 
-const Itineraries: React.FC<CityProps> = props => {
-  // eslint-disable-next-line
-  const [itineraries, setItineraries] = useContext(ItineraryContext);
+const Itineraries: FC<CityProps> = props => {
+  const [itineraries] = useContext(ItineraryContext);
   const [cityItineraries, setCityItineraries] = useState<Itineraries>();
-  const cityName = props.city.name;
+  const cityName: string = props.city.name;
 
   const randomColor = () => {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    const randomColor: string = Math.floor(Math.random() * 16777215).toString(
+      16
+    );
     return randomColor;
   };
 
@@ -25,7 +26,7 @@ const Itineraries: React.FC<CityProps> = props => {
   }, [itineraries]);
 
   return (
-    <React.Fragment>
+    <Fragment>
       {cityItineraries &&
         cityItineraries.map((itinerary: Itinerary) => (
           <Itinerary
@@ -34,7 +35,7 @@ const Itineraries: React.FC<CityProps> = props => {
             randomColor={randomColor()}
           />
         ))}
-    </React.Fragment>
+    </Fragment>
   );
 };
 

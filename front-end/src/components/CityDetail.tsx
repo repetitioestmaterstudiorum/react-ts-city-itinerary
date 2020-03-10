@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { FC, useEffect, useState, useContext } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import AddItinerary from "./AddItinerary";
 import { CityContext } from "../context/CityContext";
 import Itineraries from "./Itineraries";
 
-const CityDetail: React.FC<RouteComponentProps<City>> = props => {
+const CityDetail: FC<RouteComponentProps<City>> = props => {
   const [currentCity, setCurrentCity] = useState<City>();
   const [cities] = useContext(CityContext);
 

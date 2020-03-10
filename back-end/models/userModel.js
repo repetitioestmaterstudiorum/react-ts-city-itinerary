@@ -16,6 +16,9 @@ const userSchema = new mongoose.Schema({
   profilePicture: {
     type: String,
     required: true
+  },
+  likedItineraries: {
+    type: Array
   }
 });
 

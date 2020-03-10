@@ -1,4 +1,6 @@
 import React, {
+  FC,
+  Fragment,
   useState,
   ChangeEvent,
   useContext,
@@ -8,11 +10,11 @@ import React, {
 import { ItineraryContext } from "../context/ItineraryContext";
 import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
-import { UserContext } from "../context/UserContext";
+import { CurrentUserContext } from "../context/CurrentUserContext";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-const AddItinerary: React.FC<CityProps> = props => {
+const AddItinerary: FC<CityProps> = props => {
   const [setItineraries] = useContext(ItineraryContext);
   const [name, setName] = useState<string>("");
   const [hashtagField, setHashtagField] = useState<string>("");
@@ -20,10 +22,10 @@ const AddItinerary: React.FC<CityProps> = props => {
   const [activityField, setActivityField] = useState<string>("");
   const [activitiesArray, setActivitiesArray] = useState<string[]>([]);
   const [activitiesString, setActivitiesString] = useState<string>("");
-  const [user] = useContext(UserContext);
-  const likes = 0;
-  // to do later:
+  const [currentUser] = useContext(CurrentUserContext);
   const cityName = props.city.name;
+  // to do later:
+  const likes = 0;
   const profileName = "John Doe";
   const profilePicture = "https://via.placeholder.com/100x100.png?text=:)";
 
@@ -115,7 +117,7 @@ const AddItinerary: React.FC<CityProps> = props => {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <h3 className="pt-3">Add an itinerary</h3>
       <Accordion
         className="pb-2"
@@ -129,7 +131,7 @@ const AddItinerary: React.FC<CityProps> = props => {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
             <Card.Body style={{ padding: "10px" }}>
-              {user && user.email ? (
+              {currentUser && currentUser.email ? (
                 <div className="container mt-2 mb-2">
                   <div className="row">
                     <div className="col col-6 pl-2">
@@ -253,7 +255,7 @@ const AddItinerary: React.FC<CityProps> = props => {
           </Accordion.Collapse>
         </Card>
       </Accordion>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

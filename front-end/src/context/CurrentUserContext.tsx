@@ -1,12 +1,12 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-export const UserContext = createContext([{}] as any);
+export const CurrentUserContext = createContext([{}] as any);
 
-export const UserProvider: React.FC = props => {
-  const [user, setUser] = useState();
+export const CurrentUserProvider: React.FC = props => {
+  const [currentUser, setCurrentUser] = useState<User>();
   const [token, setToken] = useState();
-  const backendUrl =
+  const backendUrl: string =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"
       : "https://blooming-beyond-66134.herokuapp.com/";
@@ -19,8 +19,10 @@ export const UserProvider: React.FC = props => {
         }
       });
       const data = res.data;
-      setUser(data);
-    } catch (err) {}
+      setCurrentUser(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -40,8 +42,9 @@ export const UserProvider: React.FC = props => {
   }, [token]);
 
   return (
-    <UserContext.Provider value={[user, setUser, setToken]}>
+    <CurrentUserContext.Provider
+      value={[currentUser, setCurrentUser, setToken]}>
       {props.children}
-    </UserContext.Provider>
+    </CurrentUserContext.Provider>
   );
 };
