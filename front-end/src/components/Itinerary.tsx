@@ -86,15 +86,20 @@ const Itinerary: FC<ItineraryProps> = props => {
       <div
         className="row"
         style={{
-          border: "6px solid #fff",
+          border: "0",
           borderBottom: "34px solid #fff",
           boxShadow: "2px 2px 7px #777",
+          borderRadius: "5px",
           margin: "0 0 13px 0",
           backgroundImage: `linear-gradient(#${props.randomColor}20, white)`
         }}>
         <div
-          className="col-5 pt-2"
-          style={{ backgroundColor: "rgba(183, 183, 183, 0.15)" }}>
+          className="col-5 pt-2 pb-1"
+          style={{
+            backgroundColor: "#fff",
+            borderRadius: "5px 0 5px 0",
+            opacity: "0.9"
+          }}>
           <img
             src={props.itinerary.profilePicture}
             style={{
@@ -107,7 +112,7 @@ const Itinerary: FC<ItineraryProps> = props => {
             {props.itinerary.profileName}
           </span>
         </div>
-        <div className="col-7" style={{ textAlign: "left" }}>
+        <div className="col-7 pt-2" style={{ textAlign: "left" }}>
           <span
             className="fancySpan"
             style={{ display: "block", marginTop: "1px" }}>
@@ -137,8 +142,8 @@ const Itinerary: FC<ItineraryProps> = props => {
               overflow: "initial",
               border: "none",
               borderRadius: "none",
-              backgroundColor: "#f9f9f9",
-              padding: "0 0.5rem 0"
+              padding: "0 0.5rem 0",
+              backgroundColor: "unset"
             }}>
             <Accordion.Collapse eventKey="0">
               <Card.Body style={{ padding: ".6rem" }}>
@@ -149,8 +154,8 @@ const Itinerary: FC<ItineraryProps> = props => {
                     </span>
                   </p>
                 ))}
-                {/* <hr className="mb-1"></hr> */}
-                <div className="alert alert-secondary pt-1 pb-1" role="alert">
+                <hr className="mb-2" style={{ width: "15%" }}></hr>
+                <div className="rounded pt-1 pb-1">
                   {userLikesCurrentItinerary ? (
                     <button
                       className="btn btn-sm btn-primary active align-middle mr-3"
@@ -176,29 +181,29 @@ const Itinerary: FC<ItineraryProps> = props => {
                     <strong>{itineraryLikes} Likes</strong>
                   </span>
                 </div>
-                {/* <hr className="mt-1"></hr> */}
+                <hr className="mt-2" style={{ width: "15%" }}></hr>
                 <span>Last Comments:</span>
                 <span className="d-block">coming soon..</span>
               </Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle
               eventKey="0"
+              className="btn btn-sm btn-secondary"
               style={{
                 textAlign: "center",
-                marginBottom: "-37px",
                 width: "100%",
                 border: "none",
-                backgroundColor: "transparent",
-                height: "37px"
+                backgroundColor: "#f0f0f0",
+                margin: "10px 0 -25px 0",
+                textDecoration: "none"
               }}>
-              <p
+              <span
+                className="fancySpan"
                 style={{
-                  margin: "auto",
-                  fontFamily: "cursive"
-                }}
-                className="blink">
+                  margin: "auto"
+                }}>
                 Click to toggle Activities
-              </p>
+              </span>
             </Accordion.Toggle>
           </Card>
         </Accordion>

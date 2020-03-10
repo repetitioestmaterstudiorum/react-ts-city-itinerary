@@ -16,7 +16,6 @@ a:hover,
 .btn-link:hover {
   color: #c65148;
 }
-
 .btn-primary,
 .btn-primary:focus {
   background-color: #f55f55 !important;
@@ -27,6 +26,9 @@ a:hover,
 .btn-primary.active {
   background-color: #c65148 !important;
   border-color: #c65148 !important;
+}
+.btn-secondary {
+  box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
 }
 
 h1,
@@ -66,16 +68,4 @@ p {
 }
 .dropdown-item.active:hover {
   background-color: #f55f55;
-}
-
-.blink {
-  animation: blinker 2s linear infinite;
-  font-weight: bold;
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0.25;
-    font-weight: normal;
-  }
 }
