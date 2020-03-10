@@ -16,6 +16,8 @@ mongoose
   .then(() => console.log("Connection to Mongo DB established"))
   .catch(err => console.log(err));
 
+mongoose.set("useFindAndModify", false);
+
 app.listen(port, () => {
   console.log("Server is running on port " + port);
 });

@@ -120,13 +120,21 @@ router.get(
 
 // add liked itinerary
 router.put("/add-liked-itinerary", (req, res) => {
-  const name = req.params.name;
-  const titleCaseName = toTitleCase(name); // searching for cities in title case
-  cityModel
-    .findOne({ name: titleCaseName })
-    .then(city => {
-      res.send(city);
-    })
+  userModel
+    .updateOne(
+      { _id: req.body.userID },
+      { $push: { likedItineraries: req.body.itineraryID } }
+    )
+    .catch(err => console.log(err));
+});
+
+// remove liked itinerary
+router.put("/remove-liked-itinerary", (req, res) => {
+  userModel
+    .updateOne(
+      { _id: req.body.userID },
+      { $pull: { likedItineraries: req.body.itineraryID } }
+    )
     .catch(err => console.log(err));
 });
 

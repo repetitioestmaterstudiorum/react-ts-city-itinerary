@@ -29,56 +29,46 @@ const Itinerary: FC<ItineraryProps> = props => {
     ) {
       setUserLikesCurrentItinerary(true); // check if current user likes current itinerary
     }
-  }, []);
-
-  currentUser &&
-    console.log("currentUser.likedItineraries", currentUser.likedItineraries);
-  console.log("props.itinerary._id", props.itinerary._id);
-  console.log("props.itinerary.likes", props.itinerary.likes);
+  }, [currentUser]);
 
   const handleLikeClick = () => {
-    console.log("handle like click");
+    console.log("props.itinerary._id", props.itinerary._id);
+    console.log("currentUser._id", currentUser._id);
     setUserLikesCurrentItinerary(true);
     setItineraryLikes(itineraryLikes + 1);
-    // try {
-    //   const addLike = async () => {
-    //     await axios.put(`${backendUrl}itineraries/increase-likes`, {
-    //       id: props.itinerary._id
-    //     });
-    //     // await axios.put(
-    //     //   `${backendUrl}users/add-liked-itinerary`,
-    //     //   {
-    //     //     userID: currentUser._id
-    //     //   }
-    //     // );
-    //   };
-    //   addLike();
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    try {
+      const addLike = () => {
+        axios.put(`${backendUrl}itineraries/increase-likes`, {
+          itineraryID: props.itinerary._id
+        });
+        axios.put(`${backendUrl}users/add-liked-itinerary`, {
+          userID: currentUser._id,
+          itineraryID: props.itinerary._id
+        });
+      };
+      addLike();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleDislikeClick = () => {
-    console.log("handle DISlike click");
     setUserLikesCurrentItinerary(false);
     setItineraryLikes(itineraryLikes - 1);
-    // setItineraryLikes(itineraryLikes + 1);
-    // try {
-    //   const addLike = async () => {
-    //     await axios.put(`${backendUrl}itineraries/increase-likes`, {
-    //       id: props.itinerary._id
-    //     });
-    //     // await axios.put(
-    //     //   `${backendUrl}users/add-liked-itinerary`,
-    //     //   {
-    //     //     userID: currentUser._id
-    //     //   }
-    //     // );
-    //   };
-    //   addLike();
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    try {
+      const removeLike = () => {
+        axios.put(`${backendUrl}itineraries/decrease-likes`, {
+          itineraryID: props.itinerary._id
+        });
+        axios.put(`${backendUrl}users/remove-liked-itinerary`, {
+          userID: currentUser._id,
+          itineraryID: props.itinerary._id
+        });
+      };
+      removeLike();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
