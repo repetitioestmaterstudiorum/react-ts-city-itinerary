@@ -26,13 +26,6 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
     } catch (err) {
       console.log(err);
     }
-    // cities &&
-    //   setCurrentCity(
-    //     cities.filter(
-    //       (city: City) => city.name.toLowerCase() === props.match.params.name
-    //     )[0]
-    //   );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cities]);
 
   useEffect(() => {
@@ -48,6 +41,11 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
       console.log(err);
     }
   }, []);
+
+  const addNewItinerary = (itinerary: Itinerary) => {
+    console.log("addint itinerary");
+    setCityItineraries([...cityItineraries, itinerary]);
+  };
 
   return (
     <div className="container pt-1 pb-1 text-center">
@@ -74,7 +72,12 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
           />
         )}
       </div>
-      {currentCity && <AddItinerary cityName={props.match.params.name} />}
+      {currentCity && (
+        <AddItinerary
+          cityName={props.match.params.name}
+          addNewItinerary={addNewItinerary}
+        />
+      )}
     </div>
   );
 };

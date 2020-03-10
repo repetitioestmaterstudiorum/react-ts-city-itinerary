@@ -13,11 +13,12 @@ import { CurrentUserContext } from "../context/CurrentUserContext";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-type CityProps = {
+type CityAndAddItineraryProps = {
   cityName: string;
+  addNewItinerary: (itinerary: Itinerary) => void;
 };
 
-const AddItinerary: FC<CityProps> = props => {
+const AddItinerary: FC<CityAndAddItineraryProps> = props => {
   const [name, setName] = useState<string>("");
   const [hashtagField, setHashtagField] = useState<string>("");
   const [hashtagArray, setHashtagArray] = useState<string[]>([]);
@@ -25,11 +26,12 @@ const AddItinerary: FC<CityProps> = props => {
   const [activitiesArray, setActivitiesArray] = useState<string[]>([]);
   const [activitiesString, setActivitiesString] = useState<string>("");
   const [currentUser] = useContext(CurrentUserContext);
-  const cityName = props.cityName;
+  const cityName: string = props.cityName;
   // to do later:
-  const likes = 0;
-  const profileName = "John Doe";
-  const profilePicture = "https://via.placeholder.com/100x100.png?text=:)";
+  const likes: number = 0;
+  const profileName: string = "John Doe";
+  const profilePicture: string =
+    "https://via.placeholder.com/100x100.png?text=:)";
 
   const containsANumber = (string: string) => {
     return /\d/.test(string);
@@ -102,6 +104,8 @@ const AddItinerary: FC<CityProps> = props => {
             hashtags: hashtagArray,
             activities: activitiesArray
           });
+          console.log("*** res from add city: ", res.data);
+          props.addNewItinerary(res.data);
         };
         postItinerary();
       } catch (err) {
