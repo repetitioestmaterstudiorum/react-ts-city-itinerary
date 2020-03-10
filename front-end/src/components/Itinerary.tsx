@@ -3,6 +3,8 @@ import { Accordion, Card } from "react-bootstrap";
 import { FaRegCheckSquare, FaThumbsUp } from "react-icons/fa";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 type ItineraryProps = {
   itinerary: Itinerary;
@@ -144,34 +146,40 @@ const Itinerary: FC<ItineraryProps> = props => {
                 ))}
                 <hr className="mb-2" style={{ width: "15%" }}></hr>
                 <div className="rounded pt-1 pb-1">
-                  {userLikesCurrentItinerary ? (
-                    <button
-                      className="btn btn-sm btn-primary active align-middle mr-3"
-                      onClick={handleDislikeClick}>
-                      <FaThumbsUp
-                        style={{ fontSize: "0.8rem" }}
-                        className="pr-2"
-                      />
-                      <span>Like</span>
-                    </button>
+                  {currentUser && currentUser.email ? (
+                    userLikesCurrentItinerary ? (
+                      <button
+                        className="btn btn-sm btn-primary active align-middle mr-3"
+                        onClick={handleDislikeClick}>
+                        <FaThumbsUp
+                          style={{ fontSize: "0.8rem" }}
+                          className="pr-2"
+                        />
+                        <span>Like</span>
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-sm btn-primary align-middle mr-3"
+                        onClick={handleLikeClick}>
+                        <FaThumbsUp
+                          style={{ fontSize: "0.8rem" }}
+                          className="pr-2"
+                        />
+                        <span>Like</span>
+                      </button>
+                    )
                   ) : (
-                    <button
-                      className="btn btn-sm btn-primary align-middle mr-3"
-                      onClick={handleLikeClick}>
-                      <FaThumbsUp
-                        style={{ fontSize: "0.8rem" }}
-                        className="pr-2"
-                      />
-                      <span>Like</span>
-                    </button>
+                    <Link to="/log-in" className="pr-2">
+                      <Button variant="primary">Log in to like</Button>
+                    </Link>
                   )}
                   <span className="align-middle pr-1">
                     <strong>{itineraryLikes} Likes</strong>
                   </span>
                 </div>
-                <hr className="mt-2" style={{ width: "15%" }}></hr>
+                {/* <hr className="mt-2" style={{ width: "15%" }}></hr>
                 <span>Last Comments:</span>
-                <span className="d-block">coming soon..</span>
+                <span className="d-block">coming soon..</span> */}
               </Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle

@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { Fragment, FC, useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle, FaBars } from "react-icons/fa";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import "./Header.css";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 
-const Header: React.FC = () => {
+const Header: FC = () => {
   const [currentUser, setToken] = useContext(CurrentUserContext);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -64,7 +64,7 @@ const Header: React.FC = () => {
                     Logout
                   </NavLink>
                 ) : (
-                  <React.Fragment>
+                  <Fragment>
                     <NavLink
                       to="/log-in"
                       exact
@@ -81,7 +81,7 @@ const Header: React.FC = () => {
                       activeClassName="active">
                       Create account
                     </NavLink>
-                  </React.Fragment>
+                  </Fragment>
                 )}
                 <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
                 <NavLink
@@ -121,7 +121,7 @@ const Header: React.FC = () => {
           animation={false}
           aria-labelledby="example-modal-sizes-title-sm">
           {currentUser && currentUser.email ? (
-            <React.Fragment>
+            <Fragment>
               <Modal.Header>
                 <h3>
                   You are currently logged in as{" "}
@@ -135,9 +135,9 @@ const Header: React.FC = () => {
                   </Button>
                 </Link>
               </Modal.Body>
-            </React.Fragment>
+            </Fragment>
           ) : (
-            <React.Fragment>
+            <Fragment>
               <Modal.Header>
                 <h3>You are currently logged out.</h3>
               </Modal.Header>
@@ -156,7 +156,7 @@ const Header: React.FC = () => {
                   </Button>
                 </Link>
               </Modal.Body>
-            </React.Fragment>
+            </Fragment>
           )}
           <Modal.Footer>
             <Button variant="secondary" onClick={handleHideModal}>
