@@ -32,8 +32,6 @@ const Itinerary: FC<ItineraryProps> = props => {
   }, [currentUser]);
 
   const handleLikeClick = () => {
-    console.log("props.itinerary._id", props.itinerary._id);
-    console.log("currentUser._id", currentUser._id);
     setUserLikesCurrentItinerary(true);
     setItineraryLikes(itineraryLikes + 1);
     try {
