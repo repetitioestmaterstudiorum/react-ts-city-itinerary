@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import Browse from "./Browse";
 
-const Landing: React.FC = () => {
+const Landing: FC = () => {
   return (
     <section className="container pt-3">
       <div className="text-center">

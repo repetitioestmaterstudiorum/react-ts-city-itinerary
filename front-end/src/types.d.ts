@@ -36,7 +36,7 @@ interface User {
 
 type Users = User[];
 
-// "any" to solve:
+// cases of "any" to solve:
 // CityContext
 // ItineraryContext
 // UserContext

@@ -242,7 +242,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                   </div>
                 </div>
               ) : (
-                <React.Fragment>
+                <Fragment>
                   <Link to="/log-in">
                     <Button variant="primary" style={{ marginRight: ".25rem" }}>
                       Log in
@@ -251,7 +251,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                   <Link to="/create-account">
                     <Button variant="primary">Create Account</Button>
                   </Link>
-                </React.Fragment>
+                </Fragment>
               )}
             </Card.Body>
           </Accordion.Collapse>

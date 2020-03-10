@@ -33,6 +33,20 @@ router.get("/:name", (req, res) => {
     .catch(err => console.log(err));
 });
 
+// increase likes
+router.put("/increase-likes", (req, res) => {
+  itineraryModel
+    .findOneAndUpdate({ _id: req.body.id }, { $inc: { likes: 1 } })
+    .catch(err => console.log(err));
+});
+
+// decrease likes
+router.put("/decrease-likes", (req, res) => {
+  itineraryModel
+    .findOneAndUpdate({ _id: req.body.id }, { $inc: { likes: -1 } })
+    .catch(err => console.log(err));
+});
+
 // post new itinerary
 router.post("/", (req, res) => {
   const newItinerary = new itineraryModel({

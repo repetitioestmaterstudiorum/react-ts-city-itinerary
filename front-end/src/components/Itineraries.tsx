@@ -7,7 +7,6 @@ interface CityAndItineraryProps {
 }
 
 const Itineraries: FC<CityAndItineraryProps> = props => {
-  const cityName: string = props.cityName;
   const cityItineraries: Itineraries = props.cityItineraries;
 
   const randomColor = () => {

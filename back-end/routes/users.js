@@ -118,4 +118,16 @@ router.get(
   }
 );
 
+// add liked itinerary
+router.put("/add-liked-itinerary", (req, res) => {
+  const name = req.params.name;
+  const titleCaseName = toTitleCase(name); // searching for cities in title case
+  cityModel
+    .findOne({ name: titleCaseName })
+    .then(city => {
+      res.send(city);
+    })
+    .catch(err => console.log(err));
+});
+
 module.exports = router;

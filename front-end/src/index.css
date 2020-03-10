@@ -17,13 +17,16 @@ a:hover,
   color: #c65148;
 }
 
-.btn-primary {
-  background-color: #f55f55;
-  border-color: #f55f55;
+.btn-primary,
+.btn-primary:focus {
+  background-color: #f55f55 !important;
+  border-color: #f55f55 !important;
+  box-shadow: none !important;
 }
-.btn-primary:hover {
-  background-color: #c65148;
-  border-color: #c65148;
+.btn-primary:hover,
+.btn-primary.active {
+  background-color: #c65148 !important;
+  border-color: #c65148 !important;
 }
 
 h1,

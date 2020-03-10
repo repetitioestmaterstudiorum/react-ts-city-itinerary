@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useContext } from "react";
+import React, { FC, Fragment, useContext, useState, useEffect } from "react";
 import { Accordion, Card } from "react-bootstrap";
 import { FaRegCheckSquare, FaThumbsUp } from "react-icons/fa";
 import { CurrentUserContext } from "../context/CurrentUserContext";
@@ -11,26 +11,74 @@ type ItineraryProps = {
 
 const Itinerary: FC<ItineraryProps> = props => {
   const [currentUser] = useContext(CurrentUserContext);
+  const [userLikesCurrentItinerary, setUserLikesCurrentItinerary] = useState<
+    boolean
+  >();
+  const [itineraryLikes, setItineraryLikes] = useState<number>(0);
+
+  const backendUrl: string =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:5000/"
+      : "https://blooming-beyond-66134.herokuapp.com/";
+
+  useEffect(() => {
+    setItineraryLikes(props.itinerary.likes); // set initial load likes
+    if (
+      currentUser &&
+      currentUser.likedItineraries.includes(props.itinerary._id)
+    ) {
+      setUserLikesCurrentItinerary(true); // check if current user likes current itinerary
+    }
+  }, []);
+
   currentUser &&
     console.log("currentUser.likedItineraries", currentUser.likedItineraries);
   console.log("props.itinerary._id", props.itinerary._id);
+  console.log("props.itinerary.likes", props.itinerary.likes);
 
   const handleLikeClick = () => {
-    console.log("clickedyclick");
-    const backendUrl =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:5000/"
-        : "https://blooming-beyond-66134.herokuapp.com/";
-    try {
-      const addLike = async () => {
-        const res = await axios.put(`${backendUrl}users/like`, {
-          userID: currentUser._id
-        });
-      };
-      addLike();
-    } catch (err) {
-      console.log(err);
-    }
+    console.log("handle like click");
+    setUserLikesCurrentItinerary(true);
+    setItineraryLikes(itineraryLikes + 1);
+    // try {
+    //   const addLike = async () => {
+    //     await axios.put(`${backendUrl}itineraries/increase-likes`, {
+    //       id: props.itinerary._id
+    //     });
+    //     // await axios.put(
+    //     //   `${backendUrl}users/add-liked-itinerary`,
+    //     //   {
+    //     //     userID: currentUser._id
+    //     //   }
+    //     // );
+    //   };
+    //   addLike();
+    // } catch (err) {
+    //   console.log(err);
+    // }
+  };
+
+  const handleDislikeClick = () => {
+    console.log("handle DISlike click");
+    setUserLikesCurrentItinerary(false);
+    setItineraryLikes(itineraryLikes - 1);
+    // setItineraryLikes(itineraryLikes + 1);
+    // try {
+    //   const addLike = async () => {
+    //     await axios.put(`${backendUrl}itineraries/increase-likes`, {
+    //       id: props.itinerary._id
+    //     });
+    //     // await axios.put(
+    //     //   `${backendUrl}users/add-liked-itinerary`,
+    //     //   {
+    //     //     userID: currentUser._id
+    //     //   }
+    //     // );
+    //   };
+    //   addLike();
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   return (
@@ -101,17 +149,34 @@ const Itinerary: FC<ItineraryProps> = props => {
                     </span>
                   </p>
                 ))}
-                <hr></hr>
-                <button
-                  className="btn btn-link align-middle mr-2"
-                  onClick={handleLikeClick}>
-                  <FaThumbsUp style={{ fontSize: "0.8rem" }} className="pr-2" />
-                  <span>Like</span>
-                </button>
-                <span className="align-middle pr-3">
-                  {props.itinerary.likes} Likes
-                </span>
-                <hr></hr>
+                {/* <hr className="mb-1"></hr> */}
+                <div className="alert alert-secondary pt-1 pb-1" role="alert">
+                  {userLikesCurrentItinerary ? (
+                    <button
+                      className="btn btn-sm btn-primary active align-middle mr-3"
+                      onClick={handleDislikeClick}>
+                      <FaThumbsUp
+                        style={{ fontSize: "0.8rem" }}
+                        className="pr-2"
+                      />
+                      <span>Like</span>
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-sm btn-primary align-middle mr-3"
+                      onClick={handleLikeClick}>
+                      <FaThumbsUp
+                        style={{ fontSize: "0.8rem" }}
+                        className="pr-2"
+                      />
+                      <span>Like</span>
+                    </button>
+                  )}
+                  <span className="align-middle pr-1">
+                    <strong>{itineraryLikes} Likes</strong>
+                  </span>
+                </div>
+                {/* <hr className="mt-1"></hr> */}
                 <span>Last Comments:</span>
                 <span className="d-block">coming soon..</span>
               </Card.Body>
