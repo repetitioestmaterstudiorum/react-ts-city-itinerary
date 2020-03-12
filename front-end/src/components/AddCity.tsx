@@ -55,7 +55,7 @@ const AddCity: React.FC = () => {
 
   return (
     <React.Fragment>
-      <h2 className="pt-2">Add City</h2>
+      <h2 className="pt-2">Your city is missing?</h2>
       <Accordion
         className="pb-1"
         style={{
@@ -64,7 +64,7 @@ const AddCity: React.FC = () => {
         }}>
         <Card>
           <Accordion.Toggle as={Card.Header} eventKey="0">
-            <span className="fancySpan">Click here to add a city!</span>
+            <span className="fancySpan">Add a city!</span>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
@@ -99,22 +99,15 @@ const AddCity: React.FC = () => {
                     </div>
                   </div>
                   <div className="d-flex justify-content-center mt-2">
-                    <button
-                      className="btn btn-link"
-                      style={{ border: "1px solid #f55f55" }}>
-                      Add
-                    </button>
+                    <button className="btn btn-primary">Add</button>
                   </div>
                 </form>
               ) : (
                 <React.Fragment>
                   <Link to="/log-in">
-                    <Button variant="primary" style={{ marginRight: ".25rem" }}>
-                      Log in
+                    <Button variant="link" style={{ marginRight: ".25rem" }}>
+                      You need to log in!
                     </Button>
-                  </Link>
-                  <Link to="/create-account">
-                    <Button variant="primary">Create Account</Button>
                   </Link>
                 </React.Fragment>
               )}

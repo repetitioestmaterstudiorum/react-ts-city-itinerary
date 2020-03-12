@@ -155,7 +155,7 @@ const Itinerary: FC<ItineraryProps> = props => {
                           style={{ fontSize: "0.8rem" }}
                           className="pr-2"
                         />
-                        <span>Like</span>
+                        <span>Liked</span>
                       </button>
                     ) : (
                       <button
@@ -170,16 +170,16 @@ const Itinerary: FC<ItineraryProps> = props => {
                     )
                   ) : (
                     <Link to="/log-in" className="pr-2">
-                      <Button variant="primary">Log in to like</Button>
+                      <Button variant="link">Log in to like</Button>
                     </Link>
                   )}
                   <span className="align-middle pr-1">
                     <strong>{itineraryLikes} Likes</strong>
                   </span>
                 </div>
-                {/* <hr className="mt-2" style={{ width: "15%" }}></hr>
+                <hr className="mt-2" style={{ width: "15%" }}></hr>
                 <span>Last Comments:</span>
-                <span className="d-block">coming soon..</span> */}
+                <span className="d-block">coming soon..</span>
               </Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle

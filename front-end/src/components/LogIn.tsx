@@ -9,6 +9,8 @@ import React, {
 import { CurrentUserContext } from "../context/CurrentUserContext";
 import axios from "axios";
 import Browse from "./Browse";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const LogIn: FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -96,28 +98,25 @@ const LogIn: FC = () => {
                 </div>
               </div>
               <div className="d-flex justify-content-center mt-2">
-                <button
-                  className="btn btn-link"
-                  style={{
-                    border: "1px solid #f55f55"
-                  }}>
-                  Log in
-                </button>
+                <button className="btn btn-primary">Log in</button>
               </div>
             </form>
             {process.env.NODE_ENV === "development" && (
               <Fragment>
-                <h2 className="pt-3">Dev Test Login</h2>
+                <h3 className="pt-3">Dev Test Login</h3>
                 <button
-                  className="btn btn-link"
-                  style={{
-                    border: "1px solid #f55f55"
-                  }}
+                  className="btn btn-sm btn-primary"
                   onClick={handleTestLogin}>
                   Fill the form
                 </button>
               </Fragment>
             )}
+            <h2 className="pt-3">Not registered yet?</h2>
+            <Link to="/create-account">
+              <Button variant="link" style={{ marginRight: ".25rem" }}>
+                Create an account
+              </Button>
+            </Link>
           </Fragment>
         )}
       </div>

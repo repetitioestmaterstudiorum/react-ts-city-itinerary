@@ -120,7 +120,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
 
   return (
     <Fragment>
-      <h3 className="pt-3">Add an itinerary</h3>
+      <h3 className="pt-3">Add an itinerary:</h3>
       <Accordion
         className="pb-2"
         style={{
@@ -129,10 +129,10 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
         }}>
         <Card>
           <Accordion.Toggle as={Card.Header} eventKey="0">
-            <span className="fancySpan">Click here to add an itinerary!</span>
+            <span className="fancySpan">Click here to add!</span>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
-            <Card.Body style={{ padding: "10px" }}>
+            <Card.Body>
               {currentUser && currentUser.email ? (
                 <div className="container mt-2 mb-2">
                   <div className="row">
@@ -160,7 +160,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                     </label>
                   </div>
                   <div className="row mb-2">
-                    <div className="col col-7 pl-2 pr-0">
+                    <div className="col col-9 pl-2 pr-0">
                       <input
                         className="form-control"
                         id="hashtagField"
@@ -169,12 +169,9 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                         onChange={updateHashtagField}
                       />
                     </div>
-                    <div className="col col-5 p-0">
-                      <button
-                        onClick={addHashtag}
-                        className="btn btn-link"
-                        style={{ border: "1px solid #f55f55" }}>
-                        Add hashtag
+                    <div className="col col-3 p-0">
+                      <button onClick={addHashtag} className="btn btn-primary">
+                        Add
                       </button>
                     </div>
                   </div>
@@ -201,7 +198,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                     </label>
                   </div>
                   <div className="row mb-2">
-                    <div className="col col-7 pl-2 pr-0">
+                    <div className="col col-9 pl-2 pr-0">
                       <input
                         className="form-control"
                         id="activityField"
@@ -210,12 +207,9 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                         onChange={updateActivityField}
                       />
                     </div>
-                    <div className="col col-5 p-0">
-                      <button
-                        onClick={addActivity}
-                        className="btn btn-link"
-                        style={{ border: "1px solid #f55f55" }}>
-                        Add activity
+                    <div className="col col-3 p-0">
+                      <button onClick={addActivity} className="btn btn-primary">
+                        Add
                       </button>
                     </div>
                   </div>
@@ -234,8 +228,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                     <div className="col pl-2 pr-2">
                       <button
                         onClick={addItinerary}
-                        className="btn btn-link"
-                        style={{ border: "1px solid #f55f55" }}>
+                        className="btn btn-primary">
                         Add itinerary!
                       </button>
                     </div>
@@ -244,12 +237,9 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
               ) : (
                 <Fragment>
                   <Link to="/log-in">
-                    <Button variant="primary" style={{ marginRight: ".25rem" }}>
-                      Log in
+                    <Button variant="link" style={{ marginRight: ".25rem" }}>
+                      You need to log in!
                     </Button>
-                  </Link>
-                  <Link to="/create-account">
-                    <Button variant="primary">Create Account</Button>
                   </Link>
                 </Fragment>
               )}

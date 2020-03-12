@@ -144,14 +144,14 @@ const Header: FC = () => {
               <Modal.Body>
                 <Link to="/log-in">
                   <Button
-                    variant="primary"
+                    variant="link"
                     onClick={handleHideModal}
                     style={{ marginRight: ".25rem" }}>
                     Log in
                   </Button>
                 </Link>
                 <Link to="/create-account">
-                  <Button variant="primary" onClick={handleHideModal}>
+                  <Button variant="link" onClick={handleHideModal}>
                     Create Account
                   </Button>
                 </Link>

@@ -8,6 +8,8 @@ import React, {
 import { CurrentUserContext } from "../context/CurrentUserContext";
 import axios from "axios";
 import Browse from "./Browse";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const CreateAccount: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -135,12 +137,18 @@ const CreateAccount: React.FC = () => {
               </div>
               <div className="d-flex justify-content-center mt-2">
                 <button
-                  className="btn btn-link"
+                  className="btn btn-primary"
                   style={{ border: "1px solid #f55f55" }}>
                   Create Account
                 </button>
               </div>
             </form>
+            <h2 className="pt-3">Already have an account?</h2>
+            <Link to="/log-in">
+              <Button variant="link" style={{ marginRight: ".25rem" }}>
+                Go to Login
+              </Button>
+            </Link>
           </React.Fragment>
         )}
       </div>

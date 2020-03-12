@@ -12,6 +12,9 @@ a,
 .btn-link {
   color: #f55f55;
 }
+.btn-link {
+  border: 1px solid rgb(245, 95, 85);
+}
 a:hover,
 .btn-link:hover {
   color: #c65148;
@@ -22,7 +25,7 @@ a:hover,
   border-color: #f55f55 !important;
   box-shadow: none !important;
 }
-.btn-primary:hover,
+/* .btn-primary:hover, */
 .btn-primary.active {
   background-color: #c65148 !important;
   border-color: #c65148 !important;

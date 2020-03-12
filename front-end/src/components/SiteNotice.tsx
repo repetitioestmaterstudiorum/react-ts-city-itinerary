@@ -23,7 +23,6 @@ const SiteNotice: React.FC = props => {
         We reserve all rights, we don't take any responsibilities for contents,
         we use all kinds of cookies, and we use your data!
       </p>
-      <p>You have been warned. Please don't cry.</p>
       <p>
         <strong>Last changed: 28.01.2020</strong>
       </p>
