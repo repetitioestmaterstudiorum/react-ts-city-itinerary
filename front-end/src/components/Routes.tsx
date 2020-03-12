@@ -7,6 +7,7 @@ import LogIn from "./LogIn";
 import CreateAccount from "./CreateAccount";
 import Cities from "./Cities";
 import CityDetail from "./CityDetail";
+import Profile from "./Profile";
 import Footer from "./layout/Footer";
 import { CityProvider } from "../context/CityContext";
 import { CurrentUserProvider } from "../context/CurrentUserContext";
@@ -19,6 +20,7 @@ const Routes: React.FC = () => {
       <Route exact path="/site-notice" component={SiteNotice} />
       <Route exact path="/create-account" component={CreateAccount} />
       <Route exact path="/log-in" component={LogIn} />
+      <Route exact path="/profile" component={Profile} />
       <CityProvider>
         <Route exact path="/cities" component={Cities} />
         <Route path="/cities/:name" component={CityDetail} />

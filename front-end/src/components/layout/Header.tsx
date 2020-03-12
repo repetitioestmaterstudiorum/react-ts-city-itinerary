@@ -55,14 +55,24 @@ const Header: FC = () => {
                 </NavLink>
                 <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
                 {currentUser && currentUser.email ? (
-                  <NavLink
-                    to="/"
-                    exact
-                    onClick={handleLogout}
-                    className="dropdown-item"
-                    activeClassName="">
-                    Logout
-                  </NavLink>
+                  <Fragment>
+                    <NavLink
+                      to="/profile"
+                      exact
+                      onClick={handleHideMenu}
+                      className="dropdown-item"
+                      activeClassName="active">
+                      My Profile
+                    </NavLink>
+                    <NavLink
+                      to="#"
+                      exact
+                      onClick={handleLogout}
+                      className="dropdown-item"
+                      activeClassName="">
+                      Logout
+                    </NavLink>
+                  </Fragment>
                 ) : (
                   <Fragment>
                     <NavLink
@@ -129,7 +139,12 @@ const Header: FC = () => {
                 </h3>
               </Modal.Header>
               <Modal.Body>
-                <Link to="/">
+                <Link to="/profile">
+                  <Button variant="link" onClick={handleHideModal}>
+                    My Profile
+                  </Button>
+                </Link>
+                <Link to="#">
                   <Button variant="primary" onClick={handleLogout}>
                     Logout
                   </Button>
