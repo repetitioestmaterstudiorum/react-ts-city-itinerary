@@ -9,8 +9,12 @@ body {
 }
 
 a,
-.btn-link {
+.btn-link,
+.text-primary {
   color: #f55f55;
+}
+.text-primary {
+  color: #f55f55 !important;
 }
 .btn-link {
   border: 1px solid rgb(245, 95, 85);

@@ -30,7 +30,7 @@ const Itinerary: FC<ItineraryProps> = props => {
       currentUser.likedItineraries.includes(props.itinerary._id)
     ) {
       setUserLikesCurrentItinerary(true); // check if current user likes current itinerary
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   const handleLikeClick = () => {

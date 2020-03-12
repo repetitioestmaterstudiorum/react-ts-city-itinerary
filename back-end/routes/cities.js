@@ -16,6 +16,9 @@ router.get("/all", (req, res) => {
   cityModel
     .find({})
     .then(cities => {
+      // setTimeout(function() {
+      //   res.send(cities);
+      // }, 18000);
       res.send(cities);
     })
     .catch(err => console.log(err));

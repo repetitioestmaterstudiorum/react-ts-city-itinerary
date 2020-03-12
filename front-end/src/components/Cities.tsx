@@ -1,4 +1,6 @@
 import React, {
+  FC,
+  Fragment,
   useEffect,
   useState,
   ChangeEvent,
@@ -9,8 +11,9 @@ import City from "./City";
 import AddCity from "./AddCity";
 import { CityContext } from "../context/CityContext";
 import { Form } from "react-bootstrap";
+import Loader from "./Loader";
 
-const Cities: React.FC = () => {
+const Cities: FC = () => {
   const [cities] = useContext(CityContext);
   const [filteredCities, setFilteredCities] = useState<Cities>([]);
 
@@ -36,39 +39,50 @@ const Cities: React.FC = () => {
   return (
     <section className="container text-center pt-1">
       <h1>Cities</h1>
-      <Form
-        style={{
-          width: "60%",
-          margin: "auto"
-        }}
-        onSubmit={handleOnSubmit}>
-        <div className="d-flex justify-content-center">
-          <div className="flex-shrink-0">
-            <label className="col-form-label mr-1" htmlFor="city">
-              <span className="fancySpan">Search Cities:</span>
-            </label>
+      {cities ? (
+        <Fragment>
+          <Form
+            style={{
+              width: "60%",
+              margin: "auto"
+            }}
+            onSubmit={handleOnSubmit}>
+            <div className="d-flex justify-content-center">
+              <div className="flex-shrink-0">
+                <label className="col-form-label mr-1" htmlFor="city">
+                  <span className="fancySpan">Search Cities:</span>
+                </label>
+              </div>
+              <div className="flex-shrink-0">
+                <input
+                  placeholder=".. by country or city .."
+                  className="form-control"
+                  type="text"
+                  onChange={handleOnChange}
+                />
+              </div>
+            </div>
+          </Form>
+          <div className="mt-2">
+            <div className="d-flex flex-wrap justify-content-center">
+              {filteredCities &&
+                filteredCities
+                  .sort((a: City, b: City) => {
+                    return a.name > b.name ? 1 : -1;
+                  })
+                  .map(city => <City key={city._id} city={city} />)}
+            </div>
           </div>
-          <div className="flex-shrink-0">
-            <input
-              placeholder=".. by country or city .."
-              className="form-control"
-              type="text"
-              onChange={handleOnChange}
-            />
-          </div>
-        </div>
-      </Form>
-      <div className="mt-2">
-        <div className="d-flex flex-wrap justify-content-center">
-          {filteredCities &&
-            filteredCities
-              .sort((a: City, b: City) => {
-                return a.name > b.name ? 1 : -1;
-              })
-              .map(city => <City key={city._id} city={city} />)}
-        </div>
-      </div>
-      <AddCity />
+          <AddCity />
+        </Fragment>
+      ) : (
+        <Fragment>
+          <Loader />
+          <p className="pt-3" style={{ fontStyle: "italic" }}>
+            This might take a while if the heroku container is sleeping!!
+          </p>
+        </Fragment>
+      )}
     </section>
   );
 };

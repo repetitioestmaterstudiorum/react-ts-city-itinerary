@@ -1,9 +1,10 @@
-import React, { FC, useEffect, useState, useContext } from "react";
+import React, { FC, Fragment, useEffect, useState, useContext } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import AddItinerary from "./AddItinerary";
 import { CityContext } from "../context/CityContext";
 import Itineraries from "./Itineraries";
 import axios from "axios";
+import Loader from "./Loader";
 
 const CityDetail: FC<RouteComponentProps<City>> = props => {
   const [currentCity, setCurrentCity] = useState<City>();
@@ -25,7 +26,7 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
       getCurrentCity();
     } catch (err) {
       console.log(err);
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cities]);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
       getCityItineraries();
     } catch (err) {
       console.log(err);
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addNewItinerary = (itinerary: Itinerary) => {
@@ -49,34 +50,40 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
 
   return (
     <div className="container pt-1 pb-1 text-center">
-      {currentCity && (
-        <div>
-          <h1>
-            <span style={{ textDecoration: "underline" }}>
-              {currentCity.name}
-            </span>
-            {", "}
-            {currentCity.country}
-          </h1>
-          <img
-            src={currentCity.img}
-            alt={`${currentCity.name}, ${currentCity.country}`}></img>
-        </div>
-      )}
-      <div style={{ maxWidth: "400px", margin: "auto" }}>
-        <h2 className="pb-2 pt-3">Available MYtineraries:</h2>
-        {cityItineraries && (
-          <Itineraries
-            cityName={props.match.params.name}
-            cityItineraries={cityItineraries}
-          />
-        )}
-      </div>
-      {currentCity && (
-        <AddItinerary
-          cityName={props.match.params.name}
-          addNewItinerary={addNewItinerary}
-        />
+      {currentCity ? (
+        <Fragment>
+          {currentCity && (
+            <div>
+              <h1>
+                <span style={{ textDecoration: "underline" }}>
+                  {currentCity.name}
+                </span>
+                {", "}
+                {currentCity.country}
+              </h1>
+              <img
+                src={currentCity.img}
+                alt={`${currentCity.name}, ${currentCity.country}`}></img>
+            </div>
+          )}
+          <div style={{ maxWidth: "400px", margin: "auto" }}>
+            <h2 className="pb-2 pt-3">Available MYtineraries:</h2>
+            {cityItineraries && (
+              <Itineraries
+                cityName={props.match.params.name}
+                cityItineraries={cityItineraries}
+              />
+            )}
+          </div>
+          {currentCity && (
+            <AddItinerary
+              cityName={props.match.params.name}
+              addNewItinerary={addNewItinerary}
+            />
+          )}
+        </Fragment>
+      ) : (
+        <Loader />
       )}
     </div>
   );

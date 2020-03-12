@@ -25,11 +25,11 @@ export const CurrentUserProvider: React.FC = props => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const storageContent = localStorage.getItem("token");
     if (storageContent !== "undefined" && storageContent !== null) {
       if (token !== storageContent) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         setToken(storageContent);
       }
     }

@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect, useState, useContext } from "react";
+import React, { FC, Fragment } from "react";
 import Itinerary from "./Itinerary";
 
 interface CityAndItineraryProps {
