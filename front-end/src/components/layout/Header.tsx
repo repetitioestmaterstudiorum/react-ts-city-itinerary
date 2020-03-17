@@ -1,11 +1,15 @@
 import React, { Fragment, FC, useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle, FaBars } from "react-icons/fa";
 import { Modal, Button, Dropdown } from "react-bootstrap";
 import "./Header.css";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
+import BackButton from "../BackButton";
 
 const Header: FC = () => {
+  let history = useHistory();
+  console.log("history.length", history.length);
   const [currentUser, setToken] = useContext(CurrentUserContext);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -33,16 +37,32 @@ const Header: FC = () => {
               <Dropdown.Toggle
                 variant="dark"
                 id="dropdown-basic"
-                onClick={showMenu ? handleHideMenu : handleShowMenu}>
+                onClick={showMenu ? handleHideMenu : handleShowMenu}
+              >
                 <FaBars />
               </Dropdown.Toggle>
               <Dropdown.Menu>
+                {history.length > 2 && (
+                  <Fragment>
+                    <span
+                      style={{
+                        padding: ".5rem 0 .25rem 0",
+                        textAlign: "center"
+                      }}
+                      onClick={handleHideMenu}
+                    >
+                      <BackButton />
+                    </span>
+                    <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
+                  </Fragment>
+                )}
                 <NavLink
                   to="/"
                   exact
                   onClick={handleHideMenu}
                   className="dropdown-item"
-                  activeClassName="active">
+                  activeClassName="active"
+                >
                   Home
                 </NavLink>
                 <NavLink
@@ -50,7 +70,8 @@ const Header: FC = () => {
                   exact
                   onClick={handleHideMenu}
                   className="dropdown-item"
-                  activeClassName="active">
+                  activeClassName="active"
+                >
                   Browse cities
                 </NavLink>
                 <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
@@ -61,7 +82,8 @@ const Header: FC = () => {
                       exact
                       onClick={handleHideMenu}
                       className="dropdown-item"
-                      activeClassName="active">
+                      activeClassName="active"
+                    >
                       My Profile
                     </NavLink>
                     <NavLink
@@ -69,7 +91,8 @@ const Header: FC = () => {
                       exact
                       onClick={handleLogout}
                       className="dropdown-item"
-                      activeClassName="">
+                      activeClassName=""
+                    >
                       Logout
                     </NavLink>
                   </Fragment>
@@ -80,7 +103,8 @@ const Header: FC = () => {
                       exact
                       onClick={handleHideMenu}
                       className="dropdown-item"
-                      activeClassName="active">
+                      activeClassName="active"
+                    >
                       Log in
                     </NavLink>
                     <NavLink
@@ -88,7 +112,8 @@ const Header: FC = () => {
                       exact
                       onClick={handleHideMenu}
                       className="dropdown-item"
-                      activeClassName="active">
+                      activeClassName="active"
+                    >
                       Create account
                     </NavLink>
                   </Fragment>
@@ -99,7 +124,8 @@ const Header: FC = () => {
                   exact
                   onClick={handleHideMenu}
                   className="dropdown-item"
-                  activeClassName="active">
+                  activeClassName="active"
+                >
                   Site Notice
                 </NavLink>
               </Dropdown.Menu>
@@ -116,7 +142,8 @@ const Header: FC = () => {
               <img
                 src={currentUser.profilePicture}
                 alt={currentUser.email}
-                onClick={handleShowModal}></img>
+                onClick={handleShowModal}
+              ></img>
             ) : (
               <FaUserCircle onClick={handleShowModal} />
             )}
@@ -129,7 +156,8 @@ const Header: FC = () => {
           dialogClassName="modalStyle"
           onHide={handleHideModal}
           animation={false}
-          aria-labelledby="example-modal-sizes-title-sm">
+          aria-labelledby="example-modal-sizes-title-sm"
+        >
           {currentUser && currentUser.email ? (
             <Fragment>
               <Modal.Header>
@@ -161,7 +189,8 @@ const Header: FC = () => {
                   <Button
                     variant="link"
                     onClick={handleHideModal}
-                    style={{ marginRight: ".25rem" }}>
+                    style={{ marginRight: ".25rem" }}
+                  >
                     Log in
                   </Button>
                 </Link>
