@@ -15,7 +15,7 @@ export const CityProvider: React.FC = props => {
   const [cities, setCities] = useState<Cities>();
 
   useEffect(() => {
-    const backendUrl =
+    const backendUrl: string =
       process.env.NODE_ENV === "development"
         ? "http://localhost:5000/"
         : "https://blooming-beyond-66134.herokuapp.com/";

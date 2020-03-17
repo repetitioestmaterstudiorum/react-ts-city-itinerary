@@ -67,7 +67,7 @@ const Profile: FC = () => {
                     <tr>
                       <td className="text-right">Liked Itineraries: </td>
                       <td className="text-left">
-                        {likedItineraries &&
+                        {likedItineraries && likedItineraries.length > 0 ? (
                           likedItineraries.map(
                             (itinerary: Itinerary, index: number) => {
                               return (
@@ -81,7 +81,10 @@ const Profile: FC = () => {
                                 </a>
                               );
                             }
-                          )}
+                          )
+                        ) : (
+                          <span>-</span>
+                        )}
                       </td>
                     </tr>
                   </tbody>
@@ -89,14 +92,18 @@ const Profile: FC = () => {
               </div>
             </div>
           </div>
-          <button className="btn btn-primary pb-2" onClick={handleLogout}>
+          <button className="btn btn-primary mb-2" onClick={handleLogout}>
             Log out
           </button>
         </Fragment>
       ) : (
         <Fragment>
           <Link to="/log-in">
-            <Button variant="link" style={{ marginRight: ".25rem" }}>
+            <Button
+              className="mt-2 mb-1"
+              variant="link"
+              style={{ marginRight: ".25rem" }}
+            >
               Log in!
             </Button>
           </Link>
