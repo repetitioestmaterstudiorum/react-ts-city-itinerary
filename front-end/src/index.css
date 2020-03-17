@@ -76,3 +76,10 @@ p {
 .dropdown-item.active:hover {
   background-color: #f55f55;
 }
+
+.table {
+  margin-top: 0.75rem;
+}
+.table td {
+  padding: 0.25rem;
+}

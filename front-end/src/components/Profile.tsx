@@ -1,10 +1,11 @@
-import React, { FC, Fragment, useContext } from "react";
+import React, { FC, Fragment, useContext, useState } from "react";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 const Profile: FC = () => {
   const [currentUser] = useContext(CurrentUserContext);
+  const [likedItineraries] = useState<Itineraries>();
 
   console.log("currentUser", currentUser);
 
@@ -21,7 +22,8 @@ const Profile: FC = () => {
                 border: "1px solid gray",
                 maxWidth: "70px"
               }}
-              alt={currentUser.email}></img>
+              alt={currentUser.email}
+            ></img>
           </div>
           <div className="col-sm-9">
             <div>
@@ -32,8 +34,14 @@ const Profile: FC = () => {
                     <td className="text-left">{currentUser.email}</td>
                   </tr>
                   <tr>
-                    <td className="text-right">Username: </td>
-                    <td className="text-left">...</td>
+                    <td className="text-right">Name: </td>
+                    <td className="text-left">
+                      {currentUser.firstName} {currentUser.lastName}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-right">Liked Itineraries: </td>
+                    <td className="text-left">{likedItineraries}</td>
                   </tr>
                 </tbody>
               </table>

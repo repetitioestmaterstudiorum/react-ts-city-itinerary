@@ -8,6 +8,15 @@ const jwt = require("jsonwebtoken");
 const jwtKey = process.env.JWT_KEY;
 const passport = require("passport");
 
+// function to turn anything to Title Case (first letter of every word is a capital letter)
+const toTitleCase = phrase => {
+  return phrase
+    .toLowerCase()
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 // post new user
 router.post(
   "/create-account",
@@ -42,6 +51,8 @@ router.post(
       // if all is fine, create a new user
       const newUser = new userModel({
         email: req.body.email,
+        firstName: toTitleCase(req.body.firstName),
+        lastName: toTitleCase(req.body.lastName),
         password: req.body.password,
         profilePicture: req.body.profilePicture
       });
@@ -89,10 +100,16 @@ router.post("/log-in", (req, res) => {
                 token: `There was an error signing the JWT token: ${err}`
               });
             } else {
-              res.json({
-                success: true,
-                token: token
-              });
+              setTimeout(function() {
+                res.json({
+                  success: true,
+                  token: token
+                });
+              }, 1800);
+              // res.json({
+              //   success: true,
+              //   token: token
+              // });
             }
           });
         } else {

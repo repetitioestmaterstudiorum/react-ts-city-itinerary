@@ -28,6 +28,8 @@ type Itineraries = Itinerary[];
 interface User {
   _id: string;
   email: string;
+  firstName: string;
+  lastName: string;
   password: string;
   passwordConfirmation?: string;
   profilePicture: string;
