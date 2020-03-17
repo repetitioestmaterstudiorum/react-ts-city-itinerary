@@ -49,7 +49,6 @@ const CreateAccount: FC = () => {
   };
 
   const addUser = (e: FormEvent<HTMLFormElement>) => {
-    setIsLoading(true);
     e.preventDefault();
     if (
       !email ||
@@ -60,6 +59,7 @@ const CreateAccount: FC = () => {
     ) {
       alert("Enter a value in all fields!");
     } else {
+      setIsLoading(true);
       const backendUrl =
         process.env.NODE_ENV === "development"
           ? "http://localhost:5000/"

@@ -31,12 +31,11 @@ const LogIn: FC = () => {
   };
 
   const handleLogin = (e: FormEvent<HTMLFormElement>) => {
-    setIsLoading(true);
     e && e.preventDefault();
     if (!email || !password) {
       alert("Enter email and password!");
     } else {
-      console.log("isLoading", isLoading);
+      setIsLoading(true);
       const logIn = async () => {
         try {
           const res = await axios.post(`${backendUrl}users/log-in`, {
