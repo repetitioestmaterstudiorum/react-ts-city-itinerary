@@ -100,16 +100,16 @@ router.post("/log-in", (req, res) => {
                 token: `There was an error signing the JWT token: ${err}`
               });
             } else {
-              setTimeout(function() {
-                res.json({
-                  success: true,
-                  token: token
-                });
-              }, 1800);
-              // res.json({
-              //   success: true,
-              //   token: token
-              // });
+              // setTimeout(function() {
+              //   res.json({
+              //     success: true,
+              //     token: token
+              //   });
+              // }, 1800);
+              res.json({
+                success: true,
+                token: token
+              });
             }
           });
         } else {

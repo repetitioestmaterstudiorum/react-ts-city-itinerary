@@ -23,7 +23,7 @@ router.get("/all", (req, res) => {
 });
 
 // get liked itineraries based on an array of IDs
-router.get("/:userId", (req, res) => {
+router.get("/per-user/:userId", (req, res) => {
   userModel
     .findOne({ _id: req.params.userId })
     .then(user => {
@@ -37,7 +37,7 @@ router.get("/:userId", (req, res) => {
           res.send(itineraries);
         });
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log("********" + err));
 });
 
 // get all itineraries from a specific city

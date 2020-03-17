@@ -17,7 +17,7 @@ const Profile: FC = () => {
       try {
         const getLikedItineraries = async () => {
           const res = await axios.get(
-            `${backendUrl}itineraries/${currentUser._id}`
+            `${backendUrl}itineraries/per-user/${currentUser._id}`
           );
           setLikedItineraries(res.data);
         };

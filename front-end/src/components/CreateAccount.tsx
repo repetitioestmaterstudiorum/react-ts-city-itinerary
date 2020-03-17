@@ -51,8 +51,14 @@ const CreateAccount: FC = () => {
   const addUser = (e: FormEvent<HTMLFormElement>) => {
     setIsLoading(true);
     e.preventDefault();
-    if (!email || !password || !passwordConfirmation) {
-      alert("Enter an email, password and password confirmation!");
+    if (
+      !email ||
+      !firstName ||
+      !lastName ||
+      !password ||
+      !passwordConfirmation
+    ) {
+      alert("Enter a value in all fields!");
     } else {
       const backendUrl =
         process.env.NODE_ENV === "development"

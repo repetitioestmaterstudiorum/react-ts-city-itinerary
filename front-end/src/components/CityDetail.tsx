@@ -63,7 +63,8 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
               </h1>
               <img
                 src={currentCity.img}
-                alt={`${currentCity.name}, ${currentCity.country}`}></img>
+                alt={`${currentCity.name}, ${currentCity.country}`}
+              ></img>
             </div>
           )}
           <div style={{ maxWidth: "400px", margin: "auto" }}>
