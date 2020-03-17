@@ -1,13 +1,32 @@
-import React, { FC, Fragment, useContext, useState } from "react";
+import React, { FC, Fragment, useContext, useState, useEffect } from "react";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import axios from "axios";
 
 const Profile: FC = () => {
   const [currentUser] = useContext(CurrentUserContext);
-  const [likedItineraries] = useState<Itineraries>();
+  const [likedItineraries, setLikedItineraries] = useState<Itineraries>();
 
-  console.log("currentUser", currentUser);
+  useEffect(() => {
+    if (currentUser) {
+      const backendUrl: string =
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:5000/"
+          : "https://blooming-beyond-66134.herokuapp.com/";
+      try {
+        const getLikedItineraries = async () => {
+          const res = await axios.get(
+            `${backendUrl}itineraries/${currentUser._id}`
+          );
+          setLikedItineraries(res.data);
+        };
+        getLikedItineraries();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, [currentUser]);
 
   return (
     <div className="container pt-1 pb-1 text-center">
@@ -41,7 +60,23 @@ const Profile: FC = () => {
                   </tr>
                   <tr>
                     <td className="text-right">Liked Itineraries: </td>
-                    <td className="text-left">{likedItineraries}</td>
+                    <td className="text-left">
+                      {likedItineraries &&
+                        likedItineraries.map(
+                          (itinerary: Itinerary, index: number) => {
+                            return (
+                              <a
+                                key={index}
+                                href={`cities/${itinerary.city.toLowerCase()}`}
+                              >
+                                <span className="d-block">
+                                  {itinerary.name}
+                                </span>
+                              </a>
+                            );
+                          }
+                        )}
+                    </td>
                   </tr>
                 </tbody>
               </table>

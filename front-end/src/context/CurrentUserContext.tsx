@@ -5,13 +5,13 @@ export const CurrentUserContext = createContext([{}] as any);
 
 export const CurrentUserProvider: React.FC = props => {
   const [currentUser, setCurrentUser] = useState<User>();
-  const [token, setToken] = useState();
+  const [token, setToken] = useState<string>();
   const backendUrl: string =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"
       : "https://blooming-beyond-66134.herokuapp.com/";
 
-  const fetchUser = async (token: object) => {
+  const fetchUser = async (token: string) => {
     try {
       const res = await axios.get(`${backendUrl}users/auth`, {
         headers: {
@@ -43,7 +43,8 @@ export const CurrentUserProvider: React.FC = props => {
 
   return (
     <CurrentUserContext.Provider
-      value={[currentUser, setCurrentUser, setToken]}>
+      value={[currentUser, setCurrentUser, setToken]}
+    >
       {props.children}
     </CurrentUserContext.Provider>
   );

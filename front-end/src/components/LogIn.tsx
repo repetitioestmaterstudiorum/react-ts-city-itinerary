@@ -39,7 +39,7 @@ const LogIn: FC = () => {
       console.log("isLoading", isLoading);
       const logIn = async () => {
         try {
-          let res = await axios.post(`${backendUrl}users/log-in`, {
+          const res = await axios.post(`${backendUrl}users/log-in`, {
             email,
             password
           });

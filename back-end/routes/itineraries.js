@@ -1,6 +1,7 @@
 const express = require("express");
 const itineraryModel = require("../models/itineraryModel");
 const router = express.Router();
+const userModel = require("../models/userModel");
 
 // function to turn anything to Title Case (first letter of every word is a capital letter)
 const toTitleCase = phrase => {
@@ -17,6 +18,24 @@ router.get("/all", (req, res) => {
     .find({})
     .then(itineraries => {
       res.send(itineraries);
+    })
+    .catch(err => console.log(err));
+});
+
+// get liked itineraries based on an array of IDs
+router.get("/:userId", (req, res) => {
+  userModel
+    .findOne({ _id: req.params.userId })
+    .then(user => {
+      itineraryModel
+        .find({
+          _id: {
+            $in: user.likedItineraries
+          }
+        })
+        .then(itineraries => {
+          res.send(itineraries);
+        });
     })
     .catch(err => console.log(err));
 });
