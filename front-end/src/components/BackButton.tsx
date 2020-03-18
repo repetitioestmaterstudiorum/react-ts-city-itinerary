@@ -15,7 +15,7 @@ const BackButton: FC = () => {
         onClick={() => history.goBack()}
       >
         <FaBackward />
-        {"Back"}
+        {" Back"}
       </Link>
     </Fragment>
   );
