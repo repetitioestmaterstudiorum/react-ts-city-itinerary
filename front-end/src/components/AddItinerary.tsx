@@ -29,7 +29,6 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
   const cityName: string = props.cityName;
   // to do later:
   const likes: number = 0;
-  const profileName: string = "John Doe";
   const profilePicture: string =
     "https://via.placeholder.com/100x100.png?text=:)";
 
@@ -98,7 +97,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
           const res = await axios.post(`${backendUrl}itineraries/`, {
             name,
             city: cityName,
-            profileName,
+            profileName: `${currentUser.firstName} ${currentUser.lastName}`,
             profilePicture,
             likes,
             hashtags: hashtagArray,
@@ -126,7 +125,8 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
         style={{
           maxWidth: "330px",
           margin: "10px auto 0"
-        }}>
+        }}
+      >
         <Card>
           <Accordion.Toggle as={Card.Header} eventKey="0">
             <span className="fancySpan">Click here to add!</span>
@@ -155,7 +155,8 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                   <div className="row">
                     <label
                       className="col pl-2 pr-2 pt-0 col-form-label"
-                      htmlFor="hashtagField">
+                      htmlFor="hashtagField"
+                    >
                       Enter hashtags*:
                     </label>
                   </div>
@@ -193,7 +194,8 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                   <div className="row">
                     <label
                       className="col pl-2 pr-2 pt-0 col-form-label"
-                      htmlFor="activityField">
+                      htmlFor="activityField"
+                    >
                       Enter activities*:
                     </label>
                   </div>
@@ -228,7 +230,8 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                     <div className="col pl-2 pr-2">
                       <button
                         onClick={addItinerary}
-                        className="btn btn-primary">
+                        className="btn btn-primary"
+                      >
                         Add itinerary!
                       </button>
                     </div>
