@@ -23,6 +23,16 @@ const AddCity: React.FC = () => {
     return /\d/.test(string);
   };
 
+  // const uploadImage = (e: FormEvent<HTMLFormElement>) => {
+  //   fetch("http://localhost:5000/", {
+  //     method: "POST",
+  //     body: formData
+  //   }).then(r => {
+  //     console.log(r);
+  //   });
+  //   console.log(file[0]);
+  // };
+
   const addCityCountryPair = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (containsANumber(name) || containsANumber(country)) {
@@ -61,7 +71,8 @@ const AddCity: React.FC = () => {
         style={{
           maxWidth: "400px",
           margin: "10px auto 0"
-        }}>
+        }}
+      >
         <Card>
           <Accordion.Toggle as={Card.Header} eventKey="0">
             <span className="fancySpan">Add a city!</span>
@@ -98,6 +109,11 @@ const AddCity: React.FC = () => {
                       />
                     </div>
                   </div>
+                  <input
+                    type="file"
+                    className="form-control-file"
+                    id="fileUploadInput"
+                  />
                   <div className="d-flex justify-content-center mt-2">
                     <button className="btn btn-primary">Add</button>
                   </div>
