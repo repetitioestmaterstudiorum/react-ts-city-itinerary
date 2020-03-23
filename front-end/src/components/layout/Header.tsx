@@ -160,9 +160,13 @@ const Header: FC = () => {
           {currentUser && currentUser.email ? (
             <Fragment>
               <Modal.Header>
-                <h3>
-                  You are currently logged in as{" "}
-                  {currentUser && currentUser.email}
+                <h3 style={{ margin: "auto" }}>
+                  Logged in as:{" "}
+                  {currentUser && (
+                    <span>
+                      {currentUser.firstName + " " + currentUser.lastName}
+                    </span>
+                  )}
                 </h3>
               </Modal.Header>
               <Modal.Body>

@@ -36,7 +36,6 @@ const AddCity: React.FC = () => {
       return;
     }
     if (e.target.files[0].name.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/)) {
-      console.log("e.target.files[0]", e.target.files[0]);
       setSelectedImage(e.target.files[0]);
       setFiletypeAlertDone(false);
     } else {
@@ -57,7 +56,6 @@ const AddCity: React.FC = () => {
           `${backendUrl}users/image-upload/`,
           formData
         );
-        console.log("res.data.file.location", res.data.file.location);
         setUploadedImage(res.data.file.location);
       } catch (err) {
         console.log(err);
