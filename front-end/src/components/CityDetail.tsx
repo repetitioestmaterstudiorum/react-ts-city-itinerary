@@ -76,12 +76,15 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
           )}
           <div style={{ maxWidth: "400px", margin: "auto" }}>
             <h2 className="pb-2 pt-3">Available MYtineraries:</h2>
-            {cityItineraries && (
-              <Itineraries
-                cityName={props.match.params.name}
-                cityItineraries={cityItineraries}
-              />
-            )}
+            {cityItineraries &&
+              (cityItineraries.length > 0 ? (
+                <Itineraries
+                  cityName={props.match.params.name}
+                  cityItineraries={cityItineraries}
+                />
+              ) : (
+                "No itineraries were added yet :("
+              ))}
           </div>
           {currentCity && (
             <AddItinerary

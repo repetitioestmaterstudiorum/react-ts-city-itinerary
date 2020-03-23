@@ -129,9 +129,9 @@ const AddCity: React.FC = () => {
                         htmlFor="customFile"
                       >
                         {selectedImage && !filetypeAlertDone ? (
-                          selectedImage.name.substring(0, 15) + "..."
+                          selectedImage.name.substring(0, 10) + "..."
                         ) : (
-                          <span>Choose a city image</span>
+                          <span>Choose image</span>
                         )}
                       </label>
                     </div>
