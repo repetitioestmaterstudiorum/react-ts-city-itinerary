@@ -11,6 +11,11 @@ const AddCity: React.FC = () => {
   const [country, setCountry] = useState<string>("");
   const [setCities] = useContext(CityContext);
   const [currentUser] = useContext(CurrentUserContext);
+  const [selectedImage, setSelectedImage] = useState<any>();
+  const backendUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:5000/"
+      : "https://blooming-beyond-66134.herokuapp.com/";
 
   const updateName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -23,15 +28,24 @@ const AddCity: React.FC = () => {
     return /\d/.test(string);
   };
 
-  // const uploadImage = (e: FormEvent<HTMLFormElement>) => {
-  //   fetch("http://localhost:5000/", {
-  //     method: "POST",
-  //     body: formData
-  //   }).then(r => {
-  //     console.log(r);
-  //   });
-  //   console.log(file[0]);
-  // };
+  const handleImageSelected = (e: any) => {
+    setSelectedImage(e.target.files[0]);
+    console.log("e.target.files[0]", e.target.files[0]);
+  };
+  const handleImageUpload = async () => {
+    const formData = new FormData();
+    // selectedImage &&
+    formData.append("image", selectedImage, selectedImage.name);
+    console.log("formData", formData);
+    try {
+      const res = await axios.post(`${backendUrl}image-upload/`, formData);
+      console.log("res", res);
+      console.log("formData res", formData);
+    } catch (err) {
+      console.log(err);
+      console.log("formData err", formData);
+    }
+  };
 
   const addCityCountryPair = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,10 +54,6 @@ const AddCity: React.FC = () => {
     } else if (!name || !country) {
       alert("Enter a city and a country!");
     } else {
-      const backendUrl =
-        process.env.NODE_ENV === "development"
-          ? "http://localhost:5000/"
-          : "https://blooming-beyond-66134.herokuapp.com/";
       try {
         const postCity = async () => {
           const res = await axios.post(`${backendUrl}cities/`, {
@@ -109,13 +119,37 @@ const AddCity: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <input
-                    type="file"
-                    className="form-control-file"
-                    id="fileUploadInput"
-                  />
                   <div className="d-flex justify-content-center mt-2">
-                    <button className="btn btn-primary">Add</button>
+                    <div
+                      style={{
+                        position: "relative",
+                        marginRight: ".5rem"
+                      }}
+                    >
+                      <input
+                        type="file"
+                        className="custom-file-input"
+                        id="customFile"
+                        onChange={handleImageSelected}
+                      />
+                      <label
+                        style={{ paddingRight: "86px" }}
+                        className="custom-file-label"
+                        htmlFor="customFile"
+                      >
+                        {selectedImage ? (
+                          selectedImage.name
+                        ) : (
+                          <span>Choose a city image</span>
+                        )}
+                      </label>
+                    </div>
+                    <span className="btn btn-link" onClick={handleImageUpload}>
+                      Upload
+                    </span>
+                  </div>
+                  <div className="d-flex justify-content-center mt-2">
+                    <button className="btn btn-primary">Add city</button>
                   </div>
                 </form>
               ) : (

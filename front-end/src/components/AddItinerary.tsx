@@ -171,7 +171,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                       />
                     </div>
                     <div className="col col-3 p-0">
-                      <button onClick={addHashtag} className="btn btn-primary">
+                      <button onClick={addHashtag} className="btn btn-link">
                         Add
                       </button>
                     </div>
@@ -210,7 +210,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
                       />
                     </div>
                     <div className="col col-3 p-0">
-                      <button onClick={addActivity} className="btn btn-primary">
+                      <button onClick={addActivity} className="btn btn-link">
                         Add
                       </button>
                     </div>
