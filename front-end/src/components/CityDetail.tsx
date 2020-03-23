@@ -61,10 +61,17 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
                 {", "}
                 {currentCity.country}
               </h1>
-              <img
-                src={currentCity.img}
-                alt={`${currentCity.name}, ${currentCity.country}`}
-              ></img>
+              <div
+                style={{
+                  maxWidth: "500px",
+                  height: "250px",
+                  overflow: "hidden",
+                  backgroundImage: `url(${currentCity.img})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  margin: "0 auto"
+                }}
+              ></div>
             </div>
           )}
           <div style={{ maxWidth: "400px", margin: "auto" }}>

@@ -83,3 +83,32 @@ p {
 .table td {
   padding: 0.25rem;
 }
+
+.landingContent {
+  width: fit-content;
+  margin: auto;
+  background-color: #fff;
+  opacity: 0.8;
+  border-radius: 10px;
+  padding: 5px 30px;
+  margin: 10% auto;
+}
+.landingImage {
+  max-width: 1920px;
+  overflow: hidden;
+  background-image: url("https://mytinerary.s3.eu-central-1.amazonaws.com/background.jpg");
+  background-size: cover;
+  background-position: center bottom;
+  margin: -0.25rem auto 0;
+  height: 400px;
+}
+@media only screen and (min-width: 700px) {
+  .landingImage {
+    height: 450px !important;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .landingImage {
+    height: 500px !important;
+  }
+}

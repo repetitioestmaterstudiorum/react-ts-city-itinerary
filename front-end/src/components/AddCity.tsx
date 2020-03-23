@@ -9,9 +9,11 @@ import { Button } from "react-bootstrap";
 const AddCity: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [country, setCountry] = useState<string>("");
+  const [selectedImage, setSelectedImage] = useState<any>();
+  const [uploadedImage, setUploadedImage] = useState<string>("");
+  const [filetypeAlertDone, setFiletypeAlertDone] = useState<boolean>(false);
   const [setCities] = useContext(CityContext);
   const [currentUser] = useContext(CurrentUserContext);
-  const [selectedImage, setSelectedImage] = useState<any>();
   const backendUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"
@@ -28,22 +30,38 @@ const AddCity: React.FC = () => {
     return /\d/.test(string);
   };
 
-  const handleImageSelected = (e: any) => {
-    setSelectedImage(e.target.files[0]);
-    console.log("e.target.files[0]", e.target.files[0]);
+  const handleImageSelected = (e: ChangeEvent<any>) => {
+    console.log("selectedImage", selectedImage);
+    if (e.target.files.length === 0) {
+      return;
+    }
+    if (e.target.files[0].name.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/)) {
+      console.log("e.target.files[0]", e.target.files[0]);
+      setSelectedImage(e.target.files[0]);
+      setFiletypeAlertDone(false);
+    } else {
+      alert("The image must be a JPG/JPEG/PNG/GIF");
+      setFiletypeAlertDone(true);
+      setSelectedImage("");
+      return;
+    }
   };
   const handleImageUpload = async () => {
-    const formData = new FormData();
-    // selectedImage &&
-    formData.append("image", selectedImage, selectedImage.name);
-    try {
-      const res = await axios.post(
-        `${backendUrl}users/image-upload/`,
-        formData
-      );
-      console.log("res.data.file.location", res.data.file.location);
-    } catch (err) {
-      console.log(err);
+    if (!selectedImage) {
+      alert("Select an image to upload");
+    } else {
+      const formData = new FormData();
+      formData.append("image", selectedImage, selectedImage.name);
+      try {
+        const res = await axios.post(
+          `${backendUrl}users/image-upload/`,
+          formData
+        );
+        console.log("res.data.file.location", res.data.file.location);
+        setUploadedImage(res.data.file.location);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -51,17 +69,17 @@ const AddCity: React.FC = () => {
     e.preventDefault();
     if (containsANumber(name) || containsANumber(country)) {
       alert("City and country must be strings (only letters)!");
-    } else if (!name || !country) {
-      alert("Enter a city and a country!");
+    } else if (!name || !country || !uploadedImage) {
+      alert("Enter a city, a country and upload an image!");
     } else {
       try {
         const postCity = async () => {
           const res = await axios.post(`${backendUrl}cities/`, {
             name,
             country,
-            img:
-              "https://via.placeholder.com/300x150.png?text=Image+coming+soon"
+            img: uploadedImage
           });
+          console.log("res.data", res.data);
           setCities((prevCities: Cities) => [...prevCities, res.data]);
         };
         postCity();
@@ -70,6 +88,7 @@ const AddCity: React.FC = () => {
       }
       setCountry("");
       setName("");
+      setUploadedImage("");
     }
   };
 
@@ -91,6 +110,58 @@ const AddCity: React.FC = () => {
             <Card.Body>
               {currentUser && currentUser.email ? (
                 <form onSubmit={addCityCountryPair}>
+                  <div className="d-flex justify-content-center mb-2">
+                    <div
+                      style={{
+                        position: "relative",
+                        marginRight: ".5rem"
+                      }}
+                    >
+                      <input
+                        type="file"
+                        className="custom-file-input"
+                        id="customFile"
+                        onChange={handleImageSelected}
+                      />
+                      <label
+                        style={{ paddingRight: "86px" }}
+                        className="custom-file-label"
+                        htmlFor="customFile"
+                      >
+                        {selectedImage && !filetypeAlertDone ? (
+                          selectedImage.name.substring(0, 15) + "..."
+                        ) : (
+                          <span>Choose a city image</span>
+                        )}
+                      </label>
+                    </div>
+                    <span className="btn btn-link" onClick={handleImageUpload}>
+                      Upload
+                    </span>
+                  </div>
+                  {filetypeAlertDone && (
+                    <div className="d-flex justify-content-center mt-2">
+                      <span style={{ color: "#f55f55" }}>
+                        The image must be a JPG/JPEG/PNG/GIF
+                      </span>
+                    </div>
+                  )}
+                  <div className="d-flex justify-content-center mt-2 mb-3">
+                    <span style={{ padding: "5px 0" }}>
+                      Uploaded Image: &nbsp;
+                    </span>
+                    <span
+                      style={{
+                        backgroundColor: uploadedImage ? "#e3ffec" : "#ffe5e3",
+                        padding: "5px 10px",
+                        borderRadius: "20px"
+                      }}
+                    >
+                      {uploadedImage
+                        ? selectedImage.name.substring(0, 20)
+                        : "No image uploaded"}
+                    </span>
+                  </div>
                   <div className="d-flex justify-content-center">
                     <label className="col-form-label mr-1" htmlFor="name">
                       City:
@@ -119,36 +190,7 @@ const AddCity: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <div className="d-flex justify-content-center mt-2">
-                    <div
-                      style={{
-                        position: "relative",
-                        marginRight: ".5rem"
-                      }}
-                    >
-                      <input
-                        type="file"
-                        className="custom-file-input"
-                        id="customFile"
-                        onChange={handleImageSelected}
-                      />
-                      <label
-                        style={{ paddingRight: "86px" }}
-                        className="custom-file-label"
-                        htmlFor="customFile"
-                      >
-                        {selectedImage ? (
-                          selectedImage.name
-                        ) : (
-                          <span>Choose a city image</span>
-                        )}
-                      </label>
-                    </div>
-                    <span className="btn btn-link" onClick={handleImageUpload}>
-                      Upload
-                    </span>
-                  </div>
-                  <div className="d-flex justify-content-center mt-2">
+                  <div className="d-flex justify-content-center mt-3">
                     <button className="btn btn-primary">Add city</button>
                   </div>
                 </form>

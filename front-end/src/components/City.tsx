@@ -13,20 +13,30 @@ const City: FC<CitiesProps> = ({ city }) => {
     <a href={url} style={{ textDecoration: "none" }}>
       <div
         className="m-1 border rounded"
-        style={{ backgroundColor: "#5c5c5c" }}>
-        <img
-          src={img}
-          alt={`${name}, ${country}`}
-          style={{ padding: "2px" }}></img>
+        style={{ backgroundColor: "#424242" }}
+      >
+        <div
+          style={{
+            width: "300px",
+            height: "150px",
+            overflow: "hidden",
+            backgroundImage: `url(${img})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
+        ></div>
         <p
           style={{
             fontSize: "1.2rem",
-            textShadow: "1px 0 0 #f55f55",
             color: "white",
             marginBottom: "0.2rem",
             marginTop: "0px"
-          }}>
-          <strong>{name}</strong>, {country}
+          }}
+        >
+          <span>
+            <span style={{ textDecoration: "underline" }}>{name}</span>,{" "}
+            {country}
+          </span>
         </p>
       </div>
     </a>

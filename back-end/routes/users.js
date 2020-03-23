@@ -184,7 +184,6 @@ const upload = multer({
 // image post route
 router.post("/image-upload", upload.single("image"), function(req, res, next) {
   if (!req.file) res.status(400).send("Nothing was uploaded!");
-  console.log("reqfile", req.file);
   res.status(201).json({
     message: "Successfully uploaded " + req.file.originalname,
     file: req.file
