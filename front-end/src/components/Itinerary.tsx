@@ -82,14 +82,16 @@ const Itinerary: FC<ItineraryProps> = props => {
           borderRadius: "5px",
           margin: "0 0 13px 0",
           backgroundImage: `linear-gradient(#${props.randomColor}20, white)`
-        }}>
+        }}
+      >
         <div
           className="col-5 pt-2 pb-1"
           style={{
             backgroundColor: "#fff",
             borderRadius: "5px 0 5px 0",
             opacity: "0.9"
-          }}>
+          }}
+        >
           <img
             src={props.itinerary.profilePicture}
             style={{
@@ -97,7 +99,8 @@ const Itinerary: FC<ItineraryProps> = props => {
               maxWidth: "40px",
               marginRight: "5px"
             }}
-            alt="Profilepicture of Itinerary Creator"></img>
+            alt="Profilepicture of Itinerary Creator"
+          ></img>
           <span style={{ display: "block" }}>
             {props.itinerary.profileName}
           </span>
@@ -105,20 +108,23 @@ const Itinerary: FC<ItineraryProps> = props => {
         <div className="col-7 pt-2" style={{ textAlign: "left" }}>
           <span
             className="fancySpan"
-            style={{ display: "block", marginTop: "1px" }}>
+            style={{ display: "block", marginTop: "1px" }}
+          >
             {props.itinerary.name}
           </span>
           <span
             style={{
               color: "#151515",
               display: "block"
-            }}></span>
+            }}
+          ></span>
           <span
             style={{
               color: "#151515",
               fontStyle: "italic",
               display: "block"
-            }}>
+            }}
+          >
             {props.itinerary.hashtags.map((hashtag, index) => (
               <span key={index} style={{ fontStyle: "italic" }}>
                 #{hashtag}{" "}
@@ -134,7 +140,8 @@ const Itinerary: FC<ItineraryProps> = props => {
               borderRadius: "none",
               padding: "0 0.5rem 0",
               backgroundColor: "unset"
-            }}>
+            }}
+          >
             <Accordion.Collapse eventKey="0">
               <Card.Body style={{ padding: ".6rem" }}>
                 {props.itinerary.activities.map((activity, index) => (
@@ -150,7 +157,8 @@ const Itinerary: FC<ItineraryProps> = props => {
                     userLikesCurrentItinerary ? (
                       <button
                         className="btn btn-sm btn-primary active align-middle mr-3"
-                        onClick={handleDislikeClick}>
+                        onClick={handleDislikeClick}
+                      >
                         <FaThumbsUp
                           style={{ fontSize: "0.8rem" }}
                           className="pr-2"
@@ -160,7 +168,8 @@ const Itinerary: FC<ItineraryProps> = props => {
                     ) : (
                       <button
                         className="btn btn-sm btn-primary align-middle mr-3"
-                        onClick={handleLikeClick}>
+                        onClick={handleLikeClick}
+                      >
                         <FaThumbsUp
                           style={{ fontSize: "0.8rem" }}
                           className="pr-2"
@@ -177,9 +186,9 @@ const Itinerary: FC<ItineraryProps> = props => {
                     <strong>{itineraryLikes} Likes</strong>
                   </span>
                 </div>
-                <hr className="mt-2" style={{ width: "15%" }}></hr>
+                {/* <hr className="mt-2" style={{ width: "15%" }}></hr>
                 <span>Last Comments:</span>
-                <span className="d-block">coming soon..</span>
+                <span className="d-block">coming soon..</span> */}
               </Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle
@@ -192,12 +201,14 @@ const Itinerary: FC<ItineraryProps> = props => {
                 backgroundColor: "#f0f0f0",
                 margin: "10px 0 -25px 0",
                 textDecoration: "none"
-              }}>
+              }}
+            >
               <span
                 className="fancySpan"
                 style={{
                   margin: "auto"
-                }}>
+                }}
+              >
                 Click to toggle Activities
               </span>
             </Accordion.Toggle>
