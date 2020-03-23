@@ -36,14 +36,14 @@ const AddCity: React.FC = () => {
     const formData = new FormData();
     // selectedImage &&
     formData.append("image", selectedImage, selectedImage.name);
-    console.log("formData", formData);
     try {
-      const res = await axios.post(`${backendUrl}image-upload/`, formData);
-      console.log("res", res);
-      console.log("formData res", formData);
+      const res = await axios.post(
+        `${backendUrl}users/image-upload/`,
+        formData
+      );
+      console.log("res.data.file.location", res.data.file.location);
     } catch (err) {
       console.log(err);
-      console.log("formData err", formData);
     }
   };
 

@@ -1,11 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const multer = require("multer");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -42,12 +40,3 @@ app.use("/users", require("./routes/users"));
 app.use(passport.initialize());
 // passport strategies
 require("./config/passportStrategies");
-
-// multer
-const upload = multer({ storage });
-
-// image post route
-app.post("/image-upload", upload.single("image"), (req, res, err) => {
-  if (err) throw err;
-  res.status(201).send();
-});

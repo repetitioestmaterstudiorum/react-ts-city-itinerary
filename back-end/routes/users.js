@@ -1,12 +1,16 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
+const { check, validationResult } = require("express-validator");
+const aws = require("aws-sdk");
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+
 const router = express.Router();
 const userModel = require("../models/userModel");
-const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const { check, validationResult } = require("express-validator");
-const jwt = require("jsonwebtoken");
 const jwtKey = process.env.JWT_KEY;
-const passport = require("passport");
 
 // function to turn anything to Title Case (first letter of every word is a capital letter)
 const toTitleCase = phrase => {
@@ -154,5 +158,45 @@ router.put("/remove-liked-itinerary", (req, res) => {
     )
     .catch(err => console.log(err));
 });
+
+// image-upload
+const s3 = new aws.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_DEFAULT_REGION
+});
+
+const upload = multer({
+  storage: multerS3({
+    s3,
+    bucket: process.env.S3_BUCKET_NAME,
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    acl: "public-read",
+    metadata: (req, file, cb) => {
+      cb(null, { fieldName: file.fieldname });
+    },
+    key: (req, file, cb) => {
+      cb(null, Date.now().toString() + "-" + file.originalname); //
+    }
+  })
+});
+
+// image post route
+router.post("/image-upload", upload.single("image"), function(req, res, next) {
+  if (!req.file) res.status(400).send("Nothing was uploaded!");
+  console.log("reqfile", req.file);
+  res.status(201).json({
+    message: "Successfully uploaded " + req.file.originalname,
+    file: req.file
+  });
+});
+// for multiple files:
+// router.post("/file-upload", upload.array("image", 3), (req, res) => {
+//   if (!req.files) res.status(400).send("No files were uploaded.");
+//   res.status(201).json({
+//     message: "Successfully uploaded " + req.files.length + " files!",
+//     files: req.files
+//   });
+// });
 
 module.exports = router;
