@@ -2,7 +2,7 @@ import React, { Fragment, FC, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle, FaBars } from "react-icons/fa";
-import { Modal, Button, Dropdown } from "react-bootstrap";
+import { Modal, Button, Dropdown, DropdownButton } from "react-bootstrap";
 import "./Header.css";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import BackButton from "../BackButton";
@@ -11,19 +11,13 @@ const Header: FC = () => {
   let history = useHistory();
   const [currentUser, setToken] = useContext(CurrentUserContext);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [showMenu, setShowMenu] = useState<boolean>(false);
 
   const handleHideModal = () => setShowModal(false);
-  // eslint-disable-next-line
-  const handleShowModal = () => (setShowModal(true), setShowMenu(false));
-
-  const handleHideMenu = () => setShowMenu(false);
-  const handleShowMenu = () => setShowMenu(true);
+  const handleShowModal = () => setShowModal(true);
 
   const handleLogout = () => {
     localStorage.clear();
     setToken("");
-    handleHideMenu();
     handleHideModal();
   };
 
@@ -32,103 +26,51 @@ const Header: FC = () => {
       <div className="container">
         <div className="navbar d-flex justify-content-space-between navbar-dark">
           <div className="menu">
-            <Dropdown show={showMenu}>
-              <Dropdown.Toggle
-                variant="dark"
-                id="dropdown-basic"
-                onClick={showMenu ? handleHideMenu : handleShowMenu}
-              >
-                <FaBars />
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                {history.length > 2 && (
-                  <Fragment>
-                    <span
-                      style={{
-                        padding: ".5rem 0 .25rem 0",
-                        textAlign: "center"
-                      }}
-                      onClick={handleHideMenu}
-                    >
-                      <BackButton />
-                    </span>
-                    <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
-                  </Fragment>
-                )}
-                <NavLink
-                  to="/"
-                  exact
-                  onClick={handleHideMenu}
-                  className="dropdown-item"
-                  activeClassName="active"
-                >
-                  Home
-                </NavLink>
-                <NavLink
-                  to="/cities"
-                  exact
-                  onClick={handleHideMenu}
-                  className="dropdown-item"
-                  activeClassName="active"
-                >
-                  Browse cities
-                </NavLink>
-                <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
-                {currentUser && currentUser.email ? (
-                  <Fragment>
-                    <NavLink
-                      to="/profile"
-                      exact
-                      onClick={handleHideMenu}
-                      className="dropdown-item"
-                      activeClassName="active"
-                    >
-                      My Profile
-                    </NavLink>
-                    <NavLink
-                      to="#"
-                      exact
-                      onClick={handleLogout}
-                      className="dropdown-item"
-                      activeClassName=""
-                    >
-                      Logout
-                    </NavLink>
-                  </Fragment>
-                ) : (
-                  <Fragment>
-                    <NavLink
-                      to="/log-in"
-                      exact
-                      onClick={handleHideMenu}
-                      className="dropdown-item"
-                      activeClassName="active"
-                    >
-                      Log in
-                    </NavLink>
-                    <NavLink
-                      to="/create-account"
-                      exact
-                      onClick={handleHideMenu}
-                      className="dropdown-item"
-                      activeClassName="active"
-                    >
-                      Create account
-                    </NavLink>
-                  </Fragment>
-                )}
-                <hr style={{ width: "80%", margin: "0.5rem auto" }}></hr>
-                <NavLink
-                  to="/site-notice"
-                  exact
-                  onClick={handleHideMenu}
-                  className="dropdown-item"
-                  activeClassName="active"
-                >
-                  Site Notice
-                </NavLink>
-              </Dropdown.Menu>
-            </Dropdown>
+            <DropdownButton id="dropdown-item-button" title={<FaBars />}>
+              {history.length > 2 && (
+                <Fragment>
+                  <span
+                    style={{
+                      padding: ".5rem 0 .25rem 0",
+                      textAlign: "center"
+                    }}
+                  >
+                    <BackButton />
+                  </span>
+                  <hr style={hrStyle}></hr>
+                </Fragment>
+              )}
+              <NavLink to="/" exact>
+                <Dropdown.Item as="button">Home</Dropdown.Item>
+              </NavLink>
+              <NavLink to="/cities" exact>
+                <Dropdown.Item as="button">Browse cities</Dropdown.Item>
+              </NavLink>
+              <hr style={hrStyle}></hr>
+              {currentUser && currentUser.email ? (
+                <Fragment>
+                  <NavLink to="/profile" exact>
+                    <Dropdown.Item as="button">My Profile</Dropdown.Item>
+                  </NavLink>
+                  <Link to="#" onClick={handleLogout}>
+                    <Dropdown.Item as="button">Logout</Dropdown.Item>
+                  </Link>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <NavLink to="/log-in" exact>
+                    <Dropdown.Item as="button">Log in</Dropdown.Item>
+                  </NavLink>
+                  <NavLink to="/create-account" exact>
+                    <Dropdown.Item as="button">Create account</Dropdown.Item>
+                  </NavLink>
+                </Fragment>
+              )}
+              <hr style={hrStyle}></hr>
+              <NavLink to="/site-notice" exact>
+                <Dropdown.Item as="button">Site Notice</Dropdown.Item>
+              </NavLink>
+            </DropdownButton>
           </div>
 
           <div className="logo">
@@ -214,6 +156,11 @@ const Header: FC = () => {
       </div>
     </header>
   );
+};
+
+const hrStyle = {
+  width: "80%",
+  margin: "0.5rem auto"
 };
 
 export default Header;

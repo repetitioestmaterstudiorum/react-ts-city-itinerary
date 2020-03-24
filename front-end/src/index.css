@@ -29,7 +29,6 @@ a:hover,
   border-color: #f55f55 !important;
   box-shadow: none !important;
 }
-/* .btn-primary:hover, */
 .btn-primary.active {
   background-color: #c65148 !important;
   border-color: #c65148 !important;
@@ -67,14 +66,21 @@ p {
   cursor: pointer;
 }
 
+/* navigation */
+.dropdown-menu a {
+  text-decoration: none;
+}
 .dropdown-item {
   font-size: 1.2rem;
 }
-.dropdown-item.active {
+a.active .dropdown-item {
   background-color: #f55f55;
+  color: #fff;
 }
-.dropdown-item.active:hover {
+a:hover .dropdown-item {
   background-color: #f55f55;
+  text-decoration: none;
+  color: #fff;
 }
 
 .table {
@@ -100,7 +106,12 @@ p {
   background-size: cover;
   background-position: center bottom;
   margin: -0.25rem auto 0;
-  height: 450px;
+  height: 550px;
+}
+@media only screen and (min-width: 500px) {
+  .landingImage {
+    height: 450px !important;
+  }
 }
 @media only screen and (min-width: 700px) {
   .landingImage {
