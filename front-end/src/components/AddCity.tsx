@@ -12,7 +12,8 @@ const AddCity: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<any>();
   const [uploadedImage, setUploadedImage] = useState<string>("");
   const [filetypeAlertDone, setFiletypeAlertDone] = useState<boolean>(false);
-  const [setCities] = useContext(CityContext);
+  // eslint-disable-next-line
+  const [cities, setCities] = useContext(CityContext);
   const [currentUser] = useContext(CurrentUserContext);
   const backendUrl =
     process.env.NODE_ENV === "development"
@@ -31,7 +32,6 @@ const AddCity: React.FC = () => {
   };
 
   const handleImageSelected = (e: ChangeEvent<any>) => {
-    console.log("selectedImage", selectedImage);
     if (e.target.files.length === 0) {
       return;
     }
@@ -78,7 +78,7 @@ const AddCity: React.FC = () => {
             img: uploadedImage
           });
           console.log("res.data", res.data);
-          setCities((prevCities: Cities) => [...prevCities, res.data]);
+          setCities((cities: Cities) => [...cities, res.data]);
         };
         postCity();
       } catch (err) {

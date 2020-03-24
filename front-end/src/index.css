@@ -100,15 +100,15 @@ p {
   background-size: cover;
   background-position: center bottom;
   margin: -0.25rem auto 0;
-  height: 400px;
+  height: 450px;
 }
 @media only screen and (min-width: 700px) {
   .landingImage {
-    height: 450px !important;
+    height: 500px !important;
   }
 }
 @media only screen and (min-width: 900px) {
   .landingImage {
-    height: 500px !important;
+    height: 550px !important;
   }
 }
