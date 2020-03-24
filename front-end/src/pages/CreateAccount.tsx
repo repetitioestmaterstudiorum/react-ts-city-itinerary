@@ -183,7 +183,7 @@ const CreateAccount: FC = () => {
                       Upload
                     </span>
                   </div>
-                  <div className="d-flex justify-content-center mt-2 mb-3">
+                  <div className="d-flex justify-content-center mt-2 mb-2">
                     <span style={{ padding: "5px 0" }}>
                       Uploaded Image: &nbsp;
                     </span>
@@ -200,13 +200,13 @@ const CreateAccount: FC = () => {
                     </span>
                   </div>
                   {filetypeAlertDone && (
-                    <div className="d-flex justify-content-center mt-2">
+                    <div className="d-flex justify-content-center mb-2">
                       <span style={{ color: "#f55f55" }}>
                         The image must be a JPG/JPEG/PNG/GIF
                       </span>
                     </div>
                   )}
-                  <div className="d-flex justify-content-center">
+                  <div className="d-flex justify-content-center mt-1">
                     <label className="col-form-label mr-1" htmlFor="email">
                       Email:*
                     </label>

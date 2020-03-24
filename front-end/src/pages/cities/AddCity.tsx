@@ -3,7 +3,7 @@ import { CityContext } from "../../context/CityContext";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 const AddCity: React.FC = () => {
@@ -77,7 +77,6 @@ const AddCity: React.FC = () => {
             country,
             img: uploadedImage
           });
-          console.log("res.data", res.data);
           setCities((cities: Cities) => [...cities, res.data]);
         };
         postCity();

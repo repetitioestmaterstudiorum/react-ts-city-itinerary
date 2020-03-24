@@ -29,14 +29,9 @@ const Header: FC = () => {
             <DropdownButton id="dropdown-item-button" title={<FaBars />}>
               {history.length > 2 && (
                 <Fragment>
-                  <span
-                    style={{
-                      padding: ".5rem 0 .25rem 0",
-                      textAlign: "center"
-                    }}
-                  >
+                  <Dropdown.Item as="button">
                     <BackButton />
-                  </span>
+                  </Dropdown.Item>
                   <hr style={hrStyle}></hr>
                 </Fragment>
               )}
