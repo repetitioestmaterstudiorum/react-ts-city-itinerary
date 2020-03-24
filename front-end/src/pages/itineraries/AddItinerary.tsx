@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
-import { CurrentUserContext } from "../context/CurrentUserContext";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 

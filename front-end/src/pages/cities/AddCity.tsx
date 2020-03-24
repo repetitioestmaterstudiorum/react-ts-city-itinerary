@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
-import { CityContext } from "../context/CityContext";
-import { CurrentUserContext } from "../context/CurrentUserContext";
+import { CityContext } from "../../context/CityContext";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";

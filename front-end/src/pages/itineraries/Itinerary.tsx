@@ -1,7 +1,7 @@
 import React, { FC, Fragment, useContext, useState, useEffect } from "react";
 import { Accordion, Card } from "react-bootstrap";
 import { FaRegCheckSquare, FaThumbsUp } from "react-icons/fa";
-import { CurrentUserContext } from "../context/CurrentUserContext";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";

@@ -9,9 +9,9 @@ import React, {
 } from "react";
 import City from "./City";
 import AddCity from "./AddCity";
-import { CityContext } from "../context/CityContext";
+import { CityContext } from "../../context/CityContext";
 import { Form } from "react-bootstrap";
-import Loader from "./Loader";
+import Loader from "../../components/Loader";
 
 const Cities: FC = () => {
   const [cities] = useContext(CityContext);
@@ -46,7 +46,8 @@ const Cities: FC = () => {
               width: "60%",
               margin: "auto"
             }}
-            onSubmit={handleOnSubmit}>
+            onSubmit={handleOnSubmit}
+          >
             <div className="d-flex justify-content-center">
               <div className="flex-shrink-0">
                 <label className="col-form-label mr-1" htmlFor="city">

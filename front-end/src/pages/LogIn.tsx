@@ -8,10 +8,10 @@ import React, {
 } from "react";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 import axios from "axios";
-import Browse from "./Browse";
+import Browse from "../components/Browse";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import Loader from "./Loader";
+import Loader from "../components/Loader";
 
 const LogIn: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);

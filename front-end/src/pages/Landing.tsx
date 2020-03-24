@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import Browse from "./Browse";
+import Browse from "../components/Browse";
 
 const Landing: FC = () => {
   return (

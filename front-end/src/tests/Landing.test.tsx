@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Landing from "../components/Landing";
+import Landing from "../pages/Landing";
 import toJson from "enzyme-to-json";
 
 it("Landing component should render without crashing", () => {
