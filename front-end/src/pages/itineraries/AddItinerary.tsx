@@ -27,10 +27,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
   const [activitiesString, setActivitiesString] = useState<string>("");
   const [currentUser] = useContext(CurrentUserContext);
   const cityName: string = props.cityName;
-  // to do later:
   const likes: number = 0;
-  const profilePicture: string =
-    "https://via.placeholder.com/100x100.png?text=:)";
 
   const containsANumber = (string: string) => {
     return /\d/.test(string);
@@ -98,7 +95,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
             name,
             city: cityName,
             profileName: `${currentUser.firstName} ${currentUser.lastName}`,
-            profilePicture,
+            profilePicture: currentUser.profilePicture,
             likes,
             hashtags: hashtagArray,
             activities: activitiesArray

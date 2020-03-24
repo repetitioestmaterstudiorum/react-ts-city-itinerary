@@ -45,7 +45,7 @@ const Profile: FC = () => {
                 style={{
                   borderRadius: "50%",
                   border: "1px solid gray",
-                  maxWidth: "70px"
+                  maxWidth: "130px"
                 }}
                 alt={currentUser.email}
               ></img>

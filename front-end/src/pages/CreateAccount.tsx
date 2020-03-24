@@ -19,18 +19,20 @@ const CreateAccount: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
-  const [profilePicture, setProfilePicture] = useState<string>("");
+  // const [profilePicture, setProfilePicture] = useState<string>("");
+  const [selectedImage, setSelectedImage] = useState<any>();
+  const [uploadedImage, setUploadedImage] = useState<string>("");
+  const [filetypeAlertDone, setFiletypeAlertDone] = useState<boolean>(false);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [currentUser, setCurrentUser, setToken] = useContext(
     CurrentUserContext
   );
+  const backendUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:5000/"
+      : "https://blooming-beyond-66134.herokuapp.com/";
   const likedItineraries: string[] = [];
-
-  // temporary until user image upload is handled
-  useEffect(() => {
-    setProfilePicture("https://via.placeholder.com/100x100.png?text=:)");
-  }, []);
 
   const updateEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -47,6 +49,37 @@ const CreateAccount: FC = () => {
   const updatePasswordConfirmation = (e: ChangeEvent<HTMLInputElement>) => {
     setPasswordConfirmation(e.target.value);
   };
+  const handleImageSelected = (e: ChangeEvent<any>) => {
+    if (e.target.files.length === 0) {
+      return;
+    }
+    if (e.target.files[0].name.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/)) {
+      setSelectedImage(e.target.files[0]);
+      setFiletypeAlertDone(false);
+    } else {
+      alert("The image must be a JPG/JPEG/PNG/GIF");
+      setFiletypeAlertDone(true);
+      setSelectedImage("");
+      return;
+    }
+  };
+  const handleImageUpload = async () => {
+    if (!selectedImage) {
+      alert("Select an image to upload");
+    } else {
+      const formData = new FormData();
+      formData.append("image", selectedImage, selectedImage.name);
+      try {
+        const res = await axios.post(
+          `${backendUrl}users/image-upload/`,
+          formData
+        );
+        setUploadedImage(res.data.file.location);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   const addUser = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,15 +88,12 @@ const CreateAccount: FC = () => {
       !firstName ||
       !lastName ||
       !password ||
-      !passwordConfirmation
+      !passwordConfirmation ||
+      !uploadedImage
     ) {
-      alert("Enter a value in all fields!");
+      alert("Enter a value in all fields and upload an image!");
     } else {
       setIsLoading(true);
-      const backendUrl =
-        process.env.NODE_ENV === "development"
-          ? "http://localhost:5000/"
-          : "https://blooming-beyond-66134.herokuapp.com/";
       const createAccount = async () => {
         try {
           const resCreateAccount = await axios.post(
@@ -74,7 +104,7 @@ const CreateAccount: FC = () => {
               lastName,
               password,
               passwordConfirmation,
-              profilePicture,
+              profilePicture: uploadedImage,
               likedItineraries
             }
           );
@@ -100,6 +130,7 @@ const CreateAccount: FC = () => {
       setEmail("");
       setPassword("");
       setPasswordConfirmation("");
+      setUploadedImage("");
     }
   };
 
@@ -124,6 +155,58 @@ const CreateAccount: FC = () => {
               <Fragment>
                 <h1>Create Account</h1>
                 <form onSubmit={addUser}>
+                  <div className="d-flex justify-content-center mb-2 mr-1 ml-1">
+                    <div
+                      style={{
+                        position: "relative",
+                        marginRight: ".5rem"
+                      }}
+                    >
+                      <input
+                        type="file"
+                        className="custom-file-input"
+                        id="customFile"
+                        onChange={handleImageSelected}
+                      />
+                      <label
+                        style={{ paddingRight: "86px" }}
+                        className="custom-file-label"
+                        htmlFor="customFile"
+                      >
+                        {selectedImage && !filetypeAlertDone ? (
+                          selectedImage.name.substring(0, 10) + "..."
+                        ) : (
+                          <span>Choose image</span>
+                        )}
+                      </label>
+                    </div>
+                    <span className="btn btn-link" onClick={handleImageUpload}>
+                      Upload
+                    </span>
+                  </div>
+                  <div className="d-flex justify-content-center mt-2 mb-3">
+                    <span style={{ padding: "5px 0" }}>
+                      Uploaded Image: &nbsp;
+                    </span>
+                    <span
+                      style={{
+                        backgroundColor: uploadedImage ? "#e3ffec" : "#ffe5e3",
+                        padding: "5px 10px",
+                        borderRadius: "20px"
+                      }}
+                    >
+                      {uploadedImage
+                        ? selectedImage.name.substring(0, 20)
+                        : "No image uploaded"}
+                    </span>
+                  </div>
+                  {filetypeAlertDone && (
+                    <div className="d-flex justify-content-center mt-2">
+                      <span style={{ color: "#f55f55" }}>
+                        The image must be a JPG/JPEG/PNG/GIF
+                      </span>
+                    </div>
+                  )}
                   <div className="d-flex justify-content-center">
                     <label className="col-form-label mr-1" htmlFor="email">
                       Email:*
