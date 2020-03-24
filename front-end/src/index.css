@@ -67,6 +67,10 @@ p {
 }
 
 /* navigation */
+.menu .btn {
+  padding-left: 0;
+  padding-right: 0;
+}
 .dropdown-menu a {
   text-decoration: none;
 }
