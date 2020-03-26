@@ -14,28 +14,38 @@ import { Form } from "react-bootstrap";
 import Loader from "../../components/Loader";
 
 const Cities: FC = () => {
-  const [cities] = useContext(CityContext);
-  const [filteredCities, setFilteredCities] = useState<Cities>([]);
+  const {cities, fetchCities} = useContext(CityContext);
+
+  //no need to store filtered data if we have the full cities list
+  // const [filteredCities, setFilteredCities] = useState<Cities>([]);
+  const [inputField, setInputField] = useState('')
+
 
   useEffect(() => {
-    setFilteredCities(cities);
-  }, [cities]);
+    console.log('cities :', cities);
+   if(!cities) fetchCities()
+  }, []);
 
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const inputField = e.target.value;
-    setFilteredCities(
+  const filterCities = () => {
+    return cities? 
       cities.filter((city: City) =>
         (city.name.toLowerCase() + city.country.toLowerCase()).includes(
           inputField.toLowerCase()
-        )
-      )
-    );
+        ))
+     : []
+  }
+
+
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const {value} = e.target
+    setInputField(value)
   };
 
   const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
+  console.log('cities :', cities);
   return (
     <section className="container text-center pt-1">
       <h1>Cities</h1>
@@ -66,8 +76,8 @@ const Cities: FC = () => {
           </Form>
           <div className="mt-2">
             <div className="d-flex flex-wrap justify-content-center">
-              {filteredCities &&
-                filteredCities
+              {cities &&
+                filterCities()
                   .sort((a: City, b: City) => {
                     return a.name > b.name ? 1 : -1;
                   })

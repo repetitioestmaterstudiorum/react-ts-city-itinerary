@@ -42,3 +42,9 @@ type Users = User[];
 // CityContext
 // ItineraryContext
 // UserContext
+
+interface CityContextInterface {
+  cities: Cities | null,
+  fetchCities(): void,
+  setCities(cities: Cities): void,
+}

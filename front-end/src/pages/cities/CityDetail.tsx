@@ -9,7 +9,7 @@ import Loader from "../../components/Loader";
 const CityDetail: FC<RouteComponentProps<City>> = props => {
   const [currentCity, setCurrentCity] = useState<City>();
   const [cityItineraries, setCityItineraries] = useState<Itineraries>();
-  const [cities] = useContext(CityContext);
+  const { cities } = useContext(CityContext);
   const backendUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"
@@ -17,6 +17,7 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
 
   useEffect(() => {
     try {
+      //should be part of cities context
       const getCurrentCity = async () => {
         const res = await axios.get(
           `${backendUrl}cities/${props.match.params.name}`
@@ -31,6 +32,7 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
 
   useEffect(() => {
     try {
+      //should be part of itineraries context
       const getCityItineraries = async () => {
         const res = await axios.get(
           `${backendUrl}itineraries/${props.match.params.name}`
@@ -83,8 +85,8 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
                   cityItineraries={cityItineraries}
                 />
               ) : (
-                "No itineraries were added yet :("
-              ))}
+                  "No itineraries were added yet :("
+                ))}
           </div>
           {currentCity && (
             <AddItinerary
@@ -94,8 +96,8 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
           )}
         </Fragment>
       ) : (
-        <Loader />
-      )}
+          <Loader />
+        )}
     </div>
   );
 };

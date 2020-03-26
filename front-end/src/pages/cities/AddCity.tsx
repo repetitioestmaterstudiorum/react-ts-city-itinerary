@@ -13,12 +13,13 @@ const AddCity: React.FC = () => {
   const [uploadedImage, setUploadedImage] = useState<string>("");
   const [filetypeAlertDone, setFiletypeAlertDone] = useState<boolean>(false);
   // eslint-disable-next-line
-  const [cities, setCities] = useContext(CityContext);
+  const { cities, setCities } = useContext(CityContext);
   const [currentUser] = useContext(CurrentUserContext);
   const backendUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"
       : "https://blooming-beyond-66134.herokuapp.com/";
+
 
   const updateName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -62,7 +63,7 @@ const AddCity: React.FC = () => {
       }
     }
   };
-
+  //should be part of cities context
   const addCityCountryPair = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (containsANumber(name) || containsANumber(country)) {
@@ -77,7 +78,7 @@ const AddCity: React.FC = () => {
             country,
             img: uploadedImage
           });
-          setCities((cities: Cities) => [...cities, res.data]);
+          setCities([...cities, res.data]);
         };
         postCity();
       } catch (err) {
@@ -128,8 +129,8 @@ const AddCity: React.FC = () => {
                         {selectedImage && !filetypeAlertDone ? (
                           selectedImage.name.substring(0, 10) + "..."
                         ) : (
-                          <span>Choose image</span>
-                        )}
+                            <span>Choose image</span>
+                          )}
                       </label>
                     </div>
                     <span className="btn btn-link" onClick={handleImageUpload}>
@@ -192,14 +193,14 @@ const AddCity: React.FC = () => {
                   </div>
                 </form>
               ) : (
-                <React.Fragment>
-                  <Link to="/log-in">
-                    <Button variant="link" style={{ marginRight: ".25rem" }}>
-                      You need to log in!
+                  <React.Fragment>
+                    <Link to="/log-in">
+                      <Button variant="link" style={{ marginRight: ".25rem" }}>
+                        You need to log in!
                     </Button>
-                  </Link>
-                </React.Fragment>
-              )}
+                    </Link>
+                  </React.Fragment>
+                )}
             </Card.Body>
           </Accordion.Collapse>
         </Card>
