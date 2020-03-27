@@ -45,6 +45,7 @@ const AddCity: React.FC = () => {
       return;
     }
   };
+  //handleImageUpload could be inside a context so you don't have to repeat it here and in the sign up component
   const handleImageUpload = async () => {
     if (!selectedImage) {
       alert("Select an image to upload");
