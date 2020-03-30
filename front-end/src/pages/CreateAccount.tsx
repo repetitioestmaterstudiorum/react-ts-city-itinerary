@@ -27,11 +27,14 @@ const CreateAccount: FC = () => {
   const [currentUser, setCurrentUser, setToken] = useContext(
     CurrentUserContext
   );
-  const backendUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5000/"
-      : "https://blooming-beyond-66134.herokuapp.com/";
+  // const backendUrl =
+  //   process.env.NODE_ENV === "development"
+  //     ? "http://localhost:5000/"
+  //     : "https://blooming-beyond-66134.herokuapp.com/";
   const likedItineraries: string[] = [];
+
+  const backendUrl: string = "https://blooming-beyond-66134.herokuapp.com/";
+
 
   const updateEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
