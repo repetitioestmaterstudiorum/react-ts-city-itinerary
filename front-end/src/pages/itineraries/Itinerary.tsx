@@ -107,7 +107,7 @@ const Itinerary: FC<ItineraryProps> = props => {
         </div>
         <div className="col-7 pt-2" style={{ textAlign: "left" }}>
           <span
-            className="fancySpan"
+            className="fancySpan pt-1 pb-1"
             style={{ display: "block", marginTop: "1px" }}
           >
             {props.itinerary.name}
@@ -117,19 +117,8 @@ const Itinerary: FC<ItineraryProps> = props => {
               color: "#151515",
               display: "block"
             }}
-          ></span>
-          <span
-            style={{
-              color: "#151515",
-              fontStyle: "italic",
-              display: "block"
-            }}
           >
-            {props.itinerary.hashtags.map((hashtag, index) => (
-              <span key={index} style={{ fontStyle: "italic" }}>
-                #{hashtag}{" "}
-              </span>
-            ))}
+            Likes: {itineraryLikes}
           </span>
         </div>
         <Accordion style={{ width: "100%" }}>
@@ -144,6 +133,21 @@ const Itinerary: FC<ItineraryProps> = props => {
           >
             <Accordion.Collapse eventKey="0">
               <Card.Body style={{ padding: ".6rem" }}>
+                <span
+                  style={{
+                    color: "#151515",
+                    fontStyle: "italic",
+                    display: "block"
+                  }}
+                  className="pt-2"
+                >
+                  {props.itinerary.hashtags.map((hashtag, index) => (
+                    <span key={index} style={{ fontStyle: "italic" }}>
+                      #{hashtag}{" "}
+                    </span>
+                  ))}
+                </span>
+                <hr className="mb-2" style={{ width: "15%" }}></hr>
                 {props.itinerary.activities.map((activity, index) => (
                   <p key={index} style={{ margin: "0.3rem 0 0.3rem 0" }}>
                     <span className="fancySpan">
@@ -156,7 +160,7 @@ const Itinerary: FC<ItineraryProps> = props => {
                   {currentUser && currentUser.email ? (
                     userLikesCurrentItinerary ? (
                       <button
-                        className="btn btn-sm btn-primary active align-middle mr-3"
+                        className="btn btn-sm btn-primary active align-middle"
                         onClick={handleDislikeClick}
                       >
                         <FaThumbsUp
@@ -167,7 +171,7 @@ const Itinerary: FC<ItineraryProps> = props => {
                       </button>
                     ) : (
                       <button
-                        className="btn btn-sm btn-primary align-middle mr-3"
+                        className="btn btn-sm btn-primary align-middle"
                         onClick={handleLikeClick}
                       >
                         <FaThumbsUp
@@ -178,13 +182,10 @@ const Itinerary: FC<ItineraryProps> = props => {
                       </button>
                     )
                   ) : (
-                    <Link to="/log-in" className="pr-2">
+                    <Link to="/log-in">
                       <Button variant="link">Log in to like</Button>
                     </Link>
                   )}
-                  <span className="align-middle pr-1">
-                    <strong>{itineraryLikes} Likes</strong>
-                  </span>
                 </div>
                 {/* <hr className="mt-2" style={{ width: "15%" }}></hr>
                 <span>Last Comments:</span>
@@ -209,7 +210,7 @@ const Itinerary: FC<ItineraryProps> = props => {
                   margin: "auto"
                 }}
               >
-                Click to toggle Activities
+                Click to toggle Details
               </span>
             </Accordion.Toggle>
           </Card>
