@@ -3,7 +3,7 @@ import { CityContext } from "../../context/CityContext";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 const AddCity: React.FC = () => {
@@ -19,7 +19,6 @@ const AddCity: React.FC = () => {
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"
       : "https://blooming-beyond-66134.herokuapp.com/";
-
 
   const updateName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -46,7 +45,7 @@ const AddCity: React.FC = () => {
       return;
     }
   };
-  //handleImageUpload could be inside a context so you don't have to repeat it here and in the sign up component
+  // handleImageUpload could be inside a context so you don't have to repeat it here and in the sign up component
   const handleImageUpload = async () => {
     if (!selectedImage) {
       alert("Select an image to upload");
@@ -130,8 +129,8 @@ const AddCity: React.FC = () => {
                         {selectedImage && !filetypeAlertDone ? (
                           selectedImage.name.substring(0, 10) + "..."
                         ) : (
-                            <span>Choose image</span>
-                          )}
+                          <span>Choose image</span>
+                        )}
                       </label>
                     </div>
                     <span className="btn btn-link" onClick={handleImageUpload}>
@@ -194,14 +193,14 @@ const AddCity: React.FC = () => {
                   </div>
                 </form>
               ) : (
-                  <React.Fragment>
-                    <Link to="/log-in">
-                      <Button variant="link" style={{ marginRight: ".25rem" }}>
-                        You need to log in!
+                <React.Fragment>
+                  <Link to="/log-in">
+                    <Button variant="link" style={{ marginRight: ".25rem" }}>
+                      You need to log in!
                     </Button>
-                    </Link>
-                  </React.Fragment>
-                )}
+                  </Link>
+                </React.Fragment>
+              )}
             </Card.Body>
           </Accordion.Collapse>
         </Card>

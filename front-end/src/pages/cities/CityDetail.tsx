@@ -7,35 +7,29 @@ import axios from "axios";
 import Loader from "../../components/Loader";
 
 const CityDetail: FC<RouteComponentProps<City>> = props => {
-  const [currentCity, setCurrentCity] = useState<City>();
   const [cityItineraries, setCityItineraries] = useState<Itineraries>();
-  const { cities } = useContext(CityContext);
-  const backendUrl =
+  const { currentCity, getCurrentCity } = useContext(CityContext);
+  const backendUrl: string =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"
       : "https://blooming-beyond-66134.herokuapp.com/";
+  const urlParameterString: string = props.match.params.name;
 
   useEffect(() => {
     try {
-      //should be part of cities context
-      const getCurrentCity = async () => {
-        const res = await axios.get(
-          `${backendUrl}cities/${props.match.params.name}`
-        );
-        setCurrentCity(res.data);
-      };
-      getCurrentCity();
+      getCurrentCity(urlParameterString);
     } catch (err) {
       console.log(err);
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cities]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     try {
-      //should be part of itineraries context
+      // could be in itinerary context (to be created)
       const getCityItineraries = async () => {
         const res = await axios.get(
-          `${backendUrl}itineraries/${props.match.params.name}`
+          `${backendUrl}itineraries/${urlParameterString}`
         );
         setCityItineraries(res.data);
       };
@@ -46,7 +40,6 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
   }, []);
 
   const addNewItinerary = (itinerary: Itinerary) => {
-    console.log("addint itinerary");
     setCityItineraries([...cityItineraries, itinerary]);
   };
 
@@ -81,23 +74,23 @@ const CityDetail: FC<RouteComponentProps<City>> = props => {
             {cityItineraries &&
               (cityItineraries.length > 0 ? (
                 <Itineraries
-                  cityName={props.match.params.name}
+                  cityName={urlParameterString}
                   cityItineraries={cityItineraries}
                 />
               ) : (
-                  "No itineraries were added yet :("
-                ))}
+                "No itineraries were added yet :("
+              ))}
           </div>
           {currentCity && (
             <AddItinerary
-              cityName={props.match.params.name}
+              cityName={urlParameterString}
               addNewItinerary={addNewItinerary}
             />
           )}
         </Fragment>
       ) : (
-          <Loader />
-        )}
+        <Loader />
+      )}
     </div>
   );
 };

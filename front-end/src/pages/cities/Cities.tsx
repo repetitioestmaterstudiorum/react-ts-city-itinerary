@@ -14,38 +14,33 @@ import { Form } from "react-bootstrap";
 import Loader from "../../components/Loader";
 
 const Cities: FC = () => {
-  const {cities, fetchCities} = useContext(CityContext);
-
-  //no need to store filtered data if we have the full cities list
-  // const [filteredCities, setFilteredCities] = useState<Cities>([]);
-  const [inputField, setInputField] = useState('')
-
+  const { cities, fetchCities } = useContext(CityContext);
+  const [inputField, setInputField] = useState("");
 
   useEffect(() => {
-    console.log('cities :', cities);
-   if(!cities) fetchCities()
+    if (!cities) fetchCities();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filterCities = () => {
-    return cities? 
-      cities.filter((city: City) =>
-        (city.name.toLowerCase() + city.country.toLowerCase()).includes(
-          inputField.toLowerCase()
-        ))
-     : []
-  }
-
+    return cities
+      ? cities.filter((city: City) =>
+          (city.name.toLowerCase() + city.country.toLowerCase()).includes(
+            inputField.toLowerCase()
+          )
+        )
+      : [];
+  };
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const {value} = e.target
-    setInputField(value)
+    const { value } = e.target;
+    setInputField(value);
   };
 
   const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
-  console.log('cities :', cities);
   return (
     <section className="container text-center pt-1">
       <h1>Cities</h1>
@@ -90,7 +85,8 @@ const Cities: FC = () => {
         <Fragment>
           <Loader />
           <p className="pt-3" style={{ fontStyle: "italic" }}>
-            This might take a while if the heroku container is sleeping!!
+            This might take a while if the heroku container is sleeping! (it's a
+            free container..)
           </p>
         </Fragment>
       )}

@@ -38,13 +38,14 @@ interface User {
 
 type Users = User[];
 
-// cases of "any" to solve:
-// CityContext
-// ItineraryContext
-// UserContext
-
 interface CityContextInterface {
-  cities: Cities | null,
-  fetchCities(): void,
-  setCities(cities: Cities): void,
+  cities: Cities | null;
+  fetchCities(): void;
+  setCities(cities: Cities): void;
+  currentCity: City | null;
+  getCurrentCity(cityName: string): void;
 }
+
+// cases of "any" to solve:
+// UserContext
+// upload in createaccount and addcity -> soon one component I guess
