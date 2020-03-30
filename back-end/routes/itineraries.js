@@ -2,15 +2,7 @@ const express = require("express");
 const itineraryModel = require("../models/itineraryModel");
 const router = express.Router();
 const userModel = require("../models/userModel");
-
-// function to turn anything to Title Case (first letter of every word is a capital letter)
-const toTitleCase = phrase => {
-  return phrase
-    .toLowerCase()
-    .split(" ")
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-};
+const { toTitleCase } = require("../misc/sharedFunctions");
 
 // get all itineraries
 router.get("/all", (req, res) => {

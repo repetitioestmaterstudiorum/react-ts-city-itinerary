@@ -39,4 +39,4 @@ app.use("/users", require("./routes/users"));
 // passport middleware
 app.use(passport.initialize());
 // passport strategies
-require("./config/passportStrategies");
+require("./misc/passportStrategies");

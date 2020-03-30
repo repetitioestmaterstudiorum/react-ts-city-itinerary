@@ -6,20 +6,12 @@ const { check, validationResult } = require("express-validator");
 const aws = require("aws-sdk");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
+const { toTitleCase } = require("../misc/sharedFunctions");
 
 const router = express.Router();
 const userModel = require("../models/userModel");
 const saltRounds = 10;
 const jwtKey = process.env.JWT_KEY;
-
-// function to turn anything to Title Case (first letter of every word is a capital letter)
-const toTitleCase = phrase => {
-  return phrase
-    .toLowerCase()
-    .split(" ")
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-};
 
 // post new user
 router.post(

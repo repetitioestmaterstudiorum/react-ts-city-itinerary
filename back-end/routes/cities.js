@@ -1,16 +1,7 @@
 const express = require("express");
 const cityModel = require("../models/cityModel");
 const router = express.Router();
-const { toTitleCase } = require("../checks");
-//since oyu are reusing the toTitleCase function more than once you could put it in a separate file and export it
-// function to turn anything to Title Case (first letter of every word is a capital letter)
-// const toTitleCase = phrase => {
-//   return phrase
-//     .toLowerCase()
-//     .split(" ")
-//     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-//     .join(" ");
-// };
+const { toTitleCase } = require("../misc/sharedFunctions");
 
 // get all cities
 router.get("/all", (req, res) => {
