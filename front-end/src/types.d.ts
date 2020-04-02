@@ -51,6 +51,3 @@ interface CurrentUserContextInterface {
   setCurrentUser(user: User): void;
   setToken(token: string): void;
 }
-
-// cases of "any" to solve:
-// upload in createaccount and addcity -> soon one component I guess

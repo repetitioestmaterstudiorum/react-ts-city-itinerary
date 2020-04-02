@@ -18,3 +18,10 @@ https://city-itinerary.netlify.com/
 8. check package.json in /back-end for all available commands!
 9. create a .env file locally with the content "REACT_APP_BACKEND_URL=http://localhost:5000/" and a .env.development file with the same variable but enter the heroku url there
 10. deploy / develop locally
+
+### features to be developed / refactored
+
+- 2 cases of "any" (TS) to solve: upload in createaccount and addcity
+- make a component for the upload functionality
+- itinerary context
+- export all backend fetch functions anywhere in the app into contexts
