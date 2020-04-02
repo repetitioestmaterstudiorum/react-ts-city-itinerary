@@ -23,6 +23,7 @@ const Itinerary: FC<ItineraryProps> = props => {
   useEffect(() => {
     // set initial load likes
     setItineraryLikes(props.itinerary.likes);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -35,8 +36,8 @@ const Itinerary: FC<ItineraryProps> = props => {
       ) {
         setUserLikesCurrentItinerary(true);
         setInitialLoad(true);
-      } // eslint-disable-next-line react-hooks/exhaustive-deps
-    }
+      }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   const handleLikeClick = () => {
