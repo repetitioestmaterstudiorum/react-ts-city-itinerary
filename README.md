@@ -16,5 +16,5 @@ https://city-itinerary.netlify.com/
 6. create AWS S3 bucket and a user that has access, and then create env variables for AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, S3_BUCKET_NAME, and AWS_DEFAULT_REGION locally
 7. add all env vars on heroku
 8. check package.json in /back-end for all available commands!
-9. create a .env file locally with the content "REACT_APP_BACKEND_URL=http://localhost:5000/" and on netlify, enter the heroku domain as REACT_APP_BACKEND_URL env variable
+9. create a .env file locally with the content "REACT_APP_BACKEND_URL=http://localhost:5000/" and a .env.development file with the same variable but enter the heroku url there
 10. deploy / develop locally

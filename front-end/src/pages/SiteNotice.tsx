@@ -4,6 +4,7 @@ const SiteNotice: FC = () => {
   return (
     <section className="container text-center">
       <h1>Site Notice</h1>
+      <p>{process.env.REACT_APP_BACKEND_URL}</p>
       <h2>Site Owner</h2>
       <a
         href="https://github.com/sunyamare"
