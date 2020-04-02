@@ -27,10 +27,7 @@ const CreateAccount: FC = () => {
   const { currentUser, setCurrentUser, setToken } = useContext(
     CurrentUserContext
   );
-  const backendUrl: string =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5000/"
-      : "https://blooming-beyond-66134.herokuapp.com/";
+  const backendUrl: string | undefined = process.env.REACT_APP_BACKEND_URL;
   const likedItineraries: string[] = [];
 
   const updateEmail = (e: ChangeEvent<HTMLInputElement>) => {

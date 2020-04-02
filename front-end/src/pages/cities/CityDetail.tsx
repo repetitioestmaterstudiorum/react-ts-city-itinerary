@@ -9,10 +9,7 @@ import Loader from "../../components/Loader";
 const CityDetail: FC<RouteComponentProps<City>> = props => {
   const [cityItineraries, setCityItineraries] = useState<Itineraries>();
   const { currentCity, getCurrentCity } = useContext(CityContext);
-  const backendUrl: string =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5000/"
-      : "https://blooming-beyond-66134.herokuapp.com/";
+  const backendUrl: string | undefined = process.env.REACT_APP_BACKEND_URL;
   const urlParameterString: string = props.match.params.name;
 
   useEffect(() => {

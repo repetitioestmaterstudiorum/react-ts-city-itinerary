@@ -21,16 +21,12 @@ export const CityContext = createContext<CityContextInterface>(initCityContext);
 export const CityProvider = (props: { children: ReactNode }) => {
   const [cities, setCities] = useState<Cities | null>(null);
   const [currentCity, setCurrentCity] = useState<City | null>(null);
+  const backendUrl: string | undefined = process.env.REACT_APP_BACKEND_URL;
 
   const getCurrentCity = async (cityName: string) => {
     const res = await axios.get(`${backendUrl}cities/${cityName}`);
     setCurrentCity(res.data);
   };
-
-  const backendUrl: string =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5000/"
-      : "https://blooming-beyond-66134.herokuapp.com/";
 
   const fetchCities = async () => {
     try {

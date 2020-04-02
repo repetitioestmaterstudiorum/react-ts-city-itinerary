@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
+import React, { FC, useState, ChangeEvent, FormEvent, useContext } from "react";
 import { CityContext } from "../../context/CityContext";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import axios from "axios";
@@ -6,7 +6,7 @@ import { Accordion, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-const AddCity: React.FC = () => {
+const AddCity: FC = () => {
   const [name, setName] = useState<string>("");
   const [country, setCountry] = useState<string>("");
   const [selectedImage, setSelectedImage] = useState<any>();
@@ -15,10 +15,7 @@ const AddCity: React.FC = () => {
   // eslint-disable-next-line
   const { cities, setCities } = useContext(CityContext);
   const { currentUser } = useContext(CurrentUserContext);
-  const backendUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5000/"
-      : "https://blooming-beyond-66134.herokuapp.com/";
+  const backendUrl: string | undefined = process.env.REACT_APP_BACKEND_URL;
 
   const updateName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);

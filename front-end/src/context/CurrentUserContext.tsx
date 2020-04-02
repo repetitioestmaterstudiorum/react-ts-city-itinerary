@@ -19,10 +19,7 @@ export const CurrentUserContext = createContext<CurrentUserContextInterface>(
 export const CurrentUserProvider: React.FC = props => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const backendUrl: string =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5000/"
-      : "https://blooming-beyond-66134.herokuapp.com/";
+  const backendUrl: string | undefined = process.env.REACT_APP_BACKEND_URL;
 
   const fetchUser = async (token: string) => {
     try {

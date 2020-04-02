@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 
-const SiteNotice: React.FC = props => {
+const SiteNotice: FC = () => {
   return (
     <section className="container text-center">
       <h1>Site Notice</h1>
@@ -8,14 +8,16 @@ const SiteNotice: React.FC = props => {
       <a
         href="https://github.com/sunyamare"
         target="_blank"
-        rel="noopener noreferrer">
+        rel="noopener noreferrer"
+      >
         github.com/sunyamare
       </a>
       <h2>Contact</h2>
       <a
         href="https://sunyamare.ch/contact"
         target="_blank"
-        rel="noopener noreferrer">
+        rel="noopener noreferrer"
+      >
         sunyamare.ch/contact
       </a>
       <h2>Data Privacy, Cookies, Disclaimer</h2>

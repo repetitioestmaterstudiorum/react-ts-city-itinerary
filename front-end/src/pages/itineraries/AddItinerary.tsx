@@ -85,10 +85,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
     } else if (activitiesArray.length < 1) {
       alert("Enter at least one activity!");
     } else {
-      const backendUrl: string =
-        process.env.NODE_ENV === "development"
-          ? "http://localhost:5000/"
-          : "https://blooming-beyond-66134.herokuapp.com/";
+      const backendUrl: string | undefined = process.env.REACT_APP_BACKEND_URL;
       try {
         const postItinerary = async () => {
           const res = await axios.post(`${backendUrl}itineraries/`, {

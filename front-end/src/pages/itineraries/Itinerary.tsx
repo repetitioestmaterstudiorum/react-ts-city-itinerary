@@ -17,11 +17,7 @@ const Itinerary: FC<ItineraryProps> = props => {
     boolean
   >();
   const [itineraryLikes, setItineraryLikes] = useState<number>(0);
-
-  const backendUrl: string =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5000/"
-      : "https://blooming-beyond-66134.herokuapp.com/";
+  const backendUrl: string | undefined = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     setItineraryLikes(props.itinerary.likes); // set initial load likes

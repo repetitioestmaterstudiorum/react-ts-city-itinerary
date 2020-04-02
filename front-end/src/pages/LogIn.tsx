@@ -18,10 +18,7 @@ const LogIn: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const { currentUser, setToken } = useContext(CurrentUserContext);
-  const backendUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5000/"
-      : "https://blooming-beyond-66134.herokuapp.com/";
+  const backendUrl: string | undefined = process.env.REACT_APP_BACKEND_URL;
 
   const updateEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
