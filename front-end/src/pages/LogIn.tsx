@@ -41,7 +41,9 @@ const LogIn: FC = () => {
           });
           localStorage.setItem("token", res.data.token);
           setToken(res.data.token);
-          setIsLoading(false);
+          setTimeout(function() {
+            setIsLoading(false);
+          }, 600);
         } catch (err) {
           alert(err.response.request.response);
         }

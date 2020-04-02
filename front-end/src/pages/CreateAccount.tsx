@@ -111,7 +111,9 @@ const CreateAccount: FC = () => {
           });
           localStorage.setItem("token", resLogIn.data.token);
           setToken(resLogIn.data.token);
-          setIsLoading(false);
+          setTimeout(function() {
+            setIsLoading(false);
+          }, 600);
         } catch (err) {
           if (err.response.status === 422) {
             alert(JSON.parse(err.response.request.response)[0].msg);
