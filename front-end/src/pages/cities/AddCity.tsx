@@ -14,7 +14,7 @@ const AddCity: React.FC = () => {
   const [filetypeAlertDone, setFiletypeAlertDone] = useState<boolean>(false);
   // eslint-disable-next-line
   const { cities, setCities } = useContext(CityContext);
-  const [currentUser] = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const backendUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"

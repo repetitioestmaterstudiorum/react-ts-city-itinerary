@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import axios from "axios";
 
 const Profile: FC = () => {
-  const [currentUser, setToken] = useContext(CurrentUserContext);
+  const { currentUser, setToken } = useContext(CurrentUserContext);
   const [likedItineraries, setLikedItineraries] = useState<Itineraries>();
 
   const handleLogout = () => {

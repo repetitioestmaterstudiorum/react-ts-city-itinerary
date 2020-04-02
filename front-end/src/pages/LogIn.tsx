@@ -17,7 +17,7 @@ const LogIn: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [currentUser, setToken] = useContext(CurrentUserContext);
+  const { currentUser, setToken } = useContext(CurrentUserContext);
   const backendUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"

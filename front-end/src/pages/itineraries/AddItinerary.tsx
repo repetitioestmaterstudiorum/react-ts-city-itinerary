@@ -25,7 +25,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
   const [activityField, setActivityField] = useState<string>("");
   const [activitiesArray, setActivitiesArray] = useState<string[]>([]);
   const [activitiesString, setActivitiesString] = useState<string>("");
-  const [currentUser] = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const cityName: string = props.cityName;
   const likes: number = 0;
 
@@ -94,8 +94,9 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
           const res = await axios.post(`${backendUrl}itineraries/`, {
             name,
             city: cityName,
-            profileName: `${currentUser.firstName} ${currentUser.lastName}`,
-            profilePicture: currentUser.profilePicture,
+            profileName: `${currentUser &&
+              currentUser.firstName} ${currentUser && currentUser.lastName}`,
+            profilePicture: currentUser && currentUser.profilePicture,
             likes,
             hashtags: hashtagArray,
             activities: activitiesArray

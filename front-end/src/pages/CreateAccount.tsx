@@ -24,7 +24,7 @@ const CreateAccount: FC = () => {
   const [filetypeAlertDone, setFiletypeAlertDone] = useState<boolean>(false);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
-  const [currentUser, setCurrentUser, setToken] = useContext(
+  const { currentUser, setCurrentUser, setToken } = useContext(
     CurrentUserContext
   );
   const backendUrl: string =
@@ -95,7 +95,7 @@ const CreateAccount: FC = () => {
       setIsLoading(true);
       const createAccount = async () => {
         try {
-          const resCreateAccount = await axios.post(
+          const resCreateAccount: User = await axios.post(
             `${backendUrl}users/create-account`,
             {
               email,

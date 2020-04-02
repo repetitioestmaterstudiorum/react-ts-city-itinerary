@@ -1,11 +1,24 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-export const CurrentUserContext = createContext([{}] as any);
+//initialize the context
+const initCurrentUserContext: CurrentUserContextInterface = {
+  currentUser: null,
+  setCurrentUser: (user: User) => {
+    throw new Error("setCurrentUser() not implemented");
+  },
+  setToken: (token: string) => {
+    throw new Error("setToken() not implemented");
+  }
+};
+
+export const CurrentUserContext = createContext<CurrentUserContextInterface>(
+  initCurrentUserContext
+);
 
 export const CurrentUserProvider: React.FC = props => {
-  const [currentUser, setCurrentUser] = useState<User>();
-  const [token, setToken] = useState<string>();
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(null);
   const backendUrl: string =
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000/"
@@ -37,13 +50,13 @@ export const CurrentUserProvider: React.FC = props => {
 
   useEffect(() => {
     // fetch user and set state
-    token && fetchUser(token);
+    token ? fetchUser(token) : setCurrentUser(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+  }, [token, currentUser]);
 
   return (
     <CurrentUserContext.Provider
-      value={[currentUser, setCurrentUser, setToken]}
+      value={{ currentUser, setCurrentUser, setToken }}
     >
       {props.children}
     </CurrentUserContext.Provider>

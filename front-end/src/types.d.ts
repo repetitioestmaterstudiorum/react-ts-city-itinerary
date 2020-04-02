@@ -33,7 +33,7 @@ interface User {
   password: string;
   passwordConfirmation?: string;
   profilePicture: string;
-  likedItineraries?: string[];
+  likedItineraries: string[];
 }
 
 type Users = User[];
@@ -46,6 +46,11 @@ interface CityContextInterface {
   getCurrentCity(cityName: string): void;
 }
 
+interface CurrentUserContextInterface {
+  currentUser: User | null;
+  setCurrentUser(user: User): void;
+  setToken(token: string): void;
+}
+
 // cases of "any" to solve:
-// UserContext
 // upload in createaccount and addcity -> soon one component I guess

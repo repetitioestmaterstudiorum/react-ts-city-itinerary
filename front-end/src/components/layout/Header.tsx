@@ -9,7 +9,7 @@ import BackButton from "../BackButton";
 
 const Header: FC = () => {
   let history = useHistory();
-  const [currentUser, setToken] = useContext(CurrentUserContext);
+  const { currentUser, setToken } = useContext(CurrentUserContext);
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleHideModal = () => setShowModal(false);

@@ -3,17 +3,17 @@ import axios from "axios";
 
 //initialize the context
 const initCityContext: CityContextInterface = {
+  cities: [],
   setCities: (cities: Cities) => {
     throw new Error("setCities() not implemented");
   },
-  fetchCities: () => {
-    throw new Error("fetchCities() not implemented");
-  },
+  currentCity: null,
   getCurrentCity: (cityName: string) => {
     throw new Error("getCurrentCity() not implemented");
   },
-  cities: [],
-  currentCity: null
+  fetchCities: () => {
+    throw new Error("fetchCities() not implemented");
+  }
 };
 
 export const CityContext = createContext<CityContextInterface>(initCityContext);

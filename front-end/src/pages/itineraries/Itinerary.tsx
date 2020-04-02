@@ -12,7 +12,7 @@ type ItineraryProps = {
 };
 
 const Itinerary: FC<ItineraryProps> = props => {
-  const [currentUser] = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const [userLikesCurrentItinerary, setUserLikesCurrentItinerary] = useState<
     boolean
   >();
@@ -25,12 +25,14 @@ const Itinerary: FC<ItineraryProps> = props => {
 
   useEffect(() => {
     setItineraryLikes(props.itinerary.likes); // set initial load likes
+    // check if current user likes current itinerary
     if (
       currentUser &&
       currentUser.likedItineraries.includes(props.itinerary._id)
     ) {
-      setUserLikesCurrentItinerary(true); // check if current user likes current itinerary
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
+      setUserLikesCurrentItinerary(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   const handleLikeClick = () => {
@@ -42,7 +44,7 @@ const Itinerary: FC<ItineraryProps> = props => {
           itineraryID: props.itinerary._id
         });
         axios.put(`${backendUrl}users/add-liked-itinerary`, {
-          userID: currentUser._id,
+          userID: currentUser && currentUser._id,
           itineraryID: props.itinerary._id
         });
       };
@@ -61,7 +63,7 @@ const Itinerary: FC<ItineraryProps> = props => {
           itineraryID: props.itinerary._id
         });
         axios.put(`${backendUrl}users/remove-liked-itinerary`, {
-          userID: currentUser._id,
+          userID: currentUser && currentUser._id,
           itineraryID: props.itinerary._id
         });
       };
