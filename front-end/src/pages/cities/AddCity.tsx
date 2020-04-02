@@ -29,7 +29,7 @@ const AddCity: FC = () => {
   };
 
   const handleImageSelected = (e: ChangeEvent<any>) => {
-    if (e.target.files.length === 0) {
+    if (e.currentTarget.files.length === 0) {
       return;
     }
     if (e.target.files[0].name.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/)) {
@@ -60,7 +60,8 @@ const AddCity: FC = () => {
       }
     }
   };
-  //should be part of cities context
+
+  // could be part of cities context
   const addCityCountryPair = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (containsANumber(name) || containsANumber(country)) {
@@ -130,9 +131,14 @@ const AddCity: FC = () => {
                         )}
                       </label>
                     </div>
-                    <span className="btn btn-link" onClick={handleImageUpload}>
-                      Upload
-                    </span>
+                    {selectedImage && (
+                      <span
+                        className="btn btn-link"
+                        onClick={handleImageUpload}
+                      >
+                        Upload
+                      </span>
+                    )}
                   </div>
                   {filetypeAlertDone && (
                     <div className="d-flex justify-content-center mt-2">

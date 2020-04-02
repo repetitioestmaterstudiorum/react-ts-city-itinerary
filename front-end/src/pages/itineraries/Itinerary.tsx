@@ -15,20 +15,28 @@ const Itinerary: FC<ItineraryProps> = props => {
   const { currentUser } = useContext(CurrentUserContext);
   const [userLikesCurrentItinerary, setUserLikesCurrentItinerary] = useState<
     boolean
-  >();
+  >(false);
   const [itineraryLikes, setItineraryLikes] = useState<number>(0);
+  const [initialLoad, setInitialLoad] = useState<boolean>(false);
   const backendUrl: string | undefined = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
-    setItineraryLikes(props.itinerary.likes); // set initial load likes
-    // check if current user likes current itinerary
-    if (
-      currentUser &&
-      currentUser.likedItineraries.includes(props.itinerary._id)
-    ) {
-      setUserLikesCurrentItinerary(true);
+    // set initial load likes
+    setItineraryLikes(props.itinerary.likes);
+  }, []);
+
+  useEffect(() => {
+    // only do this once time (should be standard as long as user doesn't change, but loads infinitely)
+    if (!initialLoad) {
+      // check if current user likes current itinerary
+      if (
+        currentUser &&
+        currentUser.likedItineraries.includes(props.itinerary._id)
+      ) {
+        setUserLikesCurrentItinerary(true);
+        setInitialLoad(true);
+      } // eslint-disable-next-line react-hooks/exhaustive-deps
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   const handleLikeClick = () => {
@@ -185,9 +193,6 @@ const Itinerary: FC<ItineraryProps> = props => {
                     </Link>
                   )}
                 </div>
-                {/* <hr className="mt-2" style={{ width: "15%" }}></hr>
-                <span>Last Comments:</span>
-                <span className="d-block">coming soon..</span> */}
               </Card.Body>
             </Accordion.Collapse>
             <Accordion.Toggle

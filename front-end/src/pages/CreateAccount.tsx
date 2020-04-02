@@ -178,9 +178,14 @@ const CreateAccount: FC = () => {
                         )}
                       </label>
                     </div>
-                    <span className="btn btn-link" onClick={handleImageUpload}>
-                      Upload
-                    </span>
+                    {selectedImage && (
+                      <span
+                        className="btn btn-link"
+                        onClick={handleImageUpload}
+                      >
+                        Upload
+                      </span>
+                    )}
                   </div>
                   <div className="d-flex justify-content-center mt-2 mb-2">
                     <span style={{ padding: "5px 0" }}>
