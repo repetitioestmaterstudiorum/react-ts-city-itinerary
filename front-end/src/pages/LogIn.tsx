@@ -4,7 +4,7 @@ import React, {
   useState,
   ChangeEvent,
   FormEvent,
-  useContext
+  useContext,
 } from "react";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 import axios from "axios";
@@ -37,20 +37,21 @@ const LogIn: FC = () => {
         try {
           const res = await axios.post(`${backendUrl}users/log-in`, {
             email,
-            password
+            password,
           });
           localStorage.setItem("token", res.data.token);
           setToken(res.data.token);
-          setTimeout(function() {
+          setTimeout(function () {
             setIsLoading(false);
           }, 600);
+          setEmail("");
+          setPassword("");
         } catch (err) {
+          setIsLoading(false);
           alert(err.response.request.response);
         }
       };
       logIn();
-      setEmail("");
-      setPassword("");
     }
   };
 

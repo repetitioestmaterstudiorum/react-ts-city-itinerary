@@ -26,7 +26,7 @@ router.post(
       .withMessage("Password must be at least be 8 characters long!"),
     check("password")
       .matches(/\d/)
-      .withMessage("Password must contain a number!")
+      .withMessage("Password must contain a number!"),
   ],
   (req, res) => {
     // create validation object
@@ -36,13 +36,9 @@ router.post(
       return res.status(422).send(errors.array());
     }
     // check if the email already exists
-    userModel.findOne({ email: req.body.email }).then(user => {
+    userModel.findOne({ email: req.body.email }).then((user) => {
       if (user) {
         return res.status(400).send("Email already exists!");
-      }
-      // check if the passwords match
-      if (req.body.password !== req.body.passwordConfirmation) {
-        return res.status(400).send("Passwords don't match!");
       }
       // if all is fine, create a new user
       const newUser = new userModel({
@@ -50,7 +46,7 @@ router.post(
         firstName: toTitleCase(req.body.firstName),
         lastName: toTitleCase(req.body.lastName),
         password: req.body.password,
-        profilePicture: req.body.profilePicture
+        profilePicture: req.body.profilePicture,
       });
       // password encryption
       bcrypt.hash(newUser.password, saltRounds, (err, hash) => {
@@ -59,11 +55,11 @@ router.post(
         // save the new user
         newUser
           .save()
-          .then(user => {
+          .then((user) => {
             user.password = "you wish!";
             res.send(user);
           })
-          .catch(err => console.error(err));
+          .catch((err) => console.error(err));
       });
     });
   }
@@ -72,7 +68,7 @@ router.post(
 // post login
 router.post("/log-in", (req, res) => {
   //find user by email
-  userModel.findOne({ email: req.body.email }).then(user => {
+  userModel.findOne({ email: req.body.email }).then((user) => {
     // send error if user doesn't exist
     if (!user) {
       return res.status(400).send("Email not found");
@@ -80,12 +76,12 @@ router.post("/log-in", (req, res) => {
     // check if passwords match
     bcrypt
       .compare(req.body.password, user.password)
-      .then(matches => {
+      .then((matches) => {
         if (matches) {
           // creating a JWT payload
           const payload = {
             id: user.id,
-            email: user.email
+            email: user.email,
           };
           const options = { expiresIn: 1814400 }; // 21 days = 1814400 seconds
           // create and sign the JWT token
@@ -93,7 +89,7 @@ router.post("/log-in", (req, res) => {
             if (err) {
               res.json({
                 success: false,
-                token: `There was an error signing the JWT token: ${err}`
+                token: `There was an error signing the JWT token: ${err}`,
               });
             } else {
               // setTimeout(function() {
@@ -104,7 +100,7 @@ router.post("/log-in", (req, res) => {
               // }, 1800);
               res.json({
                 success: true,
-                token: token
+                token: token,
               });
             }
           });
@@ -112,7 +108,7 @@ router.post("/log-in", (req, res) => {
           return res.status(400).send("Password incorrect");
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   });
 });
 
@@ -123,11 +119,11 @@ router.get(
   (req, res) => {
     userModel
       .findOne({ _id: req.user.id })
-      .then(user => {
+      .then((user) => {
         user.password = "you wish!";
         res.send(user);
       })
-      .catch(err => res.status(404).send("User does not exist!"));
+      .catch((err) => res.status(404).send("User does not exist!"));
   }
 );
 
@@ -138,7 +134,7 @@ router.put("/add-liked-itinerary", (req, res) => {
       { _id: req.body.userID },
       { $push: { likedItineraries: req.body.itineraryID } }
     )
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 });
 
 // remove liked itinerary
@@ -148,14 +144,14 @@ router.put("/remove-liked-itinerary", (req, res) => {
       { _id: req.body.userID },
       { $pull: { likedItineraries: req.body.itineraryID } }
     )
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 });
 
 // image-upload
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_DEFAULT_REGION
+  region: process.env.AWS_DEFAULT_REGION,
 });
 
 const upload = multer({
@@ -169,16 +165,16 @@ const upload = multer({
     },
     key: (req, file, cb) => {
       cb(null, Date.now().toString() + "-" + file.originalname); //
-    }
-  })
+    },
+  }),
 });
 
 // image post route
-router.post("/image-upload", upload.single("image"), function(req, res, next) {
+router.post("/image-upload", upload.single("image"), function (req, res, next) {
   if (!req.file) res.status(400).send("Nothing was uploaded!");
   res.status(201).json({
     message: "Successfully uploaded " + req.file.originalname,
-    file: req.file
+    file: req.file,
   });
 });
 // for multiple files:

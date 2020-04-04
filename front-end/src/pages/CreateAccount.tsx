@@ -4,7 +4,7 @@ import React, {
   useState,
   ChangeEvent,
   FormEvent,
-  useContext
+  useContext,
 } from "react";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 import axios from "axios";
@@ -77,6 +77,24 @@ const CreateAccount: FC = () => {
     }
   };
 
+  const doLogin = async (user: User) => {
+    try {
+      setCurrentUser(user);
+      let resLogIn = await axios.post(`${backendUrl}users/log-in`, {
+        email,
+        password,
+      });
+      localStorage.setItem("token", resLogIn.data.token);
+      setToken(resLogIn.data.token);
+      setTimeout(function () {
+        setIsLoading(false);
+      }, 600);
+    } catch (err) {
+      setIsLoading(false);
+      alert(err.response.request.response);
+    }
+  };
+
   const addUser = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
@@ -88,9 +106,11 @@ const CreateAccount: FC = () => {
       !uploadedImage
     ) {
       alert("Enter a value in all fields and upload an image!");
+    } else if (password !== passwordConfirmation) {
+      alert("Passwords don't match");
     } else {
-      setIsLoading(true);
       const createAccount = async () => {
+        setIsLoading(true);
         try {
           const resCreateAccount: User = await axios.post(
             `${backendUrl}users/create-account`,
@@ -101,20 +121,18 @@ const CreateAccount: FC = () => {
               password,
               passwordConfirmation,
               profilePicture: uploadedImage,
-              likedItineraries
+              likedItineraries,
             }
           );
-          setCurrentUser(resCreateAccount);
-          let resLogIn = await axios.post(`${backendUrl}users/log-in`, {
-            email,
-            password
-          });
-          localStorage.setItem("token", resLogIn.data.token);
-          setToken(resLogIn.data.token);
-          setTimeout(function() {
-            setIsLoading(false);
-          }, 600);
+          doLogin(resCreateAccount);
+          setFirstName("");
+          setLastName("");
+          setEmail("");
+          setPassword("");
+          setPasswordConfirmation("");
+          setUploadedImage("");
         } catch (err) {
+          setIsLoading(false);
           if (err.response.status === 422) {
             alert(JSON.parse(err.response.request.response)[0].msg);
           } else {
@@ -123,12 +141,6 @@ const CreateAccount: FC = () => {
         }
       };
       createAccount();
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPassword("");
-      setPasswordConfirmation("");
-      setUploadedImage("");
     }
   };
 
@@ -157,7 +169,7 @@ const CreateAccount: FC = () => {
                     <div
                       style={{
                         position: "relative",
-                        marginRight: ".5rem"
+                        marginRight: ".5rem",
                       }}
                     >
                       <input
@@ -195,7 +207,7 @@ const CreateAccount: FC = () => {
                       style={{
                         backgroundColor: uploadedImage ? "#e3ffec" : "#ffe5e3",
                         padding: "5px 10px",
-                        borderRadius: "20px"
+                        borderRadius: "20px",
                       }}
                     >
                       {uploadedImage
