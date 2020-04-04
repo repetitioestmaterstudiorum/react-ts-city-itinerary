@@ -48,7 +48,6 @@ export const CurrentUserProvider: React.FC = (props) => {
   useEffect(() => {
     // fetch user and set state
     token ? fetchUser(token) : setCurrentUser(null);
-    console.log("being done");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
