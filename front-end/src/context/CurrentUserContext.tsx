@@ -9,14 +9,14 @@ const initCurrentUserContext: CurrentUserContextInterface = {
   },
   setToken: (token: string) => {
     throw new Error("setToken() not implemented");
-  }
+  },
 };
 
 export const CurrentUserContext = createContext<CurrentUserContextInterface>(
   initCurrentUserContext
 );
 
-export const CurrentUserProvider: React.FC = props => {
+export const CurrentUserProvider: React.FC = (props) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const backendUrl: string | undefined = process.env.REACT_APP_BACKEND_URL;
@@ -25,8 +25,8 @@ export const CurrentUserProvider: React.FC = props => {
     try {
       const res = await axios.get(`${backendUrl}users/auth`, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       const data = res.data;
       setCurrentUser(data);
@@ -48,8 +48,9 @@ export const CurrentUserProvider: React.FC = props => {
   useEffect(() => {
     // fetch user and set state
     token ? fetchUser(token) : setCurrentUser(null);
+    console.log("being done");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, currentUser]);
+  }, [token]);
 
   return (
     <CurrentUserContext.Provider

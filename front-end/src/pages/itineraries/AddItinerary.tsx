@@ -5,7 +5,7 @@ import React, {
   ChangeEvent,
   useContext,
   MouseEvent,
-  useEffect
+  useEffect,
 } from "react";
 import axios from "axios";
 import { Accordion, Card } from "react-bootstrap";
@@ -18,7 +18,7 @@ type CityAndAddItineraryProps = {
   addNewItinerary: (itinerary: Itinerary) => void;
 };
 
-const AddItinerary: FC<CityAndAddItineraryProps> = props => {
+const AddItinerary: FC<CityAndAddItineraryProps> = (props) => {
   const [name, setName] = useState<string>("");
   const [hashtagField, setHashtagField] = useState<string>("");
   const [hashtagArray, setHashtagArray] = useState<string[]>([]);
@@ -91,14 +91,13 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
           const res = await axios.post(`${backendUrl}itineraries/`, {
             name,
             city: cityName,
-            profileName: `${currentUser &&
-              currentUser.firstName} ${currentUser && currentUser.lastName}`,
+            profileName:
+              currentUser && `${currentUser.firstName} ${currentUser.lastName}`,
             profilePicture: currentUser && currentUser.profilePicture,
             likes,
             hashtags: hashtagArray,
-            activities: activitiesArray
+            activities: activitiesArray,
           });
-          console.log("*** res from add city: ", res.data);
           props.addNewItinerary(res.data);
         };
         postItinerary();
@@ -119,7 +118,7 @@ const AddItinerary: FC<CityAndAddItineraryProps> = props => {
         className="pb-2"
         style={{
           maxWidth: "330px",
-          margin: "10px auto 0"
+          margin: "10px auto 0",
         }}
       >
         <Card>
